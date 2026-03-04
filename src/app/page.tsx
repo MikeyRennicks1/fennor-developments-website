@@ -3,6 +3,7 @@ import Image from "next/image";
 import { company } from "@/config/company";
 import { HOME_HERO } from "@/config/images";
 import { FadeInSection } from "@/components/ui/FadeInSection";
+import { IconSolar, IconLightning, IconHome } from "@/components/ui/ServiceIcons";
 
 const TEL_HREF = `tel:${company.phone.replace(/\s/g, "")}`;
 
@@ -51,40 +52,69 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Services row – light section with gold tint; staggered scroll-in */}
+      {/* Our Services – cards + trust strip */}
       <FadeInSection>
-        <section className="py-16 sm:py-20 bg-gradient-to-b from-white to-gold/5 border-b border-gold/10">
-          <div className="max-w-5xl mx-auto px-4 sm:px-6">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-10 text-center">
+        <section className="py-16 sm:py-20 bg-[#f7f7f7]" aria-labelledby="our-services-heading">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6">
+            <header className="text-center mb-12 sm:mb-14">
+              <h2 id="our-services-heading" className="text-3xl sm:text-4xl font-semibold text-slate">
+                Our Services
+              </h2>
+              <p className="mt-3 text-slate/80 text-lg max-w-2xl mx-auto">
+                Integrated solar, electrical and construction solutions across Ireland.
+              </p>
+            </header>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
               {[
-                { href: "/solar", label: "Solar PV" },
-                { href: "/electrical", label: "Electrical" },
-                { href: "/builds-renovations", label: "Builds & Renovations" },
+                {
+                  href: "/solar",
+                  title: "Solar PV",
+                  description:
+                    "Design and installation of high-efficiency solar systems for Irish homes and businesses. Reduce energy costs and gain energy independence.",
+                  Icon: IconSolar,
+                },
+                {
+                  href: "/electrical",
+                  title: "Electrical",
+                  description:
+                    "Professional electrical services including installations, upgrades, testing and fault diagnostics for residential and commercial properties.",
+                  Icon: IconLightning,
+                },
+                {
+                  href: "/builds-renovations",
+                  title: "Builds & Renovations",
+                  description:
+                    "Energy-efficient builds and renovations including ICF construction, extensions and full property upgrades.",
+                  Icon: IconHome,
+                },
               ].map((item, i) => (
                 <FadeInSection key={item.href} delay={i * 80}>
                   <Link
                     href={item.href}
-                    className="block rounded-xl border border-transparent bg-white/80 px-6 py-4 text-slate font-semibold text-lg hover:border-gold/50 hover:bg-gold/5 hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300"
+                    className="group block h-full rounded-xl border border-gray-200 bg-white p-6 sm:p-7 shadow-card hover:shadow-card-hover hover:-translate-y-1 hover:border-solar-orange-light transition-all duration-300"
                   >
-                    {item.label}
+                    <span className="inline-flex [&>svg]:text-solar-orange-light" aria-hidden>
+                      <item.Icon />
+                    </span>
+                    <h3 className="mt-4 text-xl font-semibold text-slate">{item.title}</h3>
+                    <p className="mt-2 text-slate/80 text-sm leading-relaxed">{item.description}</p>
+                    <span className="mt-4 inline-flex items-center text-sm font-medium text-solar-orange-light group-hover:text-solar-orange-dark transition-colors">
+                      Learn More →
+                    </span>
                   </Link>
                 </FadeInSection>
               ))}
             </div>
-          </div>
-        </section>
-      </FadeInSection>
 
-      {/* Stats – trust bar with gold tint */}
-      <section className="section-gold-accent" aria-hidden />
-      <FadeInSection delay={80}>
-        <section className="py-12 sm:py-14 bg-gradient-to-r from-gold/5 via-white to-gold/5 border-y border-gold/10">
-          <div className="max-w-5xl mx-auto px-4 sm:px-6">
-            <div className="flex flex-wrap justify-center gap-x-12 gap-y-2 text-center text-sm text-slate">
-              <span><strong className="text-gold">20+</strong> years</span>
-              <span><strong className="text-gold">100+</strong> solar installs</span>
-              <span><strong className="text-gold">SEAI</strong> registered</span>
-              <span>Fully insured</span>
+            {/* Trust strip */}
+            <div className="mt-14 sm:mt-16 pt-10 sm:pt-12 border-t border-gray-200/80">
+              <div className="flex flex-wrap justify-center items-center gap-x-10 sm:gap-x-14 gap-y-3 text-center text-sm text-slate/90">
+                <span>20+ Years Experience</span>
+                <span>100+ Solar Installs</span>
+                <span>SEAI Registered</span>
+                <span>Fully Insured</span>
+              </div>
             </div>
           </div>
         </section>

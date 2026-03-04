@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
 import { FadeInSection } from "@/components/ui/FadeInSection";
 import { PageHero } from "@/components/ui/PageHero";
 import { IconSolar, IconBattery, IconChart, IconDocument } from "@/components/ui/ServiceIcons";
-import { SOLAR_GALLERY_IMAGES } from "@/config/gallery";
 
 /** Rural solar farm, 4K photorealistic – matches reference (solar panels in landscape) */
 const SOLAR_HERO_URL =
@@ -17,7 +15,6 @@ export const metadata: Metadata = {
 };
 
 export default function SolarPage() {
-  const galleryImages = SOLAR_GALLERY_IMAGES;
   return (
     <>
       <PageHero
@@ -100,30 +97,20 @@ export default function SolarPage() {
                 </Link>
               </div>
               <div>
-                <h3 className="text-lg font-medium text-slate mb-4">Our work</h3>
-                {galleryImages.length > 0 ? (
-                <div className="grid grid-cols-2 gap-3 sm:gap-4">
-                  {galleryImages.map((item) => (
-                    <div
-                      key={item.src}
-                      className="relative rounded-xl overflow-hidden shadow-md aspect-[4/3] bg-gray-100"
-                    >
-                      <Image
-                        src={item.src}
-                        alt={item.alt}
-                        fill
-                        className="object-cover"
-                        sizes="(max-width: 1024px) 50vw, 25vw"
-                      />
-                      <span className="absolute bottom-0 left-0 right-0 bg-black/60 text-white text-xs font-medium py-1.5 px-2 text-center">
-                        {item.caption}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-                ) : (
-                  <p className="text-sm text-slate/70">Add images to <code className="bg-gray-100 px-1 rounded text-xs">public/gallery/</code> and they’ll appear here.</p>
-                )}
+                <Link
+                  href="/gallery"
+                  className="group block rounded-xl border border-gray-200 bg-white p-8 shadow-card hover:shadow-card-hover hover:border-solar-orange-light hover:-translate-y-1 transition-all duration-300 text-center"
+                >
+                  <h3 className="text-xl font-semibold text-slate group-hover:text-solar-orange-light transition-colors">
+                    Our gallery
+                  </h3>
+                  <p className="mt-2 text-sm text-slate/70">
+                    View all our photos — solar, inverters, batteries and builds.
+                  </p>
+                  <span className="mt-4 inline-flex items-center text-sm font-medium text-solar-orange-light group-hover:text-solar-orange-dark">
+                    View gallery →
+                  </span>
+                </Link>
               </div>
             </div>
           </div>
