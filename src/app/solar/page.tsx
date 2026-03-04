@@ -4,7 +4,7 @@ import Image from "next/image";
 import { FadeInSection } from "@/components/ui/FadeInSection";
 import { PageHero } from "@/components/ui/PageHero";
 import { IconSolar, IconBattery, IconChart, IconDocument } from "@/components/ui/ServiceIcons";
-import { SOLAR_INVERTER } from "@/config/images";
+import { SOLAR_GALLERY_IMAGES } from "@/config/gallery";
 
 /** Rural solar farm, 4K photorealistic – matches reference (solar panels in landscape) */
 const SOLAR_HERO_URL =
@@ -17,6 +17,7 @@ export const metadata: Metadata = {
 };
 
 export default function SolarPage() {
+  const galleryImages = SOLAR_GALLERY_IMAGES;
   return (
     <>
       <PageHero
@@ -72,15 +73,6 @@ export default function SolarPage() {
         <section className="py-20 sm:py-28 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center">
-              <div className="relative rounded-2xl overflow-hidden shadow-md aspect-[4/3] bg-gray-100">
-                <Image
-                  src={SOLAR_INVERTER}
-                  alt="Solar inverter and battery storage – Fennor Developments"
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                />
-              </div>
               <div>
                 <h2 className="text-2xl sm:text-3xl font-light text-slate tracking-wide">Cut bills. Reduce carbon.</h2>
                 <p className="mt-4 text-gray-600 text-sm leading-relaxed">
@@ -106,6 +98,32 @@ export default function SolarPage() {
                 >
                   Calculate your savings
                 </Link>
+              </div>
+              <div>
+                <h3 className="text-lg font-medium text-slate mb-4">Our work</h3>
+                {galleryImages.length > 0 ? (
+                <div className="grid grid-cols-2 gap-3 sm:gap-4">
+                  {galleryImages.map((item) => (
+                    <div
+                      key={item.src}
+                      className="relative rounded-xl overflow-hidden shadow-md aspect-[4/3] bg-gray-100"
+                    >
+                      <Image
+                        src={item.src}
+                        alt={item.alt}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 1024px) 50vw, 25vw"
+                      />
+                      <span className="absolute bottom-0 left-0 right-0 bg-black/60 text-white text-xs font-medium py-1.5 px-2 text-center">
+                        {item.caption}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+                ) : (
+                  <p className="text-sm text-slate/70">Add images to <code className="bg-gray-100 px-1 rounded text-xs">public/gallery/</code> and they’ll appear here.</p>
+                )}
               </div>
             </div>
           </div>
