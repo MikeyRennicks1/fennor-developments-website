@@ -11,8 +11,8 @@ export const company = {
   phoneAlt: "086 192 1591",
   website: "https://fennordevelopments.ie",
   social: {
-    facebook: "https://www.facebook.com/fennordevelopments",
+    facebook: "https://www.facebook.com/p/FennorDevelopments-61553207511388/",
     instagram: "https://www.instagram.com/fennordevelopments",
-    linkedin: "https://www.linkedin.com/company/fennor-developments",
+    linkedin: "https://www.linkedin.com/in/fennor-developments-78b245299/",
   },
 } as const;

@@ -12,22 +12,22 @@ const FAQ = [
   {
     question: "Do you install solar panels in Ashbourne?",
     answer:
-      "Yes. We install solar PV across Ashbourne and East Meath, including Ratoath and the M3 corridor. We're based in Slane and regularly work in the area.",
+      "Yes. We install solar PV across Ashbourne and East Meath, including Ratoath and the M3 corridor. We&apos;re based in Slane and regularly work in the area.",
   },
   {
     question: "Why choose solar in Ashbourne?",
     answer:
-      "Ashbourne's mix of established and new housing is well suited to solar. You can cut bills, claim the SEAI grant where eligible, and add battery storage. Typical payback is around 3–8 years.",
+      "Ashbourne&apos;s mix of established and new housing is well suited to solar. You can cut bills, claim the SEAI grant where eligible, and add battery storage. Typical payback is around 3–8 years.",
   },
   {
     question: "How long does a solar installation take in Ashbourne?",
     answer:
-      "Most domestic installations in Ashbourne are completed in one to two days. We'll confirm the schedule after your free roof assessment.",
+      "Most domestic installations in Ashbourne are completed in one to two days. We&apos;ll confirm the schedule after your free roof assessment.",
   },
   {
     question: "Is the SEAI grant available in Ashbourne?",
     answer:
-      "Yes. The SEAI solar electricity grant is available to qualifying homes in Ashbourne and across Ireland. We're SEAI registered and help you through the application for up to €1,800 depending on system size.",
+      "Yes. The SEAI solar electricity grant is available to qualifying homes in Ashbourne and across Ireland. We&apos;re SEAI registered and help you through the application for up to €1,800 depending on system size.",
   },
 ];
 
@@ -50,7 +50,7 @@ export default function SolarPanelsAshbournePage() {
 
       <h2>Solar benefits in Ashbourne</h2>
       <p>
-        Solar PV in Ashbourne can significantly reduce your electricity bills. Modern panels work well in Irish conditions, and typical payback is in the region of 3–8 years. Adding battery storage improves self-consumption and evening use. We design systems to match your consumption and explain grant options and payback clearly. We check for shading, discuss your consumption and get the balance right so you don't over or under-size.
+        Solar PV in Ashbourne can significantly reduce your electricity bills. Modern panels work well in Irish conditions, and typical payback is in the region of 3–8 years. Adding battery storage improves self-consumption and evening use. We design systems to match your consumption and explain grant options and payback clearly. We check for shading, discuss your consumption and get the balance right so you don&apos;t over or under-size.
       </p>
 
       <p>
@@ -59,7 +59,7 @@ export default function SolarPanelsAshbournePage() {
 
       <h2>SEAI grants and next steps</h2>
       <p>
-        The SEAI solar electricity grant is available to qualifying homes in Ashbourne and across Ireland. We help you through the application and install to the standard required so you can receive the grant. If you're in Ashbourne and thinking about solar panels, we offer a free roof assessment. Use our <Link href="/calculator">solar calculator</Link> for an idea of savings, see our main <Link href="/solar">solar PV page</Link> for system details and grants, or <Link href="/contact">contact us</Link> to book.
+        The SEAI solar electricity grant is available to qualifying homes in Ashbourne and across Ireland. We help you through the application and install to the standard required so you can receive the grant. If you&apos;re in Ashbourne and thinking about solar panels, we offer a free roof assessment. Use our <Link href="/calculator">solar calculator</Link> for an idea of savings, see our main <Link href="/solar">solar PV page</Link> for system details and grants, or <Link href="/contact">contact us</Link> to book.
       </p>
     </SolarLocationLayout>
   );

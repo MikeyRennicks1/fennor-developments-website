@@ -3,6 +3,9 @@ import { Resend } from "resend";
 import { readFileSync, existsSync } from "fs";
 import path from "path";
 import { generateEstimatePdf, type EstimatePdfData, type EstimateResult } from "@/lib/estimate-pdf";
+import { generateCalculatorLeadPdf } from "@/lib/contact-pdf";
+import { getSeaiGrantAmount } from "@/lib/seai-grant";
+import { PANEL_KW } from "@/config/solar";
 import { company } from "@/config/company";
 
 function getLogoDataUri(): string | null {
@@ -53,18 +56,26 @@ export async function POST(request: Request) {
       evCharger: Boolean(evCharger),
       applyGrant: Boolean(applyGrant),
       unitRate: Number(unitRate) || 0.35,
-      result: {
-        totalPrice: Number(result?.totalPrice) ?? 0,
-        afterGrant: Number(result?.afterGrant) ?? 0,
-        yearlySavings: Number(result?.yearlySavings) ?? 0,
-        paybackYears: Number(result?.paybackYears) ?? 0,
-        twentyYearSavings: Number(result?.twentyYearSavings) ?? 0,
-        co2Kg: Number(result?.co2Kg) ?? 0,
-        monthlySavings: Number(result?.monthlySavings) ?? 0,
-        savings5y: Number(result?.savings5y) ?? 0,
-        savings10y: Number(result?.savings10y) ?? 0,
-        savings30y: Number(result?.savings30y) ?? 0,
-      },
+      result: (() => {
+        const panelsNum = Number(panels) || 12;
+        const kWp = panelsNum * PANEL_KW;
+        const grantAmount = result?.grantAmount != null ? Number(result.grantAmount) : getSeaiGrantAmount(kWp);
+        const totalPrice = Number(result?.totalPrice) ?? 0;
+        const afterGrant = Number(result?.afterGrant) ?? (Boolean(applyGrant) ? Math.max(0, totalPrice - grantAmount) : totalPrice);
+        return {
+          totalPrice,
+          afterGrant,
+          grantAmount,
+          yearlySavings: Number(result?.yearlySavings) ?? 0,
+          paybackYears: Number(result?.paybackYears) ?? 0,
+          twentyYearSavings: Number(result?.twentyYearSavings) ?? 0,
+          co2Kg: Number(result?.co2Kg) ?? 0,
+          monthlySavings: Number(result?.monthlySavings) ?? 0,
+          savings5y: Number(result?.savings5y) ?? 0,
+          savings10y: Number(result?.savings10y) ?? 0,
+          savings30y: Number(result?.savings30y) ?? 0,
+        };
+      })(),
       logoDataUri: logoDataUri ?? undefined,
     };
 
@@ -80,7 +91,9 @@ export async function POST(request: Request) {
     }
 
     const resend = new Resend(apiKey);
-    const from = process.env.RESEND_FROM ?? "Fennor Developments <onboarding@resend.dev>";
+    const fromEnv = process.env.RESEND_FROM ?? "";
+    const from =
+      fromEnv && !fromEnv.toLowerCase().includes("@gmail") ? fromEnv : "Fennor Developments <onboarding@resend.dev>";
 
     // 1. Send PDF to the customer
     const { error: customerError } = await resend.emails.send({
@@ -102,23 +115,52 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: customerError.message }, { status: 500 });
     }
 
-    // 2. Send a copy to you with subject "Custom quote for [Name]" and the PDF
-    const { error: ownerError } = await resend.emails.send({
+    // 2. Email 1 to you: full estimate PDF (they clicked "Email me this estimate")
+    const safeName = contact.name.replace(/\s+/g, "-").replace(/[^a-zA-Z0-9-]/g, "");
+    const { error: ownerEstimateError } = await resend.emails.send({
       from,
       to: company.email,
-      subject: `Custom quote for ${contact.name}`,
+      subject: `Estimate requested by ${contact.name}`,
       html: `
-        <p>Custom quote request from the calculator.</p>
-        <p><strong>${contact.name}</strong><br/>${contact.email} · ${contact.phone}<br/>${contact.address}</p>
-        <p>Budget: ${contact.budget || "—"}. PDF estimate attached.</p>
+        <p>Customer requested their estimate by email (calculator).</p>
+        <p><strong>${contact.name}</strong><br/>${contact.email} · ${contact.phone}</p>
+        <p>Full estimate PDF attached.</p>
       `,
       attachments: [
-        { filename: `Custom-quote-${contact.name.replace(/\s+/g, "-")}.pdf`, content: pdfBuffer },
+        { filename: `Estimate-${safeName || "customer"}.pdf`, content: pdfBuffer },
       ],
     });
 
-    if (ownerError) {
-      return NextResponse.json({ error: ownerError.message }, { status: 500 });
+    if (ownerEstimateError) {
+      return NextResponse.json({ error: ownerEstimateError.message }, { status: 500 });
+    }
+
+    // 3. Email 2 to you: lead details (name, email, phone, address, budget) for CRM
+    const leadPdfBytes = generateCalculatorLeadPdf({
+      name: contact.name,
+      email: contact.email,
+      phone: contact.phone ?? "",
+      address: contact.address ?? "",
+      budget: contact.budget ?? "",
+    });
+    const leadPdfBuffer = Buffer.from(leadPdfBytes);
+    const { error: ownerLeadError } = await resend.emails.send({
+      from,
+      to: company.email,
+      subject: `Calculator lead: ${contact.name}`,
+      html: `
+        <p>Lead details (from calculator – for CRM).</p>
+        <p><strong>${contact.name}</strong><br/>${contact.email} · ${contact.phone}<br/>${contact.address}</p>
+        <p>Budget: ${contact.budget || "—"}.</p>
+        <p>PDF attached.</p>
+      `,
+      attachments: [
+        { filename: `Lead-${safeName || "lead"}.pdf`, content: leadPdfBuffer },
+      ],
+    });
+
+    if (ownerLeadError) {
+      return NextResponse.json({ error: ownerLeadError.message }, { status: 500 });
     }
 
     return NextResponse.json({ success: true });

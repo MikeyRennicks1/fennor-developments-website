@@ -11,18 +11,18 @@ import {
 } from "@/config/images";
 
 export const metadata: Metadata = {
-  title: "Full one-off builds and renovations | Fennor Developments | Meath",
+  title: "Building & Renovations | Full one-off builds | Fennor Developments | Meath",
   description:
-    "Serious about building or renovating? Full one-off builds and renovations in Meath and Ireland. Plot to handover, energy-efficient. Enquire for serious homeowners.",
+    "Serious about building or renovating? Full one-off building and renovations in Meath and Ireland. Plot to handover, energy-efficient. Enquire for serious homeowners.",
 };
 
-export default function BuildsRenovationsPage() {
+export default function BuildingRenovationsPage() {
   return (
     <>
       <PageHero
         imageSrc={BUILDS_HERO}
-        imageAlt="Build & renovation – Fennor Developments, Meath"
-        headline="Builds & Renovations"
+        imageAlt="Building & renovation – Fennor Developments, Meath"
+        headline="Building & Renovations"
         objectPosition="center 40%"
       />
 
@@ -86,7 +86,7 @@ export default function BuildsRenovationsPage() {
                 </div>
                 <h2 className="text-2xl sm:text-3xl font-light text-slate tracking-wide">Serious about building</h2>
                 <p className="mt-4 text-gray-600 text-sm leading-relaxed">
-                  We work with homeowners ready to invest in a quality build or major renovation. Enquiries are taken seriously and followed up with a clear, no-nonsense process.
+                  We work with homeowners ready to invest in a quality build or major renovation. Enquiries are taken seriously and followed up with a clear, no-nonsense process. We offer in-house <Link href="/electrical" className="text-accent hover:text-accent-light font-medium">electrician Meath</Link> and <Link href="/solar" className="text-accent hover:text-accent-light font-medium">solar panels Meath</Link> services. See our <Link href="/gallery" className="text-accent hover:text-accent-light font-medium">case studies</Link> or <Link href="/contact" className="text-accent hover:text-accent-light font-medium">contact us</Link> to discuss your project.
                 </p>
                 <Link
                   href="/contact?enquiry=build"

@@ -1,12 +1,21 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import Link from "next/link";
-import { SolarCalculatorClient } from "./SolarCalculatorClient";
 import { FadeInSection } from "@/components/ui/FadeInSection";
 import { PageHero } from "@/components/ui/PageHero";
 import { CALCULATOR_HERO } from "@/config/images";
 
+const SolarCalculatorClient = dynamic(() => import("./SolarCalculatorClient").then((m) => ({ default: m.SolarCalculatorClient })), {
+  ssr: true,
+  loading: () => (
+    <div className="animate-pulse rounded-xl bg-gray-100 h-64 flex items-center justify-center text-gray-500 text-sm">
+      Loading calculator…
+    </div>
+  ),
+});
+
 export const metadata: Metadata = {
-  title: "Solar Savings Calculator | Estimate Payback & Savings | Fennor Developments",
+  title: "Solar Calculator | Estimate Payback & Savings | Fennor",
   description:
     "Solar savings calculator for Meath, Dublin and Louth. Estimate payback, 20-year savings and SEAI grant. Slane, Co. Meath.",
 };

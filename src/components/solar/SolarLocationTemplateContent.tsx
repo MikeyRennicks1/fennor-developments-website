@@ -12,7 +12,7 @@ function buildFaq(location: SolarLocation) {
   return [
     {
       question: `Do you install solar panels in ${name}?`,
-      answer: `Yes. We install solar PV systems across ${name} and the wider area, including estates and one-off homes. We're based in Slane and regularly work across County ${county}, so we know the area and can schedule assessments and installs efficiently.`,
+      answer: `Yes. We install solar PV systems across ${name} and the wider area, including estates and one-off homes. We&apos;re based in Slane and regularly work across County ${county}, so we know the area and can schedule assessments and installs efficiently.`,
     },
     {
       question: `What does a solar installation in ${name} typically include?`,
@@ -20,11 +20,11 @@ function buildFaq(location: SolarLocation) {
     },
     {
       question: `How much can I save with solar panels in ${name}?`,
-      answer: `Savings depend on system size, orientation, shading and how much electricity you use. Many homes in ${name} and across Co. ${county} see payback in roughly 3–8 years. Use our solar calculator for an estimate, and we'll give you a clearer picture at the assessment.`,
+      answer: `Savings depend on system size, orientation, shading and how much electricity you use. Many homes in ${name} and across Co. ${county} see payback in roughly 3–8 years. Use our solar calculator for an estimate, and we&apos;ll give you a clearer picture at the assessment.`,
     },
     {
       question: `Are you SEAI registered for ${name} installations?`,
-      answer: `Yes. We're SEAI registered and install to the standard required for the SEAI solar electricity grant. We help customers in ${name} and across Co. ${county} through the application so they can claim up to €1,800 where eligible.`,
+      answer: `Yes. We&apos;re SEAI registered and install to the standard required for the SEAI solar electricity grant. We help customers in ${name} and across Co. ${county} through the application so they can claim up to €1,800 where eligible.`,
     },
   ];
 }

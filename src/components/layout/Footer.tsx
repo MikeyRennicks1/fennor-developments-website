@@ -6,7 +6,7 @@ import { company } from "@/config/company";
 const links = [
   { href: "/solar", label: "Solar" },
   { href: "/electrical", label: "Electrical" },
-  { href: "/builds-renovations", label: "Builds & Renovations" },
+  { href: "/building-renovations", label: "Building & Renovations" },
   { href: "/about", label: "About" },
   { href: "/referral", label: "Referral" },
   { href: "/calculator", label: "Calculator" },

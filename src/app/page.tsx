@@ -28,9 +28,12 @@ export default function Home() {
           <div className="absolute bottom-1/4 left-0 w-48 h-px bg-gradient-to-r from-gold/20 to-transparent" />
         </div>
         <div className="relative z-10 w-full px-4 sm:px-6 flex flex-col items-center justify-center text-center">
-          <h1 className="hero-headline text-4xl sm:text-5xl md:text-[3.25rem] lg:text-[3.5rem] leading-none whitespace-nowrap">
-            Purpose-Built Energy
+          <h1 className="hero-headline text-4xl sm:text-5xl md:text-[3.25rem] lg:text-[3.5rem] leading-none">
+            Solar Panels Meath, Louth & Dublin
           </h1>
+          <p className="mt-4 text-lg text-[#f2f2f0]/85 max-w-xl mx-auto">
+            Solar PV installers Ireland — purpose-built energy for your home.
+          </p>
           <div
             className="mt-8 w-24 border-t border-[#f2f2f0] opacity-30"
             aria-hidden
@@ -58,10 +61,10 @@ export default function Home() {
           <div className="max-w-6xl mx-auto px-4 sm:px-6">
             <header className="text-center mb-12 sm:mb-14">
               <h2 id="our-services-heading" className="text-3xl sm:text-4xl font-semibold text-slate">
-                Our Services
+                Solar Installation Meath, Louth & Dublin
               </h2>
               <p className="mt-3 text-slate/80 text-lg max-w-2xl mx-auto">
-                Integrated solar, electrical and construction solutions across Ireland.
+                Solar PV installers Ireland: integrated solar, electrical and construction across Meath, Louth and North Dublin.
               </p>
             </header>
 
@@ -82,10 +85,10 @@ export default function Home() {
                   Icon: IconLightning,
                 },
                 {
-                  href: "/builds-renovations",
-                  title: "Builds & Renovations",
+                  href: "/building-renovations",
+                  title: "Building & Renovations",
                   description:
-                    "Energy-efficient builds and renovations including ICF construction, extensions and full property upgrades.",
+                    "Energy-efficient construction and renovations including extensions and full property upgrades.",
                   Icon: IconHome,
                 },
               ].map((item, i) => (

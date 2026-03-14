@@ -5,9 +5,16 @@
 
 export type GalleryItem = {
   src: string;
+  /** Optional small thumbnail URL for grid (faster load). Full-size src used in lightbox. */
+  thumbSrc?: string;
   alt: string;
   caption: string;
+  /** Full SEO description (roof type, inverter, battery, EV charger, EDDI, etc.) – used in JSON-LD and sitemap. */
+  description?: string;
 };
+
+/** Gallery item with town assigned for location SEO (alt text, figcaption, JSON-LD). */
+export type GalleryItemWithTown = GalleryItem & { town: string };
 
 function captionFromFilename(filename: string): string {
   const base = filename.replace(/\.[^.]+$/, "").replace(/[-_]+/g, " ").trim();

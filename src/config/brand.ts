@@ -12,6 +12,12 @@ export const brand = {
   /** Path to logo in /public (e.g. /logo.png). If missing, header shows text. */
   logoPath: "/logo.png",
   logoAlt: "Fennor Developments",
+  /**
+   * Optional square favicon for Google search results (recommended 48×48 or 64×64).
+   * If set, used as the tab/search result icon; otherwise the main logo is used.
+   * Add e.g. favicon.png to public/ and set to "/favicon.png" for best display in Google.
+   */
+  faviconPath: undefined as string | undefined,
 } as const;
 
 /** Professional orange from logo (gear) – sharp, confident. */

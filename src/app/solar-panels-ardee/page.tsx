@@ -12,7 +12,7 @@ const FAQ = [
   {
     question: "Do you install solar panels in Ardee?",
     answer:
-      "Yes. We install solar PV across Ardee and Mid-Louth, including Dundalk and the N2 corridor. We're based in Slane and regularly work in the area.",
+      "Yes. We install solar PV across Ardee and Mid-Louth, including Dundalk and the N2 corridor. We&apos;re based in Slane and regularly work in the area.",
   },
   {
     question: "What are the benefits of solar in Ardee?",
@@ -22,12 +22,12 @@ const FAQ = [
   {
     question: "How long does a solar installation take in Ardee?",
     answer:
-      "Most domestic installations in Ardee are completed in one to two days. We'll confirm the schedule after your free roof assessment.",
+      "Most domestic installations in Ardee are completed in one to two days. We&apos;ll confirm the schedule after your free roof assessment.",
   },
   {
     question: "Are you SEAI registered for Ardee installations?",
     answer:
-      "Yes. We're SEAI registered and install to the standard required for the SEAI solar electricity grant. We help Ardee customers through the application so they can claim the grant where eligible.",
+      "Yes. We&apos;re SEAI registered and install to the standard required for the SEAI solar electricity grant. We help Ardee customers through the application so they can claim the grant where eligible.",
   },
 ];
 
@@ -56,11 +56,11 @@ export default function SolarPanelsArdeePage() {
 
       <h2>Why choose solar in Ardee</h2>
       <p>
-        Ardee's mix of period and modern housing means we see a variety of roof types and electrical setups. We design each system around your property: we check for shading, discuss your consumption and explain options such as battery storage. Modern panels work well in Irish conditions, including overcast days, and typical payback is in the region of 3–8 years. Adding battery storage lets you use more of your solar energy in the evening and improves independence from the grid.
+        Ardee&apos;s mix of period and modern housing means we see a variety of roof types and electrical setups. We design each system around your property: we check for shading, discuss your consumption and explain options such as battery storage. Modern panels work well in Irish conditions, including overcast days, and typical payback is in the region of 3–8 years. Adding battery storage lets you use more of your solar energy in the evening and improves independence from the grid.
       </p>
 
       <p>
-        We size systems to match your consumption so you don't over or under-size. We get the balance right and explain the numbers so you can decide with confidence. We keep the process straightforward from quote to completion and aim to finish most domestic jobs in one to two days. After installation, we provide full paperwork for warranties and for the SEAI grant, and we're on hand for any questions or future upgrades.
+        We size systems to match your consumption so you don&apos;t over or under-size. We get the balance right and explain the numbers so you can decide with confidence. We keep the process straightforward from quote to completion and aim to finish most domestic jobs in one to two days. After installation, we provide full paperwork for warranties and for the SEAI grant, and we&apos;re on hand for any questions or future upgrades.
       </p>
 
       <h2>SEAI grants and next steps</h2>
@@ -69,7 +69,7 @@ export default function SolarPanelsArdeePage() {
       </p>
 
       <p>
-        We also offer <Link href="/electrical">electrical services</Link> for new builds and rewires. If you're in Ardee and thinking about solar panels, we offer a free roof assessment. Use our <Link href="/calculator">solar calculator</Link> for an idea of savings and payback, and visit our main <Link href="/solar">solar PV page</Link> for system details or <Link href="/contact">contact us</Link> to book.
+        We also offer <Link href="/electrical">electrical services</Link> for new builds and rewires. If you&apos;re in Ardee and thinking about solar panels, we offer a free roof assessment. Use our <Link href="/calculator">solar calculator</Link> for an idea of savings and payback, and visit our main <Link href="/solar">solar PV page</Link> for system details or <Link href="/contact">contact us</Link> to book.
       </p>
     </SolarLocationLayout>
   );

@@ -46,6 +46,7 @@ export function PageHero({
             objectPosition: objectPosition ?? "center center",
           }}
           priority
+          fetchPriority="high"
           sizes="100vw"
         />
       </div>

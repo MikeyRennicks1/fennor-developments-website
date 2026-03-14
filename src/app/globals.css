@@ -220,3 +220,90 @@ html {
   margin-bottom: 0.75rem;
   opacity: 0.8;
 }
+
+/* Ready for solar? CTA section – navy + flowing orange */
+.solar-cta {
+  background: #0f1b2d;
+  color: white;
+  padding: 80px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.solar-cta::before {
+  content: "";
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 120, 0, 0.25) 0%,
+    rgba(255, 120, 0, 0) 70%
+  );
+  top: -200px;
+  right: -200px;
+  transform: rotate(25deg);
+  pointer-events: none;
+}
+
+.solar-cta h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.solar-cta p {
+  max-width: 700px;
+  margin: 0 auto 30px auto;
+  text-align: center;
+}
+
+.solar-cta .cta-primary {
+  background: #ff6a00;
+  color: white;
+  padding: 14px 28px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  margin-right: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.solar-cta .cta-primary:hover {
+  background: #e65f00;
+}
+
+.solar-cta .cta-secondary {
+  border: 2px solid #ff6a00;
+  color: white;
+  padding: 14px 28px;
+  border-radius: 8px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+}
+
+.solar-cta .cta-secondary:hover {
+  background: #ff6a00;
+}
+
+.solar-cta .cta-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 40px;
+}
+
+@media (max-width: 640px) {
+  .solar-cta .cta-buttons {
+    flex-direction: column;
+  }
+  .solar-cta .cta-primary {
+    margin-right: 0;
+  }
+}

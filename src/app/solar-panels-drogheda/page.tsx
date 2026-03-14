@@ -59,7 +59,7 @@ export default function SolarPanelsDroghedaPage() {
 
       <h2>SEAI grants and next steps</h2>
       <p>
-        The SEAI solar electricity grant is available to qualifying homes in Drogheda and across Ireland. We help you through the application and install to the standard required so you can receive the grant. If you're in Drogheda and thinking about solar panels, we offer a free roof assessment. Use our <Link href="/calculator">solar calculator</Link> for an idea of savings and payback, see our main <Link href="/solar">solar PV page</Link> for systems and grants, or <Link href="/contact">contact us</Link> to book.
+        The SEAI solar electricity grant is available to qualifying homes in Drogheda and across Ireland. We help you through the application and install to the standard required so you can receive the grant. If you&apos;re in Drogheda and thinking about solar panels, we offer a free roof assessment. Use our <Link href="/calculator">solar calculator</Link> for an idea of savings and payback, see our main <Link href="/solar">solar PV page</Link> for systems and grants, or <Link href="/contact">contact us</Link> to book.
       </p>
     </SolarLocationLayout>
   );

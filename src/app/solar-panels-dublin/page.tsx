@@ -26,12 +26,12 @@ const FAQ = [
   {
     question: "How long does a solar installation take in North Dublin?",
     answer:
-      "Most domestic installations in North Dublin are completed in one to two days. We'll confirm the schedule after your assessment. Roof access, system size and any extras like battery storage can affect the timeline.",
+      "Most domestic installations in North Dublin are completed in one to two days. We&apos;ll confirm the schedule after your assessment. Roof access, system size and any extras like battery storage can affect the timeline.",
   },
   {
     question: "Why choose Fennor for solar panels in Dublin?",
     answer:
-      "We&apos;re an SEAI registered installer with years of experience across Meath, Louth and North Dublin. We offer clear quotes, grant support, hybrid inverters and optional batteries. We're fully insured and provide full documentation and aftercare.",
+      "We&apos;re an SEAI registered installer with years of experience across Meath, Louth and North Dublin. We offer clear quotes, grant support, hybrid inverters and optional batteries. We&apos;re fully insured and provide full documentation and aftercare.",
   },
 ];
 
@@ -57,7 +57,7 @@ export default function SolarPanelsDublinPage() {
       </p>
 
       <p>
-        We cover North County Dublin including Swords, Blanchardstown, Malahide, Skerries, Balbriggan, Howth, Finglas, Clonsilla, Castleknock and the wider area. Whether you're in a suburb or a coastal town, we assess your roof, orientation and usage before recommending a system size. We install on slate, tile and suitable flat roofs and ensure every job is compliant and fully documented. As an SEAI registered installer, we guide you through the grant process so you can claim up to €1,800 where eligible.
+        We cover North County Dublin including Swords, Blanchardstown, Malahide, Skerries, Balbriggan, Howth, Finglas, Clonsilla, Castleknock and the wider area. Whether you&apos;re in a suburb or a coastal town, we assess your roof, orientation and usage before recommending a system size. We install on slate, tile and suitable flat roofs and ensure every job is compliant and fully documented. As an SEAI registered installer, we guide you through the grant process so you can claim up to €1,800 where eligible.
       </p>
 
       <h2>Solar PV across North County Dublin</h2>
@@ -75,7 +75,7 @@ export default function SolarPanelsDublinPage() {
       </p>
 
       <p>
-        If you&apos;re considering solar panels in Dublin, the next step is a free roof assessment. We'll discuss your goals, explain system sizes and options such as batteries, and give you a clear quote. You can also use our <Link href="/calculator">solar calculator</Link> to get an idea of savings and payback. For the full picture, see our main <Link href="/solar">solar PV page</Link> or <Link href="/contact">contact us</Link>.
+        If you&apos;re considering solar panels in Dublin, the next step is a free roof assessment. We&apos;ll discuss your goals, explain system sizes and options such as batteries, and give you a clear quote. You can also use our <Link href="/calculator">solar calculator</Link> to get an idea of savings and payback. For the full picture, see our main <Link href="/solar">solar PV page</Link> or <Link href="/contact">contact us</Link>.
       </p>
 
       <SolarAreasGrid countyLabel="North County Dublin" towns={dublinTowns} />

@@ -113,7 +113,7 @@ export function ElectricianLocationLayout({
           <div className="relative max-w-2xl mx-auto px-4 sm:px-6 text-center">
             <h2 className="text-2xl sm:text-3xl font-light tracking-wide">Get an electrical quote</h2>
             <p className="mt-3 text-white/75 text-sm">
-              Free assessment. We'll outline the work, provide a clear quote and full documentation. We also do <Link href="/solar" className="text-white/90 underline hover:text-white">{solarAnchorText}</Link> and work with <Link href="/building-renovations" className="text-white/90 underline hover:text-white">{buildersAnchorText}</Link>. See our <Link href="/gallery" className="text-white/90 underline hover:text-white">case studies</Link> or <Link href="/contact" className="text-white/90 underline hover:text-white">contact us</Link>.
+              Free assessment. We&apos;ll outline the work, provide a clear quote and full documentation. We also do <Link href="/solar" className="text-white/90 underline hover:text-white">{solarAnchorText}</Link> and work with <Link href="/building-renovations" className="text-white/90 underline hover:text-white">{buildersAnchorText}</Link>. See our <Link href="/gallery" className="text-white/90 underline hover:text-white">case studies</Link> or <Link href="/contact" className="text-white/90 underline hover:text-white">contact us</Link>.
             </p>
             <div className="mt-10 flex flex-wrap justify-center gap-4">
               <Link

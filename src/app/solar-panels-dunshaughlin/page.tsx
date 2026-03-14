@@ -12,7 +12,7 @@ const FAQ = [
   {
     question: "Do you install solar panels in Dunshaughlin?",
     answer:
-      "Yes. We install solar PV across Dunshaughlin and Mid-Meath, including Navan and the N3 corridor. We're based in Slane and regularly work in the area.",
+      "Yes. We install solar PV across Dunshaughlin and Mid-Meath, including Navan and the N3 corridor. We&apos;re based in Slane and regularly work in the area.",
   },
   {
     question: "What are the benefits of solar in Dunshaughlin?",
@@ -22,12 +22,12 @@ const FAQ = [
   {
     question: "How long does a solar installation take in Dunshaughlin?",
     answer:
-      "Most domestic installations in Dunshaughlin are completed in one to two days. We'll confirm the schedule after your free roof assessment.",
+      "Most domestic installations in Dunshaughlin are completed in one to two days. We&apos;ll confirm the schedule after your free roof assessment.",
   },
   {
     question: "Are you SEAI registered for Dunshaughlin installations?",
     answer:
-      "Yes. We're SEAI registered and install to the standard required for the SEAI solar electricity grant. We help Dunshaughlin customers through the application so they can claim the grant where eligible.",
+      "Yes. We&apos;re SEAI registered and install to the standard required for the SEAI solar electricity grant. We help Dunshaughlin customers through the application so they can claim the grant where eligible.",
   },
 ];
 
@@ -51,20 +51,20 @@ export default function SolarPanelsDunshaughlinPage() {
       recentProject={RECENT_PROJECT}
     >
       <p>
-        Solar panel installation in Dunshaughlin helps Mid-Meath homeowners cut electricity costs and use cleaner energy. Dunshaughlin and the surrounding area have a strong mix of town and rural properties, many of which are well suited to solar PV. Fennor Developments installs solar across Dunshaughlin and Co. Meath, with clear quotes, hybrid inverters and optional battery storage. We're based in Slane and work regularly in the area, so we can schedule assessments and installs efficiently.
+        Solar panel installation in Dunshaughlin helps Mid-Meath homeowners cut electricity costs and use cleaner energy. Dunshaughlin and the surrounding area have a strong mix of town and rural properties, many of which are well suited to solar PV. Fennor Developments installs solar across Dunshaughlin and Co. Meath, with clear quotes, hybrid inverters and optional battery storage. We&apos;re based in Slane and work regularly in the area, so we can schedule assessments and installs efficiently.
       </p>
 
       <p>
-        We assess your roof, orientation and usage before recommending a system size. Whether you're in the village or in the countryside, we install on slate, tile and suitable flat roofs and ensure every job is compliant and fully documented. As an SEAI registered installer, we guide you through the grant process so you can claim up to €1,800 where eligible. Our typical installs use hybrid inverters so you can add a battery later if you choose, and we provide monitoring so you can track production and savings.
+        We assess your roof, orientation and usage before recommending a system size. Whether you&apos;re in the village or in the countryside, we install on slate, tile and suitable flat roofs and ensure every job is compliant and fully documented. As an SEAI registered installer, we guide you through the grant process so you can claim up to €1,800 where eligible. Our typical installs use hybrid inverters so you can add a battery later if you choose, and we provide monitoring so you can track production and savings.
       </p>
 
       <h2>Why choose solar in Dunshaughlin</h2>
       <p>
-        Dunshaughlin's location and mix of housing make it well suited to solar. We design each system around your property: we check for shading, discuss your consumption and explain options such as battery storage. Modern panels work well in Irish conditions, including overcast days, and typical payback is in the region of 3–8 years. Adding battery storage lets you use more of your solar energy in the evening and improves independence from the grid at peak times.
+        Dunshaughlin&apos;s location and mix of housing make it well suited to solar. We design each system around your property: we check for shading, discuss your consumption and explain options such as battery storage. Modern panels work well in Irish conditions, including overcast days, and typical payback is in the region of 3–8 years. Adding battery storage lets you use more of your solar energy in the evening and improves independence from the grid at peak times.
       </p>
 
       <p>
-        We size systems to match your consumption so you don't over or under-size. Too small and you miss savings; too large and payback stretches. We get the balance right and explain the numbers so you can decide with confidence. We keep the process straightforward from quote to completion and aim to finish most domestic jobs in one to two days, with minimal disruption. After installation, we're on hand for any questions or future upgrades.
+        We size systems to match your consumption so you don&apos;t over or under-size. Too small and you miss savings; too large and payback stretches. We get the balance right and explain the numbers so you can decide with confidence. We keep the process straightforward from quote to completion and aim to finish most domestic jobs in one to two days, with minimal disruption. After installation, we&apos;re on hand for any questions or future upgrades.
       </p>
 
       <h2>SEAI grants and next steps</h2>
@@ -73,7 +73,7 @@ export default function SolarPanelsDunshaughlinPage() {
       </p>
 
       <p>
-        We provide full paperwork for warranties and for the SEAI grant, and we're available for servicing or upgrades. We also offer <Link href="/electrical">electrical services</Link> for new builds and rewires. If you're in Dunshaughlin and thinking about solar panels, we offer a free roof assessment. Use our <Link href="/calculator">solar calculator</Link> for an idea of savings and payback, and visit our main <Link href="/solar">solar PV page</Link> for system details or <Link href="/contact">contact us</Link> to book.
+        We provide full paperwork for warranties and for the SEAI grant, and we&apos;re available for servicing or upgrades. We also offer <Link href="/electrical">electrical services</Link> for new builds and rewires. If you&apos;re in Dunshaughlin and thinking about solar panels, we offer a free roof assessment. Use our <Link href="/calculator">solar calculator</Link> for an idea of savings and payback, and visit our main <Link href="/solar">solar PV page</Link> for system details or <Link href="/contact">contact us</Link> to book.
       </p>
     </SolarLocationLayout>
   );

@@ -2,6 +2,24 @@
 
 import { useState, useMemo, useCallback } from "react";
 import { generateEstimatePdf } from "@/lib/estimate-pdf";
+import { getSeaiGrantAmount } from "@/lib/seai-grant";
+import { brand } from "@/config/brand";
+import { PANEL_KW } from "@/config/solar";
+
+function getLogoDataUri(): Promise<string | null> {
+  return fetch(brand.logoPath)
+    .then((r) => (r.ok ? r.blob() : Promise.reject(new Error("Logo not found"))))
+    .then(
+      (blob) =>
+        new Promise<string | null>((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = () => resolve(reader.result as string);
+          reader.onerror = () => reject(new Error("Failed to read logo"));
+          reader.readAsDataURL(blob);
+        })
+    )
+    .catch(() => null);
+}
 
 const SYSTEM_QUOTES: Record<number, number> = {
   8: 6000,
@@ -13,7 +31,6 @@ const SYSTEM_QUOTES: Record<number, number> = {
 };
 
 const PANEL_OPTIONS = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18];
-const SEAI_GRANT = 1800;
 const BATTERY_PRICE = 1975;
 const EDDI_PRICE = 700;
 const EV_CHARGER_PRICE = 750;
@@ -60,6 +77,24 @@ export function SolarCalculatorClient() {
   const handleContactSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!canProceed) return;
+    // Send lead to your email in the background (PDF); user continues to calculator without delay
+    fetch("/api/calculator-lead", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: contact.name.trim(),
+        email: contact.email.trim(),
+        phone: contact.phone.trim(),
+        address: contact.address.trim(),
+        budget: contact.budget.trim(),
+      }),
+    })
+      .then((res) => {
+        if (!res.ok && process.env.NODE_ENV === "development") {
+          res.json().then((d) => console.warn("[Calculator lead] API error:", d?.error || res.status));
+        }
+      })
+      .catch(() => {});
     setStep("calculator");
   };
 
@@ -67,8 +102,9 @@ export function SolarCalculatorClient() {
     const systemPrice = getSystemPrice(panels);
     const addOns = (battery ? BATTERY_PRICE : 0) + (eddi ? EDDI_PRICE : 0) + (evCharger ? EV_CHARGER_PRICE : 0);
     const totalPrice = systemPrice + addOns;
-    const afterGrant = applyGrant ? Math.max(0, totalPrice - SEAI_GRANT) : totalPrice;
-    const systemKw = panels * 0.4;
+    const systemKw = panels * PANEL_KW;
+    const grantAmount = getSeaiGrantAmount(systemKw);
+    const afterGrant = applyGrant ? Math.max(0, totalPrice - grantAmount) : totalPrice;
     const yearlyKwh = systemKw * KWH_PER_KWP_YEAR;
     const yearlySavings = Math.round(yearlyKwh * unitRate);
     const paybackYears = yearlySavings > 0 ? afterGrant / yearlySavings : 0;
@@ -82,6 +118,7 @@ export function SolarCalculatorClient() {
     return {
       totalPrice,
       afterGrant,
+      grantAmount,
       yearlySavings,
       paybackYears,
       twentyYearSavings,
@@ -106,12 +143,12 @@ export function SolarCalculatorClient() {
     result,
   }), [contact, panels, battery, eddi, evCharger, applyGrant, unitRate, result]);
 
-  const handleDownloadPdf = useCallback(() => {
+  const handleDownloadPdf = useCallback(async () => {
     setPdfStatus("downloading");
     try {
+      const logoDataUri = await getLogoDataUri();
       const data = getPdfData();
-      const buf = generateEstimatePdf({ ...data, logoDataUri: null });
-      // Support both ArrayBuffer (browser) and Uint8Array from jsPDF
+      const buf = generateEstimatePdf({ ...data, logoDataUri: logoDataUri ?? undefined });
       const bytes = buf instanceof ArrayBuffer ? new Uint8Array(buf) : new Uint8Array(buf);
       const blob = new Blob([bytes], { type: "application/pdf" });
       const url = URL.createObjectURL(blob);
@@ -121,7 +158,6 @@ export function SolarCalculatorClient() {
       a.style.display = "none";
       document.body.appendChild(a);
       a.click();
-      // Revoke and remove after a short delay so the download starts in all browsers
       setTimeout(() => {
         document.body.removeChild(a);
         URL.revokeObjectURL(url);
@@ -277,7 +313,9 @@ export function SolarCalculatorClient() {
           <div className="sm:col-span-2">
             <label className="flex items-center gap-2 cursor-pointer">
               <input type="checkbox" checked={applyGrant} onChange={(e) => setApplyGrant(e.target.checked)} className="rounded border-gray-300 text-accent focus:ring-accent" />
-              <span className="text-sm text-slate">Apply SEAI grant (€1,800 max)</span>
+              <span className="text-sm text-slate">
+                Apply SEAI grant (€{result.grantAmount.toLocaleString("ie-IE")} for {(panels * PANEL_KW).toFixed(1)} kWp{result.grantAmount >= 1800 ? ", max" : ""})
+              </span>
             </label>
           </div>
         </div>
@@ -285,10 +323,16 @@ export function SolarCalculatorClient() {
 
       <div id="calculator-results" className="rounded-2xl border-2 border-accent/30 bg-gradient-to-br from-white to-accent/5 p-6 shadow-card-3d">
         <h2 className="text-lg font-semibold text-slate mb-4">Estimated results</h2>
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-5 gap-4">
           <div className="bg-white/90 rounded-lg p-4 border border-accent/20">
             <p className="text-xs text-gray-500 uppercase tracking-wider">System price (est.)</p>
             <p className="text-xl font-semibold text-accent-dark mt-1">€{result.totalPrice.toLocaleString("ie-IE")}</p>
+          </div>
+          <div className="bg-white/90 rounded-lg p-4 border border-accent/20">
+            <p className="text-xs text-gray-500 uppercase tracking-wider">SEAI grant (est.)</p>
+            <p className="text-xl font-semibold text-slate mt-1">
+              {applyGrant ? `€${result.grantAmount.toLocaleString("ie-IE")}` : "—"}
+            </p>
           </div>
           <div className="bg-white/90 rounded-lg p-4 border border-accent/20">
             <p className="text-xs text-gray-500 uppercase tracking-wider">After SEAI grant</p>

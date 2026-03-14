@@ -12,7 +12,7 @@ const FAQ = [
   {
     question: "Do you install solar panels in Virginia?",
     answer:
-      "Yes. We install solar PV across Virginia and the Cavan-Meath border area. We're based in Slane and regularly work in Virginia and surrounding towns.",
+      "Yes. We install solar PV across Virginia and the Cavan-Meath border area. We&apos;re based in Slane and regularly work in Virginia and surrounding towns.",
   },
   {
     question: "What are the benefits of solar in Virginia?",
@@ -22,12 +22,12 @@ const FAQ = [
   {
     question: "How long does installation take in Virginia?",
     answer:
-      "Most domestic solar installations in Virginia are completed in one to two days. We'll confirm the schedule after your free roof assessment.",
+      "Most domestic solar installations in Virginia are completed in one to two days. We&apos;ll confirm the schedule after your free roof assessment.",
   },
   {
     question: "Are you SEAI registered for Virginia?",
     answer:
-      "Yes. We're SEAI registered and install to the standard required for the SEAI solar electricity grant. We help Virginia customers through the application so they can claim the grant where eligible.",
+      "Yes. We&apos;re SEAI registered and install to the standard required for the SEAI solar electricity grant. We help Virginia customers through the application so they can claim the grant where eligible.",
   },
 ];
 
@@ -65,7 +65,7 @@ export default function SolarPanelsVirginiaPage() {
 
       <h2>SEAI grants and next steps</h2>
       <p>
-        The SEAI solar electricity grant is available to qualifying homes in Virginia and across Ireland. We help you through the application and install to the standard required so you can receive the grant. If you're in Virginia and thinking about solar panels, we offer a free roof assessment. Use our <Link href="/calculator">solar calculator</Link> for an idea of savings and payback, see our main <Link href="/solar">solar PV page</Link> for systems and grants, or <Link href="/contact">contact us</Link> to book.
+        The SEAI solar electricity grant is available to qualifying homes in Virginia and across Ireland. We help you through the application and install to the standard required so you can receive the grant. If you&apos;re in Virginia and thinking about solar panels, we offer a free roof assessment. Use our <Link href="/calculator">solar calculator</Link> for an idea of savings and payback, see our main <Link href="/solar">solar PV page</Link> for systems and grants, or <Link href="/contact">contact us</Link> to book.
       </p>
     </SolarLocationLayout>
   );

@@ -54,12 +54,12 @@ export default function SolarPanelsKellsPage() {
       </p>
 
       <p>
-        We keep the process straightforward from quote to completion and aim to finish most domestic jobs in one to two days. After installation, we provide full paperwork for warranties and for the SEAI grant, and we're on hand for any questions or future upgrades. We also offer <Link href="/electrical">electrical services</Link> for new builds and rewires. Panels typically last 25 years or more.
+        We keep the process straightforward from quote to completion and aim to finish most domestic jobs in one to two days. After installation, we provide full paperwork for warranties and for the SEAI grant, and we&apos;re on hand for any questions or future upgrades. We also offer <Link href="/electrical">electrical services</Link> for new builds and rewires. Panels typically last 25 years or more.
       </p>
 
       <h2>SEAI grants and next steps</h2>
       <p>
-        The SEAI solar electricity grant is available to qualifying homes in Kells and across Ireland. We help you check eligibility and complete the application, and we install to the standard required so you can receive the grant. If you're in Kells and thinking about solar panels, we offer a free roof assessment. Use our <Link href="/calculator">solar calculator</Link> for an idea of savings and payback, see our main <Link href="/solar">solar PV page</Link> for systems and grants, or <Link href="/contact">contact us</Link> to book.
+        The SEAI solar electricity grant is available to qualifying homes in Kells and across Ireland. We help you check eligibility and complete the application, and we install to the standard required so you can receive the grant. If you&apos;re in Kells and thinking about solar panels, we offer a free roof assessment. Use our <Link href="/calculator">solar calculator</Link> for an idea of savings and payback, see our main <Link href="/solar">solar PV page</Link> for systems and grants, or <Link href="/contact">contact us</Link> to book.
       </p>
     </SolarLocationLayout>
   );

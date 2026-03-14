@@ -1,7 +1,6 @@
 import { MetadataRoute } from "next";
-import { company } from "@/config/company";
 
-const baseUrl = company.website || "https://fennordevelopments.ie";
+const baseUrl = "https://fennor.ie";
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -12,6 +11,9 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/admin", "/api/"],
       },
     ],
-    sitemap: `${baseUrl}/sitemap.xml`,
+    sitemap: [
+      `${baseUrl}/sitemap.xml`,
+      `${baseUrl}/sitemap-images.xml`,
+    ],
   };
 }

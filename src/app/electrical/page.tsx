@@ -7,7 +7,7 @@ import { IconLightning, IconHome, IconBuilding, IconDocument } from "@/component
 import { ELECTRICAL_HERO, ELECTRICAL_SECTION_1, ELECTRICAL_SECTION_2 } from "@/config/images";
 
 export const metadata: Metadata = {
-  title: "Electrical Services | Domestic & Commercial | Meath & Ireland | Fennor Developments",
+  title: "Electrician Meath | Electrical Services Domestic & Commercial | Fennor",
   description:
     "Domestic and commercial electrical services in Meath and Ireland. Rewires, smart home, compliant installations. Clean, organised, professional.",
 };
@@ -26,7 +26,7 @@ export default function ElectricalPage() {
         <section className="py-20 sm:py-28 bg-off-white bg-texture-fine-lines">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-2xl sm:text-3xl font-light text-slate tracking-wide text-center mb-3">What we offer</h2>
-            <p className="text-center text-gray-600 max-w-lg mx-auto mb-14 text-sm">Full electrical services for home and business.</p>
+            <p className="text-center text-gray-600 max-w-lg mx-auto mb-14 text-sm">Full electrical services for home and business. We also offer <Link href="/solar" className="text-accent hover:text-accent-light font-medium">solar panels Meath</Link> and work with <Link href="/building-renovations" className="text-accent hover:text-accent-light font-medium">builders Meath</Link>. See our <Link href="/gallery" className="text-accent hover:text-accent-light font-medium">case studies</Link> or <Link href="/contact" className="text-accent hover:text-accent-light font-medium">contact us</Link> for a quote.</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
               {[
                 { icon: IconHome, title: "Domestic installs", desc: "New builds, extensions, upgrades. Full house wiring, consumer units, certification." },
@@ -100,7 +100,7 @@ export default function ElectricalPage() {
               <div>
                 <h2 className="text-2xl sm:text-3xl font-light text-slate tracking-wide">Built for the long term</h2>
                 <p className="mt-4 text-gray-600 text-sm leading-relaxed">
-                  From new builds to period rewires, we deliver electrical work that meets current regulations and supports your plans — including solar and EV readiness.
+                  From new builds to period rewires, we deliver electrical work that meets current regulations and supports your plans — including <Link href="/solar" className="text-accent hover:text-accent-light font-medium">solar panel installation</Link> and EV readiness. We work across Meath, Louth, Dublin and the North East. View our <Link href="/gallery" className="text-accent hover:text-accent-light font-medium">solar installation case studies</Link> or <Link href="/contact" className="text-accent hover:text-accent-light font-medium">contact us</Link> for a quote.
                 </p>
                 <Link
                   href="/contact"

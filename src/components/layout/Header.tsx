@@ -82,12 +82,12 @@ export function Header() {
             Electrical
           </Link>
           <Link
-            href="/builds-renovations"
+            href="/building-renovations"
             className={`text-sm font-medium transition-colors ${
               isTransparent ? "text-white/90 hover:text-white" : "text-white/90 hover:text-accent-light"
             }`}
           >
-            Builds & Renovations
+            Building & Renovations
           </Link>
           <Link
             href="/about"
@@ -96,6 +96,14 @@ export function Header() {
             }`}
           >
             About
+          </Link>
+          <Link
+            href="/locations"
+            className={`text-sm font-medium transition-colors ${
+              isTransparent ? "text-white/90 hover:text-white" : "text-white/90 hover:text-accent-light"
+            }`}
+          >
+            Locations
           </Link>
           <Link
             href="/referral"
@@ -141,8 +149,9 @@ export function Header() {
           <nav className="flex flex-col gap-1">
             <Link href="/solar" className="py-3 text-white hover:text-accent-light transition-colors" onClick={() => setOpen(false)}>Solar</Link>
             <Link href="/electrical" className="py-3 text-white hover:text-accent-light transition-colors" onClick={() => setOpen(false)}>Electrical</Link>
-            <Link href="/builds-renovations" className="py-3 text-white hover:text-accent-light transition-colors" onClick={() => setOpen(false)}>Builds & Renovations</Link>
+            <Link href="/building-renovations" className="py-3 text-white hover:text-accent-light transition-colors" onClick={() => setOpen(false)}>Building & Renovations</Link>
             <Link href="/about" className="py-3 text-white hover:text-accent-light transition-colors" onClick={() => setOpen(false)}>About</Link>
+            <Link href="/locations" className="py-3 text-white hover:text-accent-light transition-colors" onClick={() => setOpen(false)}>Locations</Link>
             <Link href="/referral" className="py-3 text-white hover:text-accent-light transition-colors" onClick={() => setOpen(false)}>Referral</Link>
             <Link href="/calculator" className="py-3 text-white hover:text-accent-light transition-colors" onClick={() => setOpen(false)}>Calculator</Link>
             <Link
