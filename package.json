@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "(node scripts/generate-gallery-thumbs.js || true) && next build",
+    "build": "(node scripts/generate-gallery-thumbs.js || true) && (node scripts/generate-sitemap-images.js || true) && next build",
     "generate-thumbs": "node scripts/generate-gallery-thumbs.js",
     "gallery:convert-heic": "node scripts/convert-heic-to-jpg.js",
     "start": "next start",

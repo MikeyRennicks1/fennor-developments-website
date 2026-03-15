@@ -28,6 +28,9 @@ yarn-error.log*
 # local env files
 .env*.local
 
+# generated at build (scripts/generate-sitemap-images.js)
+public/sitemap-images.xml
+
 # vercel
 .vercel
 
