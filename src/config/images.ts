@@ -49,5 +49,9 @@ export const REFERRAL_HERO = hero("1521791136064-7986c2920216");
 export const CONTACT_HERO =
   "https://images.pexels.com/photos/15305646/pexels-photo-15305646.jpeg?auto=compress&cs=tinysrgb&w=2560&q=92";
 
-/** Homepage – Irish residential solar / premium energy */
-export const HOME_HERO = hero("1560518883-ce09059eeffa");
+/**
+ * Homepage hero – "our building" / main hero image.
+ * Put your image at public/images/hero-home.jpg (replace file to change it).
+ * Recommended: 2560px wide or larger, high quality JPG.
+ */
+export const HOME_HERO = "/images/hero-home.jpg";

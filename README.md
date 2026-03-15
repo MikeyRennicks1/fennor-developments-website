@@ -60,6 +60,17 @@ Images in `public/gallery/` are shown on the gallery and solar-gallery pages. On
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+### Make sure the **latest** deployment is live (gallery + SEO)
+
+If the live site is missing the gallery photos or SEO updates, **Production** may be pointing at an old deployment.
+
+1. In the [Vercel dashboard](https://vercel.com), open your project.
+2. Go to **Deployments**.
+3. Find the deployment from the **latest commit on `main`** (e.g. most recent “Ready” build).
+4. Open the **⋯** menu on that deployment → **Promote to Production**.
+
+After promoting, the live site will serve that build (with gallery, SEO, and all pushed changes). New pushes to `main` will create new deployments; promote the latest one when you want it live.
 # fennor-developments-website
 # fennor-developments-website
 # fennor-developments-website
