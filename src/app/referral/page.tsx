@@ -32,12 +32,21 @@ export default function ReferralPage() {
             <p className="mt-4 text-gray-600 text-sm leading-relaxed">
               Refer solar and construction projects. Paid upon project completion. Transparent tracking and professional handover. Full details discussed on enquiry.
             </p>
-            <Link
-              href="/contact?enquiry=referral"
-              className="mt-10 inline-flex items-center justify-center rounded-xl bg-accent px-8 py-3.5 text-sm font-medium text-white hover:bg-accent-light transition-colors"
-            >
-              Enquire about the referral programme
-            </Link>
+            <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3">
+              <Link
+                href="/contact?enquiry=referral"
+                className="inline-flex items-center justify-center rounded-xl bg-accent px-8 py-3.5 text-sm font-medium text-white hover:bg-accent-light transition-colors w-full sm:w-auto"
+              >
+                Enquire about the referral programme
+              </Link>
+              <a
+                href="/api/referral-scheme-pdf"
+                className="inline-flex items-center justify-center rounded-xl border-2 border-navy/15 bg-white px-8 py-3.5 text-sm font-medium text-slate hover:border-accent hover:text-accent transition-colors w-full sm:w-auto"
+                download
+              >
+                Download programme overview (PDF)
+              </a>
+            </div>
           </div>
         </section>
       </FadeInSection>
