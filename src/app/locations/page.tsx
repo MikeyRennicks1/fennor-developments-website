@@ -29,7 +29,7 @@ export default function LocationsPage() {
               Fennor Developments serves homeowners and businesses across <strong>North Leinster</strong> and the surrounding counties. From our base in Slane, Co. Meath, we deliver <Link href="/solar" className="text-accent hover:text-accent-light font-medium">solar panel installation</Link>, <Link href="/electrical" className="text-accent hover:text-accent-light font-medium">electrical services</Link> and <Link href="/building-renovations" className="text-accent hover:text-accent-light font-medium">building and renovation</Link> projects across Meath, Louth, Westmeath, Cavan and the Dublin commuter belt. Whether you are in Navan, Drogheda, Mullingar or Blanchardstown, we offer local expertise, clear quotes and a single point of contact for solar, electrical and construction work.
             </p>
             <p className="mt-4 text-gray-600 leading-relaxed">
-              Use the list below to find our service pages for your town. Each location links to our dedicated <strong>solar panels</strong>, <strong>electrician</strong> and <strong>builders</strong> pages where we cover that area. For a free quote or to discuss your project, <Link href="/contact" className="text-accent hover:text-accent-light font-medium">contact us</Link>.
+              Dedicated town pages exist for organic search and SEO, but for customers we keep this page simple. For a free quote or to discuss your project, <Link href="/contact" className="text-accent hover:text-accent-light font-medium">contact us</Link>.
             </p>
           </FadeInSection>
         </div>
@@ -37,7 +37,7 @@ export default function LocationsPage() {
 
       <section className="py-12 sm:py-16 bg-white border-t border-gray-200/80">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          {getLocationsByCountyFull().map(({ county, description, towns }, countyIndex) => (
+          {getLocationsByCountyFull().map(({ county, description }, countyIndex) => (
             <FadeInSection key={county} delay={countyIndex * 50}>
               <div className="mb-12 last:mb-0">
                 <h2 className="text-2xl font-light text-slate tracking-wide border-b border-gray-200/80 pb-2 mb-6">
@@ -46,33 +46,9 @@ export default function LocationsPage() {
                 {description && (
                   <p className="text-gray-600 text-sm mb-4">{description}</p>
                 )}
-                <ul className="space-y-6">
-                  {towns.map((town) => (
-                    <li
-                      key={town.name}
-                      className="rounded-xl border border-gray-200/80 bg-off-white/50 p-5 shadow-sm"
-                    >
-                      <h3 className="font-medium text-slate text-lg mb-3">{town.name}</h3>
-                      <ul className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
-                        <li>
-                          <Link href={town.solarHref} className="text-accent hover:text-accent-light font-medium">
-                            {town.solarLabel}
-                          </Link>
-                        </li>
-                        <li>
-                          <Link href={town.electricianHref} className="text-accent hover:text-accent-light font-medium">
-                            {town.electricianLabel}
-                          </Link>
-                        </li>
-                        <li>
-                          <Link href={town.buildersHref} className="text-accent hover:text-accent-light font-medium">
-                            {town.buildersLabel}
-                          </Link>
-                        </li>
-                      </ul>
-                    </li>
-                  ))}
-                </ul>
+                <p className="text-gray-600 text-sm">
+                  We cover towns across {county}. Search engines can discover dedicated town pages by location, and our team can confirm availability and the best next step for your address.
+                </p>
               </div>
             </FadeInSection>
           ))}

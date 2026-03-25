@@ -49,7 +49,7 @@ export function BuildersSeoLayout({
       />
 
       <FadeInSection>
-        <article className="py-20 sm:py-28 bg-off-white bg-texture-fine-lines">
+        <article className="py-20 sm:py-28 bg-off-white bg-texture-energy-wave">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-slate text-base leading-relaxed [&_p]:mt-4 [&_p]:text-gray-600 [&_h2]:mt-10 [&_h2]:text-xl [&_h2]:font-medium [&_h2]:text-slate [&_a]:text-accent [&_a]:hover:text-accent-light">
             {children}
           </div>

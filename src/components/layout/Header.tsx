@@ -29,7 +29,7 @@ export function Header() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isTransparent
-          ? "bg-transparent border-b border-white/20"
+          ? "border-b border-white/20 bg-gradient-to-r from-graphite/92 from-0% to-transparent to-[18%]"
           : "bg-slate/95 backdrop-blur-lg border-b border-white/10 shadow-lg"
       }`}
     >
@@ -98,14 +98,6 @@ export function Header() {
             About
           </Link>
           <Link
-            href="/locations"
-            className={`text-sm font-medium transition-colors ${
-              isTransparent ? "text-white/90 hover:text-white" : "text-white/90 hover:text-accent-light"
-            }`}
-          >
-            Locations
-          </Link>
-          <Link
             href="/referral"
             className={`text-sm font-medium transition-colors ${
               isTransparent ? "text-white/90 hover:text-white" : "text-white/90 hover:text-accent-light"
@@ -151,7 +143,6 @@ export function Header() {
             <Link href="/electrical" className="py-3 text-white hover:text-accent-light transition-colors" onClick={() => setOpen(false)}>Electrical</Link>
             <Link href="/building-renovations" className="py-3 text-white hover:text-accent-light transition-colors" onClick={() => setOpen(false)}>Building & Renovations</Link>
             <Link href="/about" className="py-3 text-white hover:text-accent-light transition-colors" onClick={() => setOpen(false)}>About</Link>
-            <Link href="/locations" className="py-3 text-white hover:text-accent-light transition-colors" onClick={() => setOpen(false)}>Locations</Link>
             <Link href="/referral" className="py-3 text-white hover:text-accent-light transition-colors" onClick={() => setOpen(false)}>Referral</Link>
             <Link href="/calculator" className="py-3 text-white hover:text-accent-light transition-colors" onClick={() => setOpen(false)}>Calculator</Link>
             <Link

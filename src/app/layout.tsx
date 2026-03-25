@@ -31,14 +31,10 @@ export const metadata: Metadata = {
   title: "Solar Panels Meath | Electrician & Builders | Fennor Developments",
   description:
     "Solar panels Meath, electrician Meath, builders Meath. Solar PV, electrical & building renovations. SEAI registered. 20+ years. Free quote.",
-  icons: {
-    icon: [
-      { url: "/favicon.ico", type: "image/x-icon" },
-      { url: "/favicon.png", type: "image/png" },
-    ],
-    shortcut: "/favicon.ico",
-    apple: "/apple-touch-icon.png",
-  },
+  // Only reference icons that exist; omit to avoid broken tab icon (no favicon.ico/favicon.png in public)
+  ...(brand.logoPath && {
+    icons: { icon: brand.logoPath },
+  }),
   openGraph: {
     siteName: "Fennor Developments",
     images: brand.logoPath ? [{ url: `${baseUrl}${brand.logoPath}`, width: 320, height: 112, alt: brand.logoAlt }] : undefined,
@@ -53,6 +49,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <link rel="icon" href={brand.logoPath} type="image/png" />
         <link rel="preconnect" href="https://images.pexels.com" />
         <link rel="preconnect" href="https://images.unsplash.com" />
         <link rel="dns-prefetch" href="https://images.pexels.com" />

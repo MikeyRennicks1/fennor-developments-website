@@ -12,12 +12,12 @@ export default function Home() {
     <>
       {/* Hero – image + dark overlay so text stays readable; navy + gold gradient. */}
       <section className="relative min-h-[100vh] flex items-center justify-center overflow-hidden bg-graphite">
-        <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 z-0 bg-graphite">
           <Image
             src={HOME_HERO}
             alt="Irish home with solar panels on roof – Fennor Developments, Meath"
             fill
-            className="object-cover object-center"
+            className="object-cover object-center bg-graphite"
             priority
             sizes="100vw"
           />

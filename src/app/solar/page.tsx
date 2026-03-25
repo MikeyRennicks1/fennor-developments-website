@@ -216,8 +216,6 @@ export default function SolarPage() {
                 <Link href="/solar-panels-virginia" className="text-sm font-medium text-slate hover:text-accent">Solar Panels Virginia</Link>
                 <span className="text-gray-300">·</span>
                 <Link href="/solar-panels-mullingar" className="text-sm font-medium text-slate hover:text-accent">Solar Panels Mullingar</Link>
-                <span className="text-gray-300">·</span>
-                <Link href="/locations" className="text-sm font-medium text-slate hover:text-accent">All locations</Link>
               </p>
             </div>
             <div className="mt-6 text-center">

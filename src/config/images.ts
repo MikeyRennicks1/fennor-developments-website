@@ -21,7 +21,8 @@ export const BUILDS_HERO =
 /** Builds secondary – White Irish one-off home, modern, premium finish, natural lighting (Pexels) */
 export const BUILDS_SECTION_BUILD =
   "https://images.pexels.com/photos/7031411/pexels-photo-7031411.jpeg?auto=compress&cs=tinysrgb&w=1200&q=90";
-export const BUILDS_SECTION_HOME_EXT = section("1600596542815-ffad4c1549e9");
+// Building & renovations: use the latest local “house” photo
+export const BUILDS_SECTION_HOME_EXT = "/images/build-renovations-house.png";
 
 /** Electrical – Professional electrician at domestic consumer unit, clean wiring, neutral tones (Pexels) */
 export const ELECTRICAL_HERO =
