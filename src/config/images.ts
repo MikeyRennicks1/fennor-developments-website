@@ -18,9 +18,8 @@ export const ABOUT_HERO =
 /** Builds – Modern Irish one-off under construction / building site with scaffolding (Pexels) */
 export const BUILDS_HERO =
   "https://images.pexels.com/photos/14367421/pexels-photo-14367421.jpeg?auto=compress&cs=tinysrgb&w=2560&q=92";
-/** Builds secondary – White Irish one-off home, modern, premium finish, natural lighting (Pexels) */
-export const BUILDS_SECTION_BUILD =
-  "https://images.pexels.com/photos/7031411/pexels-photo-7031411.jpeg?auto=compress&cs=tinysrgb&w=1200&q=90";
+/** Builds secondary – site/build-focused image (non-snow, Irish-appropriate look) */
+export const BUILDS_SECTION_BUILD = BUILDS_HERO;
 // Building & renovations: use the latest local “house” photo
 export const BUILDS_SECTION_HOME_EXT = "/images/build-renovations-house.png";
 

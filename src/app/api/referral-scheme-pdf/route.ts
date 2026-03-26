@@ -24,7 +24,7 @@ export async function GET() {
     headers: {
       "Content-Type": "application/pdf",
       "Content-Disposition": 'attachment; filename="Fennor-Developments-Referral-Programme.pdf"',
-      "Cache-Control": "public, max-age=3600, s-maxage=3600",
+      "Cache-Control": "no-store, max-age=0",
     },
   });
 }
