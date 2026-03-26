@@ -55,4 +55,5 @@ export const CONTACT_HERO =
  * Put your image at public/images/hero-home.jpg (replace file to change it).
  * Recommended: 2560px wide or larger, high quality JPG.
  */
-export const HOME_HERO = "/images/hero-home.jpg";
+// Fallback to an existing local asset so the hero never disappears.
+export const HOME_HERO = "/about-hero.png";
