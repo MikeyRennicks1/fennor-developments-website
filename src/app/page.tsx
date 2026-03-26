@@ -22,7 +22,8 @@ export default function Home() {
             sizes="100vw"
           />
         </div>
-        <div className="absolute inset-0 z-[1] bg-gradient-hero-overlay" aria-hidden />
+        {/* Lighter overlay on homepage so the hero photo reads clearly. */}
+        <div className="absolute inset-0 z-[1] bg-gradient-to-b from-graphite/35 via-graphite/55 to-graphite/75" aria-hidden />
         <div className="absolute inset-0 z-[1] overflow-hidden pointer-events-none" aria-hidden>
           <div className="absolute top-0 right-0 w-64 h-px bg-gradient-to-l from-gold/30 to-transparent" />
           <div className="absolute bottom-1/4 left-0 w-48 h-px bg-gradient-to-r from-gold/20 to-transparent" />

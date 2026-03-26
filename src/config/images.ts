@@ -55,5 +55,5 @@ export const CONTACT_HERO =
  * Put your image at public/images/hero-home.jpg (replace file to change it).
  * Recommended: 2560px wide or larger, high quality JPG.
  */
-// Fallback to an existing local asset so the hero never disappears.
-export const HOME_HERO = "/about-hero.png";
+/** Homepage – house + keys style (Unsplash) */
+export const HOME_HERO = hero("1560518883-ce09059eeffa");
