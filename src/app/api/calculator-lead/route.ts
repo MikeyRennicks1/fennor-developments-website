@@ -49,7 +49,7 @@ export async function POST(request: Request) {
 
     const { error } = await resend.emails.send({
       from,
-      to: company.email,
+      to: [...company.emails],
       subject: `Solar calculator lead: ${lead.name}`,
       html: `
         <p><strong>New solar calculator lead</strong> (details captured when they clicked Continue to calculator).</p>

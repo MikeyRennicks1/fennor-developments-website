@@ -51,7 +51,7 @@ export function JsonLd() {
       ? { "@type": "ImageObject" as const, url: `${baseUrl}${brand.logoPath}`, width: 320, height: 112 }
       : undefined,
     description: company.tagline,
-    email: company.email,
+    email: company.emails,
     telephone: phone,
     address: ADDRESS,
     sameAs: [
@@ -69,7 +69,7 @@ export function JsonLd() {
     image: brand.logoPath ? `${baseUrl}${brand.logoPath}` : undefined,
     url: baseUrl,
     telephone: phone,
-    email: company.email,
+    email: company.emails,
     address: ADDRESS,
     geo: GEO,
     openingHoursSpecification: OPENING_HOURS,

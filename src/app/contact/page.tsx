@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageHero } from "@/components/ui/PageHero";
 import { ContactForm } from "@/components/contact/ContactForm";
 import { CONTACT_HERO } from "@/config/images";
+import { company } from "@/config/company";
 
 export const metadata: Metadata = {
   title: "Contact | Get a Quote | Slane Meath | Fennor Developments",
@@ -10,7 +11,7 @@ export const metadata: Metadata = {
     "Contact Fennor Developments for solar, electrical or build quotes. Slane, Co. Meath. North & East Leinster, Ireland.",
 };
 
-const EMAIL = "fennordevelopments@gmail.com";
+const EMAILS = company.emails;
 const PHONE = "083 858 5498";
 const PHONE_ALT = "086 192 1591";
 const WHATSAPP = "353838585498";
@@ -35,9 +36,13 @@ export default function ContactPage() {
               <h2 className="text-xl font-light text-slate tracking-wide mb-5">Contact details</h2>
               <p className="text-slate font-medium">{LOCATION}</p>
               <p className="mt-5">
-                <a href={`mailto:${EMAIL}`} className="text-accent hover:text-accent-light font-medium text-sm">
-                  {EMAIL}
-                </a>
+                  <a href={`mailto:${EMAILS[0]}`} className="text-accent hover:text-accent-light font-medium text-sm">
+                    {EMAILS[0]}
+                  </a>
+                  {" · "}
+                  <a href={`mailto:${EMAILS[1]}`} className="text-accent hover:text-accent-light font-medium text-sm">
+                    {EMAILS[1]}
+                  </a>
               </p>
               <p className="mt-3">
                 <a href={`tel:${PHONE.replace(/\s/g, "")}`} className="text-accent hover:text-accent-light font-medium text-sm">

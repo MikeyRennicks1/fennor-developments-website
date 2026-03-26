@@ -33,7 +33,7 @@ export function LocalBusinessJsonLd({ focusArea }: LocalBusinessJsonLdProps) {
     name: "Fennor Developments",
     url: BASE_URL,
     telephone: phone,
-    email: company.email,
+    email: company.emails,
     address: {
       "@type": "PostalAddress" as const,
       addressLocality: "Slane",

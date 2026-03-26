@@ -49,7 +49,7 @@ export async function POST(request: Request) {
 
     const { error } = await resend.emails.send({
       from,
-      to: company.email,
+      to: [...company.emails],
       replyTo: enquiry.email,
       subject: `Website enquiry from ${enquiry.name}`,
       html: `

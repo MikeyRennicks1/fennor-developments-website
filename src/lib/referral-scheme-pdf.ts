@@ -46,7 +46,7 @@ function drawFooter(doc: jsPDF, pageW: number, margin: number) {
   doc.setFontSize(9).setFont("helvetica", "normal");
   setGray(doc);
   doc.text(company.address, margin, footerYFinal + 8);
-  doc.text(`${company.email}  ·  ${company.phone}`, margin, footerYFinal + 14);
+  doc.text(`${company.emails.join(" · ")}  ·  ${company.phone}`, margin, footerYFinal + 14);
   doc.text(company.tagline, margin, footerYFinal + 20);
 }
 

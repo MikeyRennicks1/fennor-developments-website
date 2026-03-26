@@ -94,6 +94,7 @@ export async function POST(request: Request) {
     const fromEnv = process.env.RESEND_FROM ?? "";
     const from =
       fromEnv && !fromEnv.toLowerCase().includes("@gmail") ? fromEnv : "Fennor Developments <onboarding@resend.dev>";
+    const companyEmailText = company.emails.join(" · ");
 
     // 1. Send PDF to the customer
     const { error: customerError } = await resend.emails.send({
@@ -104,7 +105,7 @@ export async function POST(request: Request) {
         <p>Hi ${contact.name},</p>
         <p>Please find your Solar PV estimate attached as requested.</p>
         <p>If you have any questions or would like to book a free roof assessment, just reply to this email or give us a call.</p>
-        <p>Best regards,<br/><strong>${company.name}</strong><br/>${company.phone} · ${company.email}</p>
+        <p>Best regards,<br/><strong>${company.name}</strong><br/>${company.phone} · ${companyEmailText}</p>
       `,
       attachments: [
         { filename: "Fennor-Solar-Estimate.pdf", content: pdfBuffer },
@@ -119,7 +120,7 @@ export async function POST(request: Request) {
     const safeName = contact.name.replace(/\s+/g, "-").replace(/[^a-zA-Z0-9-]/g, "");
     const { error: ownerEstimateError } = await resend.emails.send({
       from,
-      to: company.email,
+      to: [...company.emails],
       subject: `Estimate requested by ${contact.name}`,
       html: `
         <p>Customer requested their estimate by email (calculator).</p>
@@ -146,7 +147,7 @@ export async function POST(request: Request) {
     const leadPdfBuffer = Buffer.from(leadPdfBytes);
     const { error: ownerLeadError } = await resend.emails.send({
       from,
-      to: company.email,
+      to: [...company.emails],
       subject: `Calculator lead: ${contact.name}`,
       html: `
         <p>Lead details (from calculator – for CRM).</p>

@@ -332,7 +332,7 @@ export function generateEstimatePdf(data: EstimatePdfData): Uint8Array {
   doc.setFontSize(9).setFont("helvetica", "normal");
   setGray(doc);
   doc.text(company.address, margin, footerYFinal + 8);
-  doc.text(`${company.email}  ·  ${company.phone}`, margin, footerYFinal + 14);
+  doc.text(`${company.emails.join(" · ")}  ·  ${company.phone}`, margin, footerYFinal + 14);
   doc.text(company.tagline, margin, footerYFinal + 20);
 
   return doc.output("arraybuffer") as unknown as Uint8Array;
