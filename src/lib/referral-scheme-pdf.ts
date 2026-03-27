@@ -127,11 +127,14 @@ export function generateReferralSchemePdf(data: ReferralSchemePdfData): Uint8Arr
   const boxPadTop = 3;
   const summaryLineH = 6.2;
   const boxInnerH = boxPadTop + domesticLines.length * LINE_H + summaryLineH + 4;
+  const boxTopY = y - 3;
+  const boxHeight = boxInnerH + 6;
+  const boxBottomY = boxTopY + boxHeight;
   doc.setFillColor(LIGHT_BG.r, LIGHT_BG.g, LIGHT_BG.b);
-  doc.roundedRect(margin, y - 3, pageW - 2 * margin, boxInnerH + 6, 2, 2, "F");
+  doc.roundedRect(margin, boxTopY, pageW - 2 * margin, boxHeight, 2, 2, "F");
   doc.setDrawColor(TEAL.r, TEAL.g, TEAL.b);
   doc.setLineWidth(0.3);
-  doc.roundedRect(margin, y - 3, pageW - 2 * margin, boxInnerH + 6, 2, 2, "S");
+  doc.roundedRect(margin, boxTopY, pageW - 2 * margin, boxHeight, 2, 2, "S");
   doc.setFontSize(10).setFont("helvetica", "normal");
   setGray(doc);
   let yy = y + boxPadTop + 0.8;
@@ -142,7 +145,7 @@ export function generateReferralSchemePdf(data: ReferralSchemePdfData): Uint8Arr
   doc.setFontSize(12).setFont("helvetica", "bold");
   setGold(doc);
   doc.text("EUR 200 per completed domestic house  |  5 jobs = EUR 1,000", margin + 4, yy + 2.8);
-  y = yy + summaryLineH + 6;
+  y = boxBottomY + 8;
 
   y = sectionHeading(doc, margin, y, "Onboarding & tracking");
   y = bodyParagraph(
