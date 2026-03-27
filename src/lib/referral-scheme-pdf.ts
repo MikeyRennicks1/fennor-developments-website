@@ -117,12 +117,12 @@ export function generateReferralSchemePdf(data: ReferralSchemePdfData): Uint8Arr
     pageW,
     margin,
     y,
-    "This overview applies when you as a private customer, business, or professional partner accept a partnership with us under our referral scheme. The sections below set out how we track referrals, pay rewards, and manage larger opportunities",
+    "This programme applies once you (a homeowner, business, or professional partner) agree a referral partnership with Fennor Developments. Below is how we record referrals, track them through the job, and pay referral fees.",
   );
 
   y = sectionHeading(doc, margin, y, "Domestic reward");
   const domesticCopy =
-    "For each domestic house referred to us that we complete, once the installation work is finished and payment is received from the end customer, the referrer receives €200 per completed domestic house";
+    "For each domestic house you refer to us that we complete, once the installation work is finished and payment has been received from the end customer, the referrer receives EUR 200 per completed domestic house.";
   const domesticLines = doc.splitTextToSize(domesticCopy, pageW - 2 * margin - 8);
   const boxPadTop = 3;
   const summaryLineH = 6.2;
@@ -150,7 +150,7 @@ export function generateReferralSchemePdf(data: ReferralSchemePdfData): Uint8Arr
     pageW,
     margin,
     y,
-    "When a customer first contacts us, we ask who referred them and whether the enquiry is a referral. If it is, we attach the referrer name and contact details to the customer project file through the installation journey so we can contact and pay the referrer promptly once the project is completed and paid",
+    "When a customer first contacts us, we ask who referred them and confirm whether the enquiry is a referral. If it is, we attach the referrer’s name and contact details to the customer’s project file and keep it linked throughout the installation process. This ensures we can contact you and pay you promptly once the project is completed and paid.",
   );
 
   y = sectionHeading(doc, margin, y, "Multiple homes");
@@ -159,14 +159,14 @@ export function generateReferralSchemePdf(data: ReferralSchemePdfData): Uint8Arr
     pageW,
     margin,
     y,
-    "Where you refer multiple homes, we can offer larger referral amounts than the standard domestic rate. Figures are agreed case by case depending on scope and value",
+    "Where you refer multiple homes, we can offer a higher referral fee than the standard domestic rate. The amount is agreed on a case-by-case basis depending on scope and overall project value.",
   );
 
-  y = sectionHeading(doc, margin, y, "Commercial and large scale work");
+  y = sectionHeading(doc, margin, y, "Commercial & large-scale work");
   doc.setFontSize(10).setFont("helvetica", "normal");
   setGray(doc);
   const commercialText =
-    "For businesses, commercial units, or large solar contracts including substantial corporate partnerships in Ireland, we prefer to meet in person to discuss the opportunity";
+    "For businesses, commercial units, or large solar contracts (including substantial corporate partnerships in Ireland), we prefer to meet in person to discuss the opportunity.";
   const commercialLines = doc.splitTextToSize(commercialText, pageW - 2 * margin);
   for (const line of commercialLines) {
     doc.text(line, margin, y);
@@ -184,7 +184,7 @@ export function generateReferralSchemePdf(data: ReferralSchemePdfData): Uint8Arr
   doc.setFontSize(7.8).setFont("helvetica", "normal");
   setGray(doc);
   const disclaimer =
-    "Referral fees are subject to agreed partnership terms and the EUR 200 rate applies to standard completed domestic house installations as described above";
+    "Referral fees are subject to agreed partnership terms. The EUR 200 rate applies to standard completed domestic house jobs as described above.";
   const discLines = doc.splitTextToSize(disclaimer, pageW - 2 * margin);
   for (const line of discLines) {
     doc.text(line, margin, y);
