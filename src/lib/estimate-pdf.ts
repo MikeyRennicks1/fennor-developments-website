@@ -18,7 +18,7 @@ export type EstimateContact = {
 export type EstimateResult = {
   totalPrice: number;
   afterGrant: number;
-  /** SEAI grant amount in € for this system size (per SEAI tiered rules). */
+  /** SEAI grant amount in EUR for this system size (per SEAI tiered rules). */
   grantAmount?: number;
   yearlySavings: number;
   paybackYears: number;
@@ -56,7 +56,12 @@ const LIGHT_BG = { r: 248, g: 247, b: 245 };
 const KWH_PER_KWP_YEAR = 900;
 
 function fmtEuro(n: number) {
-  return "€" + n.toLocaleString("ie-IE");
+  return "EUR " + n.toLocaleString("en-IE");
+}
+
+function fmtEuroCompact(n: number) {
+  if (n >= 1000) return `EUR ${(n / 1000).toFixed(0)}k`;
+  return fmtEuro(n);
 }
 
 function setNavy(doc: jsPDF) {
@@ -167,12 +172,12 @@ export function generateEstimatePdf(data: EstimatePdfData): Uint8Array {
   if (data.evCharger) addOns.push("EV charger (Ohme Home Pro 5m tethered)");
   doc.setFontSize(10).setFont("helvetica", "normal");
   setGray(doc);
-  doc.text(`Electricity rate: €${data.unitRate.toFixed(2)}/kWh`, margin, y);
+  doc.text(`Electricity rate: EUR ${data.unitRate.toFixed(2)}/kWh`, margin, y);
   y += 5;
   doc.text(`Add-ons: ${addOns.length ? addOns.join(", ") : "None"}`, margin, y);
   y += 5;
   const grantLabel = data.applyGrant
-    ? `Applied (€${(data.result.grantAmount ?? 1800).toLocaleString("ie-IE")} for ${(data.panels * PANEL_KW).toFixed(1)} kWp)`
+    ? `Applied (EUR ${(data.result.grantAmount ?? 1800).toLocaleString("en-IE")} for ${(data.panels * PANEL_KW).toFixed(1)} kWp)`
     : "Not applied";
   doc.text(`SEAI grant: ${grantLabel}`, margin, y);
   y += 12;
@@ -252,7 +257,7 @@ export function generateEstimatePdf(data: EstimatePdfData): Uint8Array {
   // ----- Bar chart: Cumulative savings over time -----
   doc.setFontSize(11).setFont("helvetica", "bold");
   setNavy(doc);
-  doc.text("Cumulative savings (€)", margin, y);
+  doc.text("Cumulative savings (EUR)", margin, y);
   y += 7;
   doc.setDrawColor(NAVY.r, NAVY.g, NAVY.b);
   doc.setLineWidth(0.5);
@@ -284,7 +289,7 @@ export function generateEstimatePdf(data: EstimatePdfData): Uint8Array {
 
     doc.setTextColor(0, 0, 0);
     doc.text(`${years[i]}y`, x + barW / 2 - 2, y + chartH - 2);
-    const label = val >= 1000 ? `€${(val / 1000).toFixed(0)}k` : fmtEuro(val);
+    const label = fmtEuroCompact(val);
     const labelW = doc.getTextWidth(label);
     doc.text(label, x + Math.max(0, (barW - labelW) / 2), barY - 1.5);
   }
