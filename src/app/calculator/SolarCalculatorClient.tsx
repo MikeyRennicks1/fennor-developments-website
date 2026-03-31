@@ -37,6 +37,13 @@ const EV_CHARGER_PRICE = 750;
 const KWH_PER_KWP_YEAR = 900;
 const DEFAULT_UNIT_RATE = 0.35;
 
+function isValidEmail(value: string): boolean {
+  const email = value.trim();
+  if (!email) return false;
+  // Simple structural check: something@something.tld
+  return /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email);
+}
+
 function getSystemPrice(panels: number): number {
   if (panels in SYSTEM_QUOTES) return SYSTEM_QUOTES[panels];
   const low = Math.floor(panels / 2) * 2;
@@ -70,7 +77,7 @@ export function SolarCalculatorClient() {
   const canProceed =
     contact.budget.trim() !== "" &&
     contact.name.trim() !== "" &&
-    contact.email.trim() !== "" &&
+    isValidEmail(contact.email) &&
     contact.address.trim() !== "" &&
     contact.phone.trim() !== "";
 
@@ -227,6 +234,7 @@ export function SolarCalculatorClient() {
                 value={contact.email}
                 onChange={(e) => setContact((c) => ({ ...c, email: e.target.value }))}
                 className={inputClass}
+                pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
                 required
               />
             </div>

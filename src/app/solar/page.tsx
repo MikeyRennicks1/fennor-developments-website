@@ -80,7 +80,7 @@ export default function SolarPage() {
                   Solar PV reduces reliance on the grid and lowers electricity bills while producing clean energy for decades. Use our <Link href="/calculator" className="text-accent hover:text-accent-light font-medium">calculator</Link> to estimate potential savings based on your home and usage.
                 </p>
                 <p className="mt-4 text-gray-600 text-sm leading-relaxed">
-                  Most systems generate electricity for <strong>20+ years</strong>, helping households across <strong>Meath, Dublin and the North East</strong> reduce long-term energy costs.
+                  Modern solar PV systems are designed to generate electricity for <strong>25+ years</strong> with performance warranties typically covering 20–25 years, helping households across <strong>Meath, Dublin and the North East</strong> reduce long-term energy costs.
                 </p>
                 <p className="mt-4 text-gray-600 text-sm leading-relaxed">
                   As experienced electrical and building contractors, we can also support projects that require <strong>solar-ready rewiring, EV charger installation, or integration with wider home renovations</strong>, ensuring your system works seamlessly with the rest of your property.

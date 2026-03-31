@@ -32,8 +32,8 @@ export default function BuildingRenovationsPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center">
               <div className="relative rounded-2xl overflow-hidden shadow-md aspect-[4/3] bg-gray-100">
                 <Image
-                  src={BUILDS_SECTION_BUILD}
-                  alt="Construction – Fennor Developments, Meath"
+                  src={BUILDS_SECTION_HOME_EXT}
+                  alt="Modern home – Fennor Developments"
                   fill
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 50vw"
@@ -72,8 +72,8 @@ export default function BuildingRenovationsPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center">
               <div className="relative rounded-2xl overflow-hidden shadow-md aspect-[4/3] bg-gray-100 order-2 lg:order-1">
                 <Image
-                  src={BUILDS_SECTION_HOME_EXT}
-                  alt="Modern home – Fennor Developments"
+                  src={BUILDS_SECTION_BUILD}
+                  alt="Construction – Fennor Developments, Meath"
                   fill
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 50vw"

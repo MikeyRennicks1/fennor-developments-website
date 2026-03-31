@@ -25,19 +25,34 @@ function getFilename(src: string): string {
 /** Returns every gallery image (from manifest + descriptions). No fs. */
 export function getGalleryImages(): GalleryItem[] {
   const manifest = (manifestData as ManifestItem[]) ?? [];
-  return manifest.map((m) => {
+  const scored = manifest.map((m) => {
     const filename = getFilename(m.src);
     const custom = GALLERY_DESCRIPTIONS[filename];
     const alt = custom?.description ?? `${m.caption}${DEFAULT_ALT_SUFFIX}`;
     const description = custom?.description ?? DEFAULT_DESCRIPTION;
-    return {
+    const item: GalleryItem = {
       src: m.src,
       thumbSrc: m.thumbSrc ?? undefined,
       alt,
       caption: m.caption,
       description,
     };
+    const category = custom?.category ?? "installation";
+    const sortRank =
+      category === "solar-panels"
+        ? 0
+        : category === "battery" || category === "inverter"
+        ? 1
+        : 2;
+    return { item, sortRank, filename };
   });
+
+  return scored
+    .sort((a, b) => {
+      if (a.sortRank !== b.sortRank) return a.sortRank - b.sortRank;
+      return a.filename.localeCompare(b.filename);
+    })
+    .map((entry) => entry.item);
 }
 
 /** SEO alt text for a gallery image assigned to a town. */
