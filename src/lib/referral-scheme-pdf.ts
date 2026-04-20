@@ -98,16 +98,13 @@ function bulletLine(doc: jsPDF, pageW: number, margin: number, y: number, text: 
   doc.setFontSize(9.6).setFont("helvetica", "normal");
   setGray(doc);
   const bullet = "•";
-  const lines = doc.splitTextToSize(text, pageW - 2 * margin - 6);
+  const lines = doc.splitTextToSize(text, pageW - 2 * margin - 6) as string[];
   doc.text(bullet, margin, y);
   let yy = y;
-  lines.forEach((line, idx) => {
+  for (const line of lines) {
     doc.text(line, margin + 4, yy);
     yy += LINE_H;
-    if (idx === 0 && lines.length > 1) {
-      continue;
-    }
-  });
+  }
   return yy + 1.8;
 }
 
