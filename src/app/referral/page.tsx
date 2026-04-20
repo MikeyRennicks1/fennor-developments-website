@@ -30,7 +30,7 @@ export default function ReferralPage() {
             </div>
             <h2 className="text-2xl sm:text-3xl font-light text-slate tracking-wide">Simple referral system</h2>
             <p className="mt-4 text-gray-600 text-sm leading-relaxed">
-              Refer solar and construction projects. Paid upon project completion. Transparent tracking and professional handover. Full details discussed on enquiry.
+              Refer solar and construction projects. Get paid once completed. Simple, transparent, and built for long-term partnerships.
             </p>
             <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3">
               <Link

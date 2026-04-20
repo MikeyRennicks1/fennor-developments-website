@@ -26,12 +26,10 @@ export const BUILDS_SECTION_HOME_EXT = "/images/build-renovations-house.png";
 /** Electrical – Professional electrician at domestic consumer unit, clean wiring, neutral tones (Pexels) */
 export const ELECTRICAL_HERO =
   "https://images.pexels.com/photos/5090652/pexels-photo-5090652.jpeg?auto=compress&cs=tinysrgb&w=2560&q=92";
-/** Electrical section 1 – Electrician at consumer unit, clean wiring, modern board, residential (Pexels) */
-export const ELECTRICAL_SECTION_1 =
-  "https://images.pexels.com/photos/9875418/pexels-photo-9875418.jpeg?auto=compress&cs=tinysrgb&w=1200&q=90";
-/** Electrical section 2 – Wide interior, completed home, modern living space, natural daylight, premium finish (Pexels) */
-export const ELECTRICAL_SECTION_2 =
-  "https://images.pexels.com/photos/6077368/pexels-photo-6077368.jpeg?auto=compress&cs=tinysrgb&w=1200&q=90";
+/** Electrical section 1 – Real Fennor consumer unit installation photo */
+export const ELECTRICAL_SECTION_1 = "/images/electrical-section-1.png";
+/** Electrical section 2 – Real Fennor consumer unit panel photo */
+export const ELECTRICAL_SECTION_2 = "/images/electrical-section-2.png";
 
 /** Solar – Rural solar farm, photorealistic 4K (Pexels 9893729: solar farm sunny day) */
 export const SOLAR_HERO =
