@@ -12,7 +12,7 @@ export const company = {
   email: "info@fennor.ie",
   phone: "083 858 5498",
   phoneAlt: "086 192 1591",
-  website: "https://fennordevelopments.ie",
+  website: "https://www.fennor.ie",
   social: {
     facebook: "https://www.facebook.com/p/FennorDevelopments-61553207511388/",
     instagram: "https://www.instagram.com/fennordevelopments",
