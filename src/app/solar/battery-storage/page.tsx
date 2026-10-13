@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { enquiryEmailHref } from '@/config/contact';
 import Image from 'next/image';
 import SiteHeader from '@/components/SiteHeader';
 import SolarRelated from '@/components/SolarRelated';
@@ -51,7 +52,7 @@ export default function BatteryStorage(){
 
     <section className="bs-shell bs-faq" id="battery-questions"><div><p className="bs-kicker">06 / CLEAR ANSWERS</p><h2>Good questions.<br/><em>Before you choose.</em></h2><p>Useful guidance, without the hard sell.</p></div><div className="bs-faq-list">{batteryQuestions.map(({q,a},i)=><details key={q}><summary><span>0{i+1}</span><h3>{q}</h3><b aria-hidden="true">+</b></summary><p>{a}</p>{i===7&&<a className="bs-link" href="#battery-grant">View the grant conditions ↑</a>}</details>)}</div></section>
 
-    <section className="bs-shell bs-enquiry" id="battery-enquiry"><div><p className="bs-kicker">A BATTERY SHOULD EARN ITS PLACE</p><h2>Let’s find<br/><em>your right fit.</em></h2><p>Whether you want to use more solar, shift cheaper electricity or plan for outages, we start with your current system and daily routine. Your next step is an assessment, followed by an explained storage option and full installed price.</p><p>Based in Slane, serving homeowners in Meath, Louth and Dublin. Farm and commercial storage enquiries are assessed individually.</p><a className="bs-phone" href="tel:+353894032737">089 403 2737</a><a className="bs-link" href="mailto:info@fennor.ie">info@fennor.ie ↗</a></div><BatteryEnquiry/></section>
+    <section className="bs-shell bs-enquiry" id="battery-enquiry"><div><p className="bs-kicker">A BATTERY SHOULD EARN ITS PLACE</p><h2>Let’s find<br/><em>your right fit.</em></h2><p>Whether you want to use more solar, shift cheaper electricity or plan for outages, we start with your current system and daily routine. Your next step is an assessment, followed by an explained storage option and full installed price.</p><p>Based in Slane, serving homeowners in Meath, Louth and Dublin. Farm and commercial storage enquiries are assessed individually.</p><a className="bs-phone" href="tel:+353894032737">089 403 2737</a><a className="bs-link" href={enquiryEmailHref({ primary: 'info@fennor.ie' })}>info@fennor.ie ↗</a></div><BatteryEnquiry/></section>
     <div className="bs-shell bs-related"><SolarRelated current="battery-storage"/><div className="bs-next-links"><a className="bs-link" href="/solar/domestic#design">Design your solar system ↗</a><a className="bs-link" href="/solar/accessories#eddi">Compare EDDI hot-water diversion ↗</a><a className="bs-link" href="/#energy">← Back to your home-energy journey</a></div></div>
     </main>
   </div>;

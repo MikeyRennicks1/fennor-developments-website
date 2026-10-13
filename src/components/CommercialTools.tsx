@@ -1,6 +1,7 @@
 'use client';
 
 import { createContext, useContext, useState, type ReactNode } from 'react';
+import { enquiryEmailHref } from '@/config/contact';
 import { businessProfiles, commercialGrantCeiling, commercialSources, euro } from '@/lib/commercial-solar';
 import EnquiryForm from '@/components/EnquiryForm';
 
@@ -52,7 +53,7 @@ export function CommercialEnquiry() {
   const { kwp, profile } = useContext(CommercialContext);
   const [company, setCompany] = useState('');
   const context = `Business: ${company || 'Not supplied'}\nOperating-pattern interest: ${businessProfiles[profile].name}\nExplored capacity: ${kwp} kWp (illustrative, not a design)`;
-  return <section className="cs-enquiry cs-shell" id="commercial-enquiry"><div><p className="eyebrow">LET’S UNDERSTAND YOUR SITE</p><h2>A better plan.<br /><em>Starts with your business.</em></h2><p>Based in Slane. Commercial enquiries across Meath, Louth and Dublin, with projects elsewhere in Ireland considered individually.</p><a className="cs-phone" href="tel:+353894032737">089 403 2737 ↗</a><a href="mailto:info@fennor.ie">info@fennor.ie</a><p className="cs-fine">Start with your premises and operating hours. Annual electricity use, interval data and roof photographs help if available; we explain what else is needed for the site assessment and investment proposal. No bills or files are uploaded here.</p></div>
+  return <section className="cs-enquiry cs-shell" id="commercial-enquiry"><div><p className="eyebrow">LET’S UNDERSTAND YOUR SITE</p><h2>A better plan.<br /><em>Starts with your business.</em></h2><p>Based in Slane. Commercial enquiries across Meath, Louth and Dublin, with projects elsewhere in Ireland considered individually.</p><a className="cs-phone" href="tel:+353894032737">089 403 2737 ↗</a><a href={enquiryEmailHref({ primary: 'info@fennor.ie' })}>info@fennor.ie</a><p className="cs-fine">Start with your premises and operating hours. Annual electricity use, interval data and roof photographs help if available; we explain what else is needed for the site assessment and investment proposal. No bills or files are uploaded here.</p></div>
     <EnquiryForm topic="Commercial solar enquiry" context={context} buttonClassName="cs-button cs-button-light" buttonLabel="Send my commercial enquiry">
       <p className="cs-enquiry-context">Your exploration: {kwp} kWp · {businessProfiles[profile].name}</p>
       <label htmlFor="cs-company">Business / organisation <span>(optional)</span></label><input id="cs-company" autoComplete="organization" maxLength={120} value={company} onChange={e => setCompany(e.target.value)} />

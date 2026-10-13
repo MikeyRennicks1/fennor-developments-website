@@ -11,6 +11,8 @@ import FarmSolar from '@/components/FarmSolar';
 import { farmQuestions } from '@/lib/farm-solar';
 import EditorialPage, { editorialMetadata } from '@/components/EditorialPage';
 import { editorialPages } from '@/config/editorial-pages';
+import { enquiryEmailHref } from '@/config/contact';
+import { SolarFooter } from '@/components/SolarPageParts';
 
 export const dynamicParams = false;
 export function generateStaticParams() { return Object.keys(solarPages).filter(service => service !== 'ground-mounted').map(service => ({ service })); }
@@ -68,10 +70,10 @@ export default async function SolarLanding({ params }: { params: Promise<{ servi
       <nav className="solar-breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><a href="/#services">Solar</a><span>/</span><span aria-current="page">{label}</span></nav>
       <div className={`solar-page-opening ${page.image ? 'with-image' : ''}`}><div><p className="eyebrow">FENNOR / {label.toUpperCase()}</p><h1>{page.headline}<br /><em>{page.accent}</em></h1><p className="accessories-intro">{page.intro}</p></div>{page.image && <div className="solar-opening-image"><Image src={`/images/${page.image}`} alt={page.imageAlt ?? ''} fill priority sizes="(max-width: 800px) 100vw, 40vw" /></div>}</div>
       {service === 'calculator' && <PanelSizer />}
-      <section className="eddi-section" aria-label={`${label} guidance`}><div><p className="eyebrow">A MORE INFORMED DECISION</p><h2>A clearer<br /><em>starting point.</em></h2><a className="text-link" href={`mailto:info@fennor.ie?subject=${encodeURIComponent(page.cta)}`}>{page.cta} ↗</a></div><div className="eddi-copy">{page.sections.map((section, index) => <section key={section.heading} className="solar-guidance-section"><span className="eyebrow">0{index + 1}</span><h3>{section.heading}</h3><p>{section.text}</p></section>)}<div className="eddi-check"><span>{service === 'projects-case-studies' ? 'YOUR PROJECT STARTS HERE' : 'A FEW HELPFUL STARTING DETAILS'}</span><ul>{page.checklist.map(item => <li key={item}>{item}</li>)}</ul></div></div></section>
+      <section className="eddi-section" aria-label={`${label} guidance`}><div><p className="eyebrow">A MORE INFORMED DECISION</p><h2>A clearer<br /><em>starting point.</em></h2><a className="text-link" href="/contact#enquire">{page.cta} ↗</a><a className="text-link" href={enquiryEmailHref({ subject: page.cta })}>Email about this ↗</a></div><div className="eddi-copy">{page.sections.map((section, index) => <section key={section.heading} className="solar-guidance-section"><span className="eyebrow">0{index + 1}</span><h3>{section.heading}</h3><p>{section.text}</p></section>)}<div className="eddi-check"><span>{service === 'projects-case-studies' ? 'YOUR PROJECT STARTS HERE' : 'A FEW HELPFUL STARTING DETAILS'}</span><ul>{page.checklist.map(item => <li key={item}>{item}</li>)}</ul></div></div></section>
       {page.sources && <section className="battery-guidance" aria-label="Official guidance"><h2>The guidance behind your options.</h2><div>{page.sources.map(source => <a className="text-link" key={source.href} href={source.href} target="_blank" rel="noopener noreferrer">{source.label} ↗</a>)}</div><p>We can help explain how the official terms relate to your plans. The scheme administrator determines eligibility, and current terms apply to your application.</p></section>}
       <SolarRelated current={service} />
     </main>
-    <footer className="footer section-shell"><div className="footer-bottom"><span>Fennor Developments Ltd · Design preview</span><a href="tel:+353894032737">089 403 2737</a><a href="mailto:info@fennor.ie">info@fennor.ie</a></div></footer>
+    <SolarFooter />
   </>;
 }

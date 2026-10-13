@@ -198,10 +198,20 @@ const serviceMoves: readonly (readonly [string, string])[] = [
   ]
 ];
 
+// Old town pages now lead to the substantive home/business electrical guide.
+// Coverage is confirmed by enquiry; these redirects do not imply local offices.
+export const legacyElectricalLocationPaths = [
+  '/electrician-ashbourne', '/electrician-drogheda', '/electrician-dundalk',
+  '/electrician-kells', '/electrician-mullingar', '/electrician-navan', '/electrician-trim',
+] as const;
+
 export const legacyPageRedirects = [
   ...serviceMoves.map(([source, destination]) => ({ source, destination, permanent: true as const })),
   ...legacySolarLocationPaths.map(source => ({
     source, destination: '/solar/domestic', permanent: true as const,
+  })),
+  ...legacyElectricalLocationPaths.map(source => ({
+    source, destination: '/electrical', permanent: true as const,
   })),
 ];
 
@@ -212,21 +222,12 @@ export const legacyAssetRedirects = [
 ];
 
 export const legacyRedirects = [...legacyPageRedirects, ...legacyAssetRedirects];
-export const retainedLegacyPagePaths = ["/","/about","/contact","/solar"] as const;
+export const retainedLegacyPagePaths = ["/","/about","/contact","/solar","/electrical"] as const;
 
 // Explicit launch decisions remain. No blanket redirect hides removed services.
 export const unresolvedLegacyPagePaths = [
   "/case-studies",
-  "/electrical",
-  "/electrician-ashbourne",
-  "/electrician-drogheda",
-  "/electrician-dundalk",
-  "/electrician-kells",
-  "/electrician-mullingar",
-  "/electrician-navan",
-  "/electrician-trim",
   "/gallery",
   "/referral",
   "/case-studies/rewire-trim-period-home"
 ] as const;
-

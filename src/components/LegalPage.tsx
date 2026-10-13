@@ -1,4 +1,5 @@
 import type {ReactNode} from 'react';
+import { enquiryEmailHref } from '@/config/contact';
 import SiteHeader from './SiteHeader';
 import styles from './legal-page.module.css';
 
@@ -28,7 +29,7 @@ export default function LegalPage({title, intro, updated, sections, notice}: {
           <p className={styles.eyebrow}>0{index+1}</p><h2 id={`${id}-title`}>{title}</h2><div className={styles.copy}>{content}</div>
         </section>)}</div>
       </div>
-      <aside className={styles.help}><div><p className={styles.eyebrow}>A DIRECT CONVERSATION</p><h2>Something you want to ask?</h2><p>Get in touch with our team in Slane.</p></div><div><a href="mailto:info@fennor.ie">info@fennor.ie ↗</a><a href="tel:+353894032737">089 403 2737 ↗</a></div></aside>
+      <aside className={styles.help}><div><p className={styles.eyebrow}>A DIRECT CONVERSATION</p><h2>Something you want to ask?</h2><p>Get in touch with our team in Slane.</p></div><div><a href={enquiryEmailHref({ primary: 'info@fennor.ie' })}>info@fennor.ie ↗</a><a href="tel:+353894032737">089 403 2737 ↗</a></div></aside>
     </main>
   </div>;
 }

@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { enquiryEmailHref } from '@/config/contact';
 import SiteHeader from './SiteHeader';
 import SolarRelated from '@/components/SolarRelated';
 import { FarmEnquiry, FarmPatternExplorer, FarmValueExplorer } from '@/components/FarmTools';
@@ -42,7 +43,7 @@ export default function FarmSolar() {
 
       <section className="fs-faq fs-shell" id="farm-questions"><div><p className="fs-eyebrow">05 / STRAIGHT ANSWERS, INSIDE THE FARM GATE</p><h2>Good questions.<br /><em>Better decisions.</em></h2><p>From the roof to the milking parlour, these are the details worth settling early.</p><a className="fs-link" href={sources.solarGuide}>Teagasc’s dairy solar guide ↗</a><p className="fs-small">The guide is from 2025. Use the 2026 funding updates above for current grant changes.</p></div><div className="fs-faq-list">{farmQuestions.map(({q,a,href,link},i)=><details key={q}><summary><span>0{i+1}</span><h3>{q}</h3><b aria-hidden="true">+</b></summary><div><p>{a}</p><a className="fs-link" href={href}>{link} ↗</a></div></details>)}</div></section>
 
-      <section className="fs-enquiry fs-shell" id="farm-enquiry"><div><p className="fs-eyebrow">START WITH THE FARM, NOT A PANEL COUNT</p><h2>Your roof.<br />Your routine.<br /><em>Let’s find the fit.</em></h2><p>Fennor is based in Slane, serving Meath, Louth and Dublin. Agricultural projects elsewhere in Ireland can be considered individually.</p><a className="fs-phone" href="tel:+353894032737">089 403 2737 ↗</a><a className="fs-link" href="mailto:info@fennor.ie">info@fennor.ie</a><p className="fs-small">Start with the farm location and your priorities. If available, 12 months of bills, ground-level shed photographs, meter details and any grant application status help us prepare the assessment. No need to climb onto a roof.</p></div><FarmEnquiry /></section>
+      <section className="fs-enquiry fs-shell" id="farm-enquiry"><div><p className="fs-eyebrow">START WITH THE FARM, NOT A PANEL COUNT</p><h2>Your roof.<br />Your routine.<br /><em>Let’s find the fit.</em></h2><p>Fennor is based in Slane, serving Meath, Louth and Dublin. Agricultural projects elsewhere in Ireland can be considered individually.</p><a className="fs-phone" href="tel:+353894032737">089 403 2737 ↗</a><a className="fs-link" href={enquiryEmailHref({ primary: 'info@fennor.ie' })}>info@fennor.ie</a><p className="fs-small">Start with the farm location and your priorities. If available, 12 months of bills, ground-level shed photographs, meter details and any grant application status help us prepare the assessment. No need to climb onto a roof.</p></div><FarmEnquiry /></section>
       <div className="fs-related fs-shell"><SolarRelated current="farm" /></div>
     </main>
   </div>;

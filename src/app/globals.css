@@ -66,6 +66,7 @@
 @media(max-width:800px){.hero-shade{background:linear-gradient(90deg,#112734a6,#1028340d),linear-gradient(0deg,#102532ba,transparent 75%)}.hero-copy{text-shadow:0 2px 14px #12283770}.film-frame{box-shadow:18px 18px 0 #f0f4f0}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}.will-reveal{opacity:1;transform:none}}
 /* Keep small calculator and planning fields readable when focused on a phone. */
+@media(max-width:600px){.service-tabs{flex-wrap:wrap}.service-tabs button{flex:1 1 30%;min-height:48px;font-size:12px}.service-tabs button[aria-selected=true]:after{right:10px}}
 @media(max-width:600px){
   main .ds-config-controls select,
   main .cs-grant-inputs input[type=number],

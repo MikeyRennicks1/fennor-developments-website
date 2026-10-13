@@ -2,6 +2,7 @@ import BrandLogo from './BrandLogo';
 import {pageGroups} from '@/config/page-map';
 import {companyInformation} from '@/config/company-information';
 import {isProductionSite} from '@/config/launch';
+import {ENQUIRY_RECIPIENTS,enquiryEmailHref} from '@/config/contact';
 import './site-directory.css';
 
 export default function SiteDirectory() {
@@ -16,7 +17,7 @@ export default function SiteDirectory() {
         <div>{group.pages.map(([slug, label]) => <a key={slug} href={group.path + (slug ? `/${slug}` : '')}>{label}<span aria-hidden="true">↗</span></a>)}</div>
       </details>)}
     </nav>
-    <div className="sd-bottom"><span>Fennor Developments Ltd · Slane, Co. Meath, Ireland</span><a href="tel:+353894032737">089 403 2737</a><a href="mailto:info@fennor.ie">info@fennor.ie</a></div>
+    <div className="sd-bottom"><span>Fennor Developments Ltd · Slane, Co. Meath, Ireland</span><a href="tel:+353894032737">089 403 2737</a>{ENQUIRY_RECIPIENTS.map(email=><a key={email} href={enquiryEmailHref({primary:email})}>{email}</a>)}</div>
     <div className="sd-legal"><span>© 2026 Fennor Developments Ltd. · Registered in Ireland · No. {companyInformation.registrationNumber}</span>{!isProductionSite&&<span>Independent design preview · Not the live website</span>}<nav aria-label="Legal information"><a href="/privacy">Privacy</a><a href="/company-information">Company information</a><a href="/solar/faq-advice">Helpful answers ↗</a></nav></div>
   </footer>;
 }

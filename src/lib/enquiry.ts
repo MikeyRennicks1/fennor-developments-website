@@ -1,3 +1,5 @@
+import { ENQUIRY_RECIPIENTS } from '../config/contact';
+
 /** Shared input limits; this module contains no server credentials. */
 export const ENQUIRY_LIMITS = { name: 100, contact: 254, area: 120, details: 3000, topic: 120, context: 1800, page: 200, website: 200 } as const;
 
@@ -7,7 +9,7 @@ export type EnquiryValidation = { ok: true; value: ValidEnquiry } | { ok: false;
 
 const emailPattern = /^[^\s<>@]+@[^\s<>@]+\.[^\s<>@]+$/;
 const phonePattern = /^\+?[\d\s().-]+$/;
-export const ENQUIRY_UNAVAILABLE = 'We could not confirm your enquiry was sent. Your details are still here. Please try again, email info@fennor.ie or call 089 403 2737.';
+export const ENQUIRY_UNAVAILABLE = `We could not confirm your enquiry was sent. Your details are still here. Please try again, email ${ENQUIRY_RECIPIENTS.join(' and ')} or call 089 403 2737.`;
 
 export function validateEnquiry(input: unknown): EnquiryValidation {
   if (!input || typeof input !== 'object' || Array.isArray(input)) return { ok: false, error: 'Please complete the enquiry form.' };

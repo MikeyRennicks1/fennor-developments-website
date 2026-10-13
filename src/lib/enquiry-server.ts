@@ -1,7 +1,7 @@
 import { createHmac, randomBytes } from 'node:crypto';
+import { ENQUIRY_RECIPIENTS } from '../config/contact';
 import { ENQUIRY_UNAVAILABLE, enquiryText, validateEnquiry } from './enquiry';
 
-const RECIPIENTS = ['info@fennor.ie', 'mikey@fennor.ie'];
 const MAX_BODY_BYTES = 16000;
 const RATE_WINDOW_MS = 15 * 60 * 1000;
 type Bucket = { count: number; expires: number };
@@ -64,7 +64,7 @@ export function createEnquiryHandler(dependencies: Dependencies = {}) {
     if (Number(request.headers.get('content-length') || 0) > MAX_BODY_BYTES) return response({ error: 'Your message is too long. Please shorten it.' }, 413);
     // Vercel overwrites this header at its edge; do not trust arbitrary forwarded IPs elsewhere.
     const address = env.VERCEL === '1' ? request.headers.get('x-vercel-forwarded-for')?.split(',')[0]?.trim() || 'unknown' : 'local-or-untrusted-proxy';
-    if (!allowRequest(address)) return response({ error: 'Too many attempts just now. Please wait 15 minutes, email info@fennor.ie or call 089 403 2737.' }, 429, { 'Retry-After': '900' });
+    if (!allowRequest(address)) return response({ error: `Too many attempts just now. Please wait 15 minutes, email ${ENQUIRY_RECIPIENTS.join(' and ')} or call 089 403 2737.` }, 429, { 'Retry-After': '900' });
     let parsed: unknown;
     try { parsed = JSON.parse(await readBoundedBody(request)); }
     catch (error) { return response({ error: error instanceof Error && error.message === 'body-too-large' ? 'Your message is too long. Please shorten it.' : 'This form could not be read. Please reload the page.' }, error instanceof Error && error.message === 'body-too-large' ? 413 : 400); }
@@ -79,7 +79,7 @@ export function createEnquiryHandler(dependencies: Dependencies = {}) {
       const delivered = await fetchEmail('https://api.resend.com/emails', {
         method: 'POST',
         headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json', 'Idempotency-Key': `fennor-enquiry-${enquiry.requestId}` },
-        body: JSON.stringify({ from, to: RECIPIENTS, ...(enquiry.email ? { reply_to: enquiry.email } : {}), subject: `Website enquiry: ${enquiry.topic}`, text: enquiryText(enquiry) }),
+        body: JSON.stringify({ from, to: ENQUIRY_RECIPIENTS, ...(enquiry.email ? { reply_to: enquiry.email } : {}), subject: `Website enquiry: ${enquiry.topic}`, text: enquiryText(enquiry) }),
         signal: AbortSignal.timeout(12000),
       });
       const result = await delivered.json().catch(() => null) as { id?: unknown } | null;

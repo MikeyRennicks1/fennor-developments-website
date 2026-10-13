@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useId, useRef, useState, type FormEvent, type ReactNode } from 'react';
+import { enquiryEmailHref } from '@/config/contact';
 import { ENQUIRY_LIMITS, ENQUIRY_UNAVAILABLE, validateEnquiry, type EnquiryPayload } from '@/lib/enquiry';
 import './enquiry-form.css';
 
@@ -81,7 +82,7 @@ export default function EnquiryForm({ topic, children, context = '', className =
       <button className={buttonClassName} type="submit" disabled={submission.status === 'success' && !changedDuringSend}>{submission.status === 'sending' ? 'Sending…' : submission.status === 'success' && !changedDuringSend ? 'Enquiry sent' : buttonLabel} <span aria-hidden="true">↗</span></button>
       <p className="enquiry-note">Send your details to the Fennor team so we can respond to your enquiry. No files are uploaded here. Please leave out bank details, welfare documents and other sensitive information. <a href="/privacy">How we use your information</a>.</p>
     </fieldset>
-    {submission.status !== 'idle' && <div ref={status} tabIndex={-1} className={`enquiry-status enquiry-status-${submission.status}`} role={submission.status === 'error' ? 'alert' : 'status'} aria-live={submission.status === 'error' ? 'assertive' : 'polite'}><p>{submission.message}</p>{submission.status === 'success' && changedDuringSend && <p>This confirmation is for the choices you submitted. Your newer selections have not been sent.</p>}{submission.status === 'error' && <p><a href="mailto:info@fennor.ie">Email info@fennor.ie</a> or <a href="tel:+353894032737">call 089 403 2737</a>.</p>}</div>}
-    <noscript><p className="enquiry-note">To enquire without JavaScript, <a href="mailto:info@fennor.ie">email info@fennor.ie</a> or <a href="tel:+353894032737">call 089 403 2737</a>. Nothing has been submitted.</p></noscript>
+    {submission.status !== 'idle' && <div ref={status} tabIndex={-1} className={`enquiry-status enquiry-status-${submission.status}`} role={submission.status === 'error' ? 'alert' : 'status'} aria-live={submission.status === 'error' ? 'assertive' : 'polite'}><p>{submission.message}</p>{submission.status === 'success' && changedDuringSend && <p>This confirmation is for the choices you submitted. Your newer selections have not been sent.</p>}{submission.status === 'error' && <p><a href={enquiryEmailHref({ subject: topic })}>Email info@fennor.ie and mikey@fennor.ie</a> or <a href="tel:+353894032737">call 089 403 2737</a>.</p>}</div>}
+    <noscript><p className="enquiry-note">To enquire without JavaScript, <a href={enquiryEmailHref({ subject: topic })}>email info@fennor.ie and mikey@fennor.ie</a> or <a href="tel:+353894032737">call 089 403 2737</a>. Nothing has been submitted.</p></noscript>
   </form>;
 }

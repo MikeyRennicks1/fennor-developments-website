@@ -1,6 +1,7 @@
 'use client';
 
 import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
+import { enquiryEmailHref } from '@/config/contact';
 import { defaultSelection, readSelection, selectionQuery, selectionSummary, type SolarSelection } from '@/lib/solar-selection';
 import EnquiryForm from '@/components/EnquiryForm';
 
@@ -100,7 +101,7 @@ export function DomesticExplorer() {
 export function DomesticEnquiry() {
   const { selection } = useContext(SelectionContext);
   const summary = selectionSummary(selection);
-  return <section className="ds-enquiry" id="assessment" aria-labelledby="ds-enquiry-title"><div><p className="eyebrow">YOUR HOME. YOUR NEXT STEP.</p><h2 id="ds-enquiry-title">Let’s put your<br /><em>roof in the picture.</em></h2><p>Based in Slane. Helping homeowners across Meath, Louth and Dublin, with enquiries across Leinster. Send your starting ideas and we’ll explain the assessment, suitable options and quote process—you do not need to know your final system size.</p><a className="ds-phone" href="tel:+353894032737">089 403 2737 ↗</a><a href="mailto:info@fennor.ie">info@fennor.ie</a></div>
+  return <section className="ds-enquiry" id="assessment" aria-labelledby="ds-enquiry-title"><div><p className="eyebrow">YOUR HOME. YOUR NEXT STEP.</p><h2 id="ds-enquiry-title">Let’s put your<br /><em>roof in the picture.</em></h2><p>Based in Slane. Helping homeowners across Meath, Louth and Dublin, with enquiries across Leinster. Send your starting ideas and we’ll explain the assessment, suitable options and quote process—you do not need to know your final system size.</p><a className="ds-phone" href="tel:+353894032737">089 403 2737 ↗</a><a href={enquiryEmailHref({ primary: 'info@fennor.ie' })}>info@fennor.ie</a></div>
     <EnquiryForm topic="Domestic solar enquiry" context={summary} buttonClassName="ds-button" buttonLabel="Send my solar enquiry">
       <p className="ds-enquiry-summary" aria-live="polite">{summary}</p>
       <label htmlFor="ds-county">Where is your home?</label><select id="ds-county" name="area" defaultValue="" required><option value="">Choose your area</option>{['Meath', 'Louth', 'Dublin', 'Elsewhere in Leinster'].map(area => <option key={area}>{area}</option>)}</select>

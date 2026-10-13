@@ -26,7 +26,7 @@ export default function SiteHeader({home=false, editorial=false}:{home?:boolean;
   },[]);
   return <header className={`fn-header${home?' fn-header-home':''}${editorial?' ep-header':''}`}>
     <a className="fn-brand" href="/" aria-label="Fennor homepage"><BrandLogo loading="eager"/></a>
-    <nav className="fn-primary" aria-label="Main navigation">{pageGroups.slice(0,5).map(group=><a key={group.path} href={group.path} aria-current={path===group.path?'page':undefined} className={path.startsWith(group.path)?'fn-current':''}>{group.label}</a>)}</nav>
+    <nav className="fn-primary" aria-label="Main navigation">{pageGroups.slice(0,6).map(group=><a key={group.path} href={group.path} aria-current={path===group.path?'page':undefined} className={path.startsWith(group.path)?'fn-current':''}>{group.label}</a>)}</nav>
     <div className="fn-header-actions"><a href="/contact" className="fn-contact">Let’s talk <span aria-hidden="true">↗</span></a>
       <details className="fn-directory" ref={menu}>
         <summary aria-label="Explore all pages">Explore <span aria-hidden="true">+</span></summary>

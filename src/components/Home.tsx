@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from 'react';
 import { solarLinks } from '@/config/solar-pages';
 import HeroFilm from '@/components/HeroFilm';
 import EnquiryForm from '@/components/EnquiryForm';
+import { enquiryEmailHref } from '@/config/contact';
 
 function Arrow({ diagonal = false }: { diagonal?: boolean }) {
   return <svg viewBox="0 0 24 24" width="21" height="21" fill="none" aria-hidden="true"><path d={diagonal ? 'M5 19 19 5M5 5h14v14' : 'M4 12h16m-7-7 7 7-7 7'} stroke="currentColor" strokeWidth="1.5" /></svg>;
@@ -18,6 +19,7 @@ const services = [
   { id: 'renovations', label: 'Renovations', number: '02', heading: 'The home you love.\nReimagined.', description: 'Rethink the spaces you use every day. Start with what isn’t working, then shape a renovation around how you want your home to feel.', image: 'renovations-02.webp', alt: 'Stone walls and oak beams frame a contemporary kitchen and living space', links: ['Whole-home renovation', 'Layout & living spaces', 'Older homes'], note: 'Keep the character. Create the possibilities.', question: 'I’d like to discuss renovating my home.' },
   { id: 'retrofit', label: 'Retrofit', number: '03', heading: 'More comfort.\nFrom the inside out.', description: 'A warmer home starts with the whole picture. Consider insulation, ventilation and heating together, with a plan suited to the building.', image: 'retrofit-03.webp', alt: 'Glazed doors open onto a warm living room, with a heat pump beside the house', links: ['Whole-home approach', 'Insulation & ventilation', 'Heat-pump planning'], note: 'Understand the house before choosing the upgrade.', question: 'I’d like advice on a home retrofit.' },
   { id: 'building', label: 'Building', number: '04', heading: 'Room for\nwhat comes next.', description: 'From a thoughtful extension to a new beginning. Let’s define the brief, understand the site and talk through the practical next steps.', image: 'building-04.webp', alt: 'Wide glazed doors connect an inviting living space with a garden terrace', links: ['Extensions', 'New-build enquiries', 'Planning your project'], note: 'Good projects begin with a clear conversation.', question: 'I’d like to discuss a building project.' },
+  { id: 'electrical', label: 'Electrical', number: '05', heading: 'The power behind\nyour everyday.', description: 'A better-lit home, a working business or a planned maintenance visit. Tell Fennor what you need from your electrical installation. We explain the assessment, the work and any disruption before you decide.', image: 'kitchen-detail-editorial.webp', alt: 'Carefully positioned pendant and concealed lighting in a contemporary kitchen', links: ['Domestic electrical', 'Commercial electrical', 'Industrial maintenance'], note: 'Homes. Workplaces. A clearer plan for both.', question: 'I’d like to discuss electrical work or maintenance.' },
 ];
 
 const systems = [
@@ -32,6 +34,7 @@ const faqs = [
   ['Can I plan solar alongside a renovation or retrofit?', 'Yes. Fennor brings the solar, roof, electrical and home-upgrade requirements into one planning conversation, so work is sequenced around your building. Before you agree the proposal, we explain the specialist work involved, who delivers it and what is included.'],
   ['What about grants and financial support?', 'Fennor explains the funding route relevant to your property, the application steps and who supplies the information needed. Eligibility and approval come from the scheme, not a quotation. We keep the full project price separate from possible support, including the different farm and commercial routes.'],
   ['Will a battery keep my home running in a power cut?', 'Not automatically. Backup requires compatible equipment, appropriate changeover or isolation arrangements and a suitable electrical design. The circuits supported and duration depend on the installed system and available battery charge.'],
+  ['Can I request electrical work without a solar or building project?', 'Yes. You can contact Fennor about domestic electrical work, commercial premises or industrial electrical maintenance as a standalone enquiry. Tell us the location, what needs attention and any access or operating-hour requirements. We confirm the scope, availability and next step with you before a visit is booked.'],
 ];
 
 export default function Home() {
@@ -87,7 +90,7 @@ export default function Home() {
         <div className="hero-copy">
           <p className="eyebrow"><span className="orange-dot" /> BUILT AROUND YOUR TOMORROW</p>
           <h1 id="hero-title">A better home.<br />A <em>brighter</em> future.</h1>
-          <p className="hero-description">Solar PV, renovations and retrofits.<br />Meath, Louth and Dublin. Based in Slane.</p>
+          <p className="hero-description">Solar PV, electrical services, renovations and retrofits.<br />Meath, Louth and Dublin. Based in Slane.</p>
           <div className="hero-actions"><a className="button button-light" href="#energy">Explore your possibilities <Arrow diagonal /></a><a className="hero-text-link" href="#contact">Tell us about your home <Arrow /></a></div>
         </div>
         <div className="hero-bottom"><a href="#intro" className="scroll-cue"><span>↓</span> A NEW PERSPECTIVE ON HOME</a><div className="hero-caption"><button onClick={() => { if (heroEnded) { setHeroReplay(value => value + 1); setHeroEnded(false); setMotion(true); } else setMotion(!motion); }}>{heroEnded ? '↻ Replay motion' : motion ? 'Ⅱ Pause motion' : '▷ Enable motion'}</button></div></div>
@@ -97,7 +100,7 @@ export default function Home() {
       <section className="intro section-shell" id="intro">
         <div className="section-kicker" data-reveal><span className="tiny-cross">+</span> A MORE CONSIDERED HOME</div>
         <div className="intro-body" data-reveal><h2>Good for your home.<br /><span>Better for how you live.</span></h2><div className="intro-bottom"><p>More than panels on a roof or another room. It’s about making your home work better for you—today, and for the years ahead.</p><a href="#services" className="circle-link" aria-label="Explore Fennor services"><Arrow diagonal /></a></div></div>
-        <div className="intro-foot"><span>SOLAR & ENERGY</span><span>RENOVATION & RETROFIT</span><span>BUILDING & POSSIBILITY</span></div>
+        <div className="intro-foot"><span>SOLAR & ELECTRICAL</span><span>RENOVATION & RETROFIT</span><span>BUILDING & POSSIBILITY</span></div>
         <div className="coverage-note"><h3>Solar panels, renovations and home retrofits in Meath, Louth and Dublin.</h3><p>From our base in Slane, Co. Meath, we focus on homes in Meath and Louth, with Dublin enquiries welcome. For projects elsewhere in Leinster or larger commercial solar projects across Ireland, we will confirm whether we can help. <a href="/about/areas">Explore our services in your area ↗</a></p></div>
       </section>
 
@@ -148,9 +151,9 @@ export default function Home() {
       </section>
 
       <section className="contact section-shell" id="contact">
-        <div className="contact-copy" data-reveal><p className="eyebrow"><span className="orange-dot" /> YOUR NEXT CHAPTER</p><h2>What could your<br />home <em>become?</em></h2><p>Tell us what you’re thinking.<br />We’ll start with a conversation.</p><a className="contact-phone" href="tel:+353894032737">089 403 2737 <Arrow diagonal /></a><a className="contact-email" href="mailto:info@fennor.ie">info@fennor.ie</a></div>
+        <div className="contact-copy" data-reveal><p className="eyebrow"><span className="orange-dot" /> YOUR NEXT CHAPTER</p><h2>What could your<br />home <em>become?</em></h2><p>Tell us what you’re thinking.<br />We’ll start with a conversation.</p><a className="contact-phone" href="tel:+353894032737">089 403 2737 <Arrow diagonal /></a><div><a className="contact-email" href={enquiryEmailHref({primary:'info@fennor.ie'})}>info@fennor.ie</a></div><div><a className="contact-email" href={enquiryEmailHref({primary:'mikey@fennor.ie'})}>mikey@fennor.ie</a></div></div>
         <EnquiryForm topic="Website project enquiry" context={`Interest: ${selectedInterest}`} className="contact-form" buttonClassName="button button-light">
-          <label htmlFor="interest">I’m thinking about</label><select id="interest" value={selectedInterest} onChange={event => setSelectedInterest(event.target.value)}><option>Solar</option><option>Renovations</option><option>Retrofit</option><option>Building</option><option>Heat pumps</option><option>Not sure yet</option></select>
+          <label htmlFor="interest">I’m thinking about</label><select id="interest" value={selectedInterest} onChange={event => setSelectedInterest(event.target.value)}><option>Solar</option><option>Electrical</option><option>Renovations</option><option>Retrofit</option><option>Building</option><option>Heat pumps</option><option>Not sure yet</option></select>
           <label htmlFor="home-area">Town or county <span>(optional)</span></label><input id="home-area" name="area" autoComplete="address-level2" maxLength={120} />
           <label htmlFor="message">A little about your plans</label><textarea id="message" name="details" required rows={3} placeholder="Your property, your ideas, your questions…" value={message} onChange={event => setMessage(event.target.value)} maxLength={2000} />
         </EnquiryForm>
