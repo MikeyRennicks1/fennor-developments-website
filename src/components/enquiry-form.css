@@ -1,0 +1,20 @@
+.enquiry-form{position:relative;min-width:0}
+.enquiry-form .enquiry-fields{border:0;padding:0;margin:0;min-width:0;width:100%;display:flex;flex-direction:column}
+.enquiry-form .enquiry-note{font-size:12px;line-height:1.7;margin:0 0 20px;color:inherit;opacity:.88}
+.enquiry-form button+.enquiry-note{margin-top:18px;margin-bottom:0}
+.enquiry-form .enquiry-note a,.enquiry-status a{text-decoration:underline;text-underline-offset:3px}
+.enquiry-form .enquiry-trap{position:absolute!important;width:1px!important;height:1px!important;overflow:hidden!important;clip-path:inset(50%)!important;white-space:nowrap!important;pointer-events:none!important}
+.enquiry-form button:disabled{cursor:default;opacity:.72}
+.enquiry-form .enquiry-status{font-size:14px;line-height:1.7;border:1px solid currentColor;padding:18px;margin-top:20px;overflow-wrap:anywhere}
+.enquiry-form .enquiry-status p{margin:0}
+.enquiry-form .enquiry-status p+p{margin-top:10px}
+.enquiry-form .enquiry-status:focus-visible{outline:2px solid currentColor;outline-offset:4px}
+.enquiry-form .enquiry-status-error{border-width:2px}
+.enquiry-form input,.enquiry-form textarea,.enquiry-form select{min-width:0;max-width:100%}
+.enquiry-form .enquiry-fields input::placeholder{color:inherit;opacity:.8}
+.enquiry-form.ep-form .enquiry-fields,.enquiry-form.sp-brief .enquiry-fields{display:grid;gap:18px}
+.enquiry-form.ep-form .enquiry-note,.enquiry-form.sp-brief .enquiry-note{margin:0}
+.enquiry-option-field{display:grid;gap:9px}
+.cs-enquiry .enquiry-fields>.cs-button{width:100%;margin-top:25px}
+.ds-enquiry .enquiry-fields>.ds-button{margin-top:30px}
+@media(max-width:600px){.enquiry-form .enquiry-fields input,.enquiry-form .enquiry-fields textarea,.enquiry-form .enquiry-fields select{font-size:16px}}

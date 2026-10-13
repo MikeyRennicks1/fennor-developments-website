@@ -1,0 +1,18 @@
+# Upload only the application and its required build configuration.
+# Research, QA screenshots, master footage and local credentials stay local.
+/*
+!/src
+!/public
+!/package.json
+!/package-lock.json
+!/next.config.ts
+!/next-env.d.ts
+!/tsconfig.json
+!/vercel.json
+
+# Defence in depth if private files are accidentally placed inside allowed folders.
+**/.env
+**/.env.*
+**/*.pem
+**/*.key
+**/.DS_Store

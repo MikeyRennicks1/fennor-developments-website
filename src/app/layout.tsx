@@ -1,68 +1,22 @@
-import type { Metadata } from "next";
-import localFont from "next/font/local";
-import { Header } from "@/components/layout/Header";
-import { Footer } from "@/components/layout/Footer";
-import { MainWithPadding } from "@/components/layout/MainWithPadding";
-import { JsonLd } from "@/components/seo/JsonLd";
-import { brand } from "@/config/brand";
-import "./globals.css";
+import type { Metadata } from 'next';
+import localFont from 'next/font/local';
+import { site } from '@/config/site';
+import { getLaunchSettings } from '@/config/launch';
+import './globals.css';
+import SiteDirectory from '@/components/SiteDirectory';
 
-const baseUrl = "https://fennor.ie";
-
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-  display: "swap",
-  adjustFontFallback: "Arial",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-  display: "swap",
-  adjustFontFallback: "Arial",
-});
-
-export const viewport = { width: "device-width", initialScale: 1 };
+const dmSans = localFont({ src: '../../node_modules/@fontsource-variable/dm-sans/files/dm-sans-latin-wght-normal.woff2', variable: '--font-dm-sans', display: 'swap', weight: '100 900' });
+const manrope = localFont({ src: '../../node_modules/@fontsource-variable/manrope/files/manrope-latin-wght-normal.woff2', variable: '--font-manrope', display: 'swap', weight: '200 800' });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://fennor.ie"),
-  title: "Solar Panels Meath | Electrician & Builders | Fennor Developments",
-  description:
-    "Solar panels Meath, electrician Meath, builders Meath. Solar PV, electrical & building renovations. SEAI registered. 20+ years. Free quote.",
-  // Only reference icons that exist; omit to avoid broken tab icon (no favicon.ico/favicon.png in public)
-  ...(brand.logoPath && {
-    icons: { icon: brand.logoPath },
-  }),
-  openGraph: {
-    siteName: "Fennor Developments",
-    images: brand.logoPath ? [{ url: `${baseUrl}${brand.logoPath}`, width: 320, height: 112, alt: brand.logoAlt }] : undefined,
-  },
+  metadataBase: new URL(site.url),
+  title: site.homeTitle,
+  description: site.homeDescription,
+  applicationName: site.shortName,
+  robots: getLaunchSettings().metadataRobots,
+  icons: { icon: '/icon.svg' },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  return (
-    <html lang="en">
-      <head>
-        <link rel="icon" href={brand.logoPath} type="image/png" />
-        <link rel="preconnect" href="https://images.pexels.com" />
-        <link rel="preconnect" href="https://images.unsplash.com" />
-        <link rel="dns-prefetch" href="https://images.pexels.com" />
-        <link rel="dns-prefetch" href="https://images.unsplash.com" />
-      </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased flex flex-col min-h-screen`}
-      >
-        <JsonLd />
-        <Header />
-        <MainWithPadding>{children}</MainWithPadding>
-        <Footer />
-      </body>
-    </html>
-  );
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  return <html lang="en-IE" className={`${dmSans.variable} ${manrope.variable}`}><body id="site-top">{children}<SiteDirectory /></body></html>;
 }

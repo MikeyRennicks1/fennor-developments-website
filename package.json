@@ -1,32 +1,27 @@
 {
-  "name": "fennor-developments-website",
+  "name": "fennor-new-website",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "(node scripts/generate-gallery-manifest.js || true) && next dev",
-    "build": "(node scripts/generate-gallery-thumbs.js || true) && (node scripts/generate-gallery-manifest.js || true) && (node scripts/generate-sitemap-images.js || true) && next build",
-    "generate-thumbs": "node scripts/generate-gallery-thumbs.js",
-    "gallery:convert-heic": "node scripts/convert-heic-to-jpg.js",
-    "start": "next start",
-    "lint": "next lint"
+    "dev": "next dev --hostname 127.0.0.1 --port 3100",
+    "build": "next build",
+    "start": "next start --hostname 127.0.0.1 --port 3100",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "jspdf": "^2.5.2",
-    "next": "14.2.35",
-    "react": "^18",
-    "react-dom": "^18",
-    "resend": "^4.0.1"
+    "@fontsource-variable/dm-sans": "^5.3.0",
+    "@fontsource-variable/manrope": "^5.3.0",
+    "next": "^16.4.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
   },
   "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "eslint": "^8",
-    "eslint-config-next": "14.2.35",
-    "heic-convert": "^2.1.0",
-    "postcss": "^8",
-    "sharp": "^0.34.5",
-    "tailwindcss": "^3.4.1",
-    "typescript": "^5"
+    "@axe-core/playwright": "^4.13.0",
+    "@playwright/test": "^1.63.0",
+    "@types/node": "^26.6.4",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "lighthouse": "^13.5.0",
+    "typescript": "^7.0.2"
   }
 }
