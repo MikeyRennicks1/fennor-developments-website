@@ -17,7 +17,7 @@ export const electricalPages: Record<ElectricalPageKey, ElectricalPage> = {
     description: 'Electrical work for homes, commercial premises and industrial sites with Fennor. Rewiring, lighting, installations and maintenance enquiries. Based in Slane, Meath.',
     headline: 'Powering the places', accent: 'life happens.',
     intro: 'From the first light in your kitchen to the last machine on the floor. Electrical work for homes and businesses, planned around the people who use them.',
-    image: 'kitchen-detail-editorial.webp', imageAlt: 'Architectural concept of a bright oak kitchen with pendant and ceiling lighting', imageCaption: 'Light, power and everyday life', marker: 'HOME / BUSINESS / INDUSTRY',
+    image: 'electrical-control-panel.webp', imageAlt: 'Electrical control panel with organised cable containment, terminals and protective devices', imageCaption: 'The detail behind dependable electrical systems', marker: 'HOME / BUSINESS / INDUSTRY',
     storyTitle: 'A better connection.', storyAccent: 'From the very beginning.',
     story: 'A new socket, a full rewire or a changing production space starts with the same question: what does this place need to do? Fennor brings the electrical work into a clear plan, with assessment, responsibilities and the next step explained.',
     services: [], enquiryTitle: 'Tell us what', enquiryText: 'A few details about your home or premises are enough to begin. We will review the work and agree the next step with you.', topic: 'Electrical services enquiry',
@@ -34,7 +34,7 @@ export const electricalPages: Record<ElectricalPageKey, ElectricalPage> = {
     description:'Discuss home rewiring, lighting, sockets, consumer-unit work and electrical planning with Fennor. Based in Slane, serving enquiries in Meath, Louth and Dublin.',
     headline:'A home that works.', accent:'Down to the last switch.',
     intro:'The light over the worktop. The socket where you need it. The wiring behind your next renovation. Thoughtful electrical work begins with the way you live.',
-    image:'kitchen-detail-editorial.webp', imageAlt:'Architectural concept of a daylight-filled kitchen with pendant lights over an oak island', imageCaption:'Considered lighting and useful connections', marker:'ELECTRICAL / AT HOME',
+    image:'electrical-domestic-4k.webp', imageAlt:'Electrician reviewing a domestic electrical installation in a bright hallway, with an enclosed distribution board and switched sockets', imageCaption:'Electrical work, made for the way you live', marker:'ELECTRICAL / AT HOME',
     storyTitle:'Behind a beautiful room,', storyAccent:'a considered plan.',
     story:'Tell us what feels awkward in your home today and what you want to change. We bring the existing installation, your room layout and future equipment into the assessment, so the electrical proposal works with the house as a whole.',
     services:[
@@ -59,7 +59,7 @@ export const electricalPages: Record<ElectricalPageKey, ElectricalPage> = {
     description:'Electrical installations, lighting and power upgrades for commercial premises with Fennor. Planned around access, business activity and the agreed scope.',
     headline:'Built around', accent:'your working day.',
     intro:'For the places people work, shop and meet. Lighting, power and electrical upgrades planned with your premises, staff and business activity in mind.',
-    image:'commercial-business-as-usual.webp', imageAlt:'Architectural concept of a commercial premises with office frontage, loading access and landscaped surroundings', imageCaption:'Your working environment', marker:'ELECTRICAL / FOR BUSINESS',
+    image:'electrical-commercial-hvac-4k.webp', imageAlt:'Commercial air-handling plant with local electrical isolators, organised cable tray and galvanised steel channel supports', imageCaption:'The electrical detail behind a working premises', marker:'ELECTRICAL / FOR BUSINESS',
     storyTitle:'The right work.', storyAccent:'With the business in view.',
     story:'A premises is more than its floor plan. Opening hours, staff routes, customers and the equipment that must remain available all shape the work. We bring these details into the assessment and agree how access and interruptions will be managed.',
     services:[
@@ -84,7 +84,7 @@ export const electricalPages: Record<ElectricalPageKey, ElectricalPage> = {
     description:'Discuss industrial electrical installations, equipment supplies, fault investigation and planned maintenance with Fennor. Site-specific assessment and agreed scope.',
     headline:'Understand the system.', accent:'Plan the next move.',
     intro:'Electrical work for workshops, production spaces and industrial premises. From equipment changes to maintenance priorities, start with the site and how it operates.',
-    image:'commercial-film-poster.webp', imageAlt:'Industrial concept showing a bright workshop with machinery, overhead cable routes and working areas', imageCaption:'Your site. Your operating needs.', marker:'ELECTRICAL / INDUSTRY & MAINTENANCE',
+    image:'electrical-fan-maintenance.webp', imageAlt:'Technician attending to fan equipment inside an industrial air-handling unit', imageCaption:'Equipment, controls and the people behind them', marker:'ELECTRICAL / INDUSTRY & MAINTENANCE',
     storyTitle:'A working site.', storyAccent:'A complete picture.',
     story:'Equipment, process demands and the existing installation are connected. Fennor works with your site contact to understand the brief, identify the appropriate technical input and define the work before an intervention is agreed.',
     services:[
