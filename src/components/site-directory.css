@@ -20,6 +20,7 @@
 .sd-groups summary>span{color:#dba272}
 .sd-groups a{color:#d8e3dc}
 .sd-groups a:hover,.sd-back-top:hover{color:#f0bf8b}
+.sd-subheading{margin-top:10px;padding-top:18px;border-top:1px solid #4d5a60;color:#efb17b;font-size:10px;line-height:1.5;letter-spacing:.14em;text-transform:uppercase}
 .sd-legal{display:flex;align-items:center;flex-wrap:wrap;justify-content:space-between;gap:10px 24px;margin-top:20px;padding-top:18px;border-top:1px solid #4d5a60;font-size:11px;line-height:1.7;color:#c1d0c5}
 .sd-legal a{display:inline-flex;align-items:center;min-height:44px}
 .sd-legal nav{display:flex;flex-wrap:wrap;gap:8px 24px}

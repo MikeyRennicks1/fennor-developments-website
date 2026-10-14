@@ -112,6 +112,10 @@ test('main navigation nests heat pumps under Retrofitting and keeps Electrical a
   const directory=page.getByRole('navigation',{name:'Explore all pages'});
   await expect(directory.getByText('HEAT PUMPS',{exact:true})).toBeVisible();
   await expect(directory.getByRole('link',{name:'Heat pumps overview',exact:true})).toHaveAttribute('href','/heat-pumps');
+  const footer=page.getByRole('navigation',{name:'Full website directory'});
+  await expect(footer.locator('summary').filter({hasText:'Heat pumps'})).toHaveCount(0);
+  await footer.locator('summary').filter({hasText:'Retrofitting'}).click();
+  await expect(footer.getByRole('link',{name:'Heat pumps overview',exact:true})).toHaveAttribute('href','/heat-pumps');
 });
 
 test('central grants guide includes electrical support and omits the unsupported rafter card', async ({ page }) => {
