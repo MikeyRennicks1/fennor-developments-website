@@ -59,7 +59,7 @@ const searchDescriptions:Record<string,string>={
  '/about/reviews':'Your experience matters to Fennor. Share feedback, ask about relevant work or talk directly to our team about what matters to you before choosing us.',
  '/about/areas':'Based in Slane, Fennor focuses on Meath and Louth, with Dublin enquiries welcome. Explore local services and check coverage for your home or business project.',
  '/advice':'Explore Fennor’s practical homeowner guides to solar, renovations, retrofitting and heat pumps. Find a useful starting point and discuss your own project.',
- '/advice/grant-updates':'Browse Irish solar, heat-pump, retrofit and renovation grants with Fennor. Compare amounts, eligibility and official sources for home, business and farm projects.',
+ '/advice/grant-updates':'Browse Irish solar, electrical, energy-efficiency, heat-pump, retrofit and renovation grants with Fennor. Compare amounts, eligibility and official sources.',
  '/advice/news':'Read Fennor’s practical ideas for a more comfortable, useful home. Explore energy and renovation topics and bring your questions into a project conversation.',
  '/contact':'Contact Fennor Developments in Slane about solar or a home-improvement project. Call 089 403 2737 or send an enquiry for our team to review.',
  '/contact/assessment':'Tell Fennor what you want to improve. We explain the assessment your project needs, what it covers and any cost before a visit is agreed.',

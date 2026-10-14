@@ -21,7 +21,7 @@ test('electrical pages are complete, accessible and fit small screens', async ({
     await expect(page.locator('meta[property="og:image"]')).toHaveAttribute('content', /^https:\/\/fennor\.ie\/images\//);
     await expect(page.locator('.fe-hero-image img')).toHaveAttribute('loading', 'eager');
     await expect(page.locator('.fe-hero-image img')).toHaveAttribute('fetchpriority', 'high');
-    await expect(page.locator('.fe-faq-list details')).toHaveCount(route === '/electrical' ? 5 : 6);
+    await expect(page.locator('.fe-faq-list details')).toHaveCount(route === '/electrical' ? 5 : 7);
     const hashes = await page.locator('main a[href^="#"]').evaluateAll(links => links.map(link => link.getAttribute('href')!));
     for (const hash of hashes) await expect(page.locator(hash)).toHaveCount(1);
     for (const width of [320, 390, 768, 1440]) {
@@ -84,6 +84,44 @@ test('commercial and maintenance studies update the enquiry brief', async ({ pag
   await page.getByRole('button', { name: /Change equipment/ }).click();
   await expect(page.locator('.fe-site-record')).toContainText('Equipment specification and load information');
   await expect(page.locator('.fe-enquiry-selection')).toContainText('Site enquiry: Equipment supply or relocation.');
+});
+
+test('each electrical service explains the applicable supports without implying routine work is grant funded', async ({ page }) => {
+  const expected: Record<string,string[]> = {
+    '/electrical/domestic': ['Home EV charger','Heating controls','Routine electrical work'],
+    '/electrical/commercial': ['Small-business energy-efficiency investment','Business building-management controls','Routine electrical work'],
+    '/electrical/industrial-maintenance': ['Air-handling unit efficiency upgrade','Efficient building-water pumps','Existing BMS optimisation','Routine electrical work'],
+  };
+  for (const [route,titles] of Object.entries(expected)) {
+    await page.goto(route);
+    const directory=page.locator('[data-grant-directory]');
+    await expect(directory).toHaveAttribute('data-grant-directory',route);
+    for (const title of titles) await expect(directory.getByRole('heading',{name:title,exact:true})).toBeVisible();
+    await expect(directory).toContainText('No general grant');
+    await expect(page.getByRole('link',{name:/Grants & support/})).toHaveAttribute('href','#grant-options');
+  }
+});
+
+test('main navigation nests heat pumps under Retrofitting and keeps Electrical at top level', async ({ page }) => {
+  await page.goto('/heat-pumps');
+  const primary=page.getByRole('navigation',{name:'Main navigation'});
+  await expect(primary.getByRole('link',{name:'Electrical',exact:true})).toBeVisible();
+  await expect(primary.getByRole('link',{name:'Heat pumps',exact:true})).toHaveCount(0);
+  await expect(primary.getByRole('link',{name:'Retrofitting',exact:true})).toHaveClass(/fn-current/);
+  await page.locator('.fn-directory > summary').click();
+  const directory=page.getByRole('navigation',{name:'Explore all pages'});
+  await expect(directory.getByText('HEAT PUMPS',{exact:true})).toBeVisible();
+  await expect(directory.getByRole('link',{name:'Heat pumps overview',exact:true})).toHaveAttribute('href','/heat-pumps');
+});
+
+test('central grants guide includes electrical support and omits the unsupported rafter card', async ({ page }) => {
+  await page.goto('/advice/grant-updates');
+  const directory=page.locator('[data-grant-directory="all"]');
+  await expect(directory.getByRole('button',{name:/Electrical & energy efficiency/})).toBeVisible();
+  await expect(directory.getByRole('heading',{name:'Home EV charger',exact:true})).toBeVisible();
+  await expect(directory.getByRole('heading',{name:'Air-handling unit efficiency upgrade',exact:true})).toBeVisible();
+  await expect(directory.getByRole('heading',{name:'Small-business energy-efficiency investment',exact:true})).toBeVisible();
+  await expect(directory.getByText('Rafter insulation in a whole-home upgrade',{exact:true})).toHaveCount(0);
 });
 
 test('electrical content and enquiry alternatives remain available without JavaScript', async ({ browser, baseURL }) => {
