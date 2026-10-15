@@ -34,7 +34,7 @@ export const electricalPages: Record<ElectricalPageKey, ElectricalPage> = {
     description:'Domestic electrical services in Meath and Louth: rewiring, lighting, sockets, EV charging and clear guidance on relevant household grants from Fennor.',
     headline:'A home that works.', accent:'Down to the last switch.',
     intro:'The light over the worktop. The socket where you need it. The wiring behind your next renovation. Thoughtful electrical work begins with the way you live.',
-    image:'electrical-domestic-4k.webp', imageAlt:'Electrician reviewing a domestic electrical installation in a bright hallway, with an enclosed distribution board and switched sockets', imageCaption:'Electrical work, made for the way you live', marker:'ELECTRICAL / AT HOME',
+    image:'electrical-domestic-img-3032-v2.jpg', imageAlt:'Macro detail of neatly arranged domestic consumer-unit conductors and protective devices during installation', imageCaption:'The detail behind a safe, finished installation', marker:'ELECTRICAL / AT HOME',
     storyTitle:'Behind a beautiful room,', storyAccent:'a considered plan.',
     story:'Tell us what feels awkward in your home today and what you want to change. We bring the existing installation, your room layout and future equipment into the assessment, so the electrical proposal works with the house as a whole.',
     services:[
@@ -86,7 +86,7 @@ export const electricalPages: Record<ElectricalPageKey, ElectricalPage> = {
     description:'Industrial electrical and maintenance enquiries: equipment, AHU and fan work, pumps, BMS controls, fault investigation and planned site upgrades.',
     headline:'Understand the system.', accent:'Plan the next move.',
     intro:'Electrical work for workshops, production spaces and industrial premises. From equipment changes to maintenance priorities, start with the site and how it operates.',
-    image:'electrical-fan-maintenance.webp', imageAlt:'Technician attending to fan equipment inside an industrial air-handling unit', imageCaption:'Equipment, controls and the people behind them', marker:'ELECTRICAL / INDUSTRY & MAINTENANCE',
+    image:'electrical-control-panel.webp', imageAlt:'Industrial control cabinet showing organised terminals, cable routes and switching equipment', imageCaption:'From the equipment to the control behind it', marker:'ELECTRICAL / INDUSTRY & MAINTENANCE',
     storyTitle:'A working site.', storyAccent:'A complete picture.',
     story:'Equipment, process demands and the existing installation are connected. Fennor works with your site contact to understand the brief, identify the appropriate technical input and define the work before an intervention is agreed.',
     services:[

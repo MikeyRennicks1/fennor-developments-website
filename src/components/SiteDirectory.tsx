@@ -6,7 +6,7 @@ import {ENQUIRY_RECIPIENTS,enquiryEmailHref} from '@/config/contact';
 import './site-directory.css';
 
 export default function SiteDirectory() {
-  const order=['/solar','/renovations','/retrofitting','/electrical','/building','/about','/advice','/contact'];
+  const order=['/solar','/electrical','/building','/renovations','/retrofitting','/about','/advice','/contact'];
   const groups=order.map(path=>pageGroups.find(group=>group.path===path)).filter((group):group is (typeof pageGroups)[number]=>Boolean(group));
   const heatPumps=pageGroups.find(group=>group.path==='/heat-pumps');
   return <footer className="site-directory" aria-label="Fennor website information">

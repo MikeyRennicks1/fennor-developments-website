@@ -55,7 +55,7 @@ for (const route of routes) {
 }
 
 test('Electrical photography is specific to the service and different from the previous solar and kitchen images', async ({ page }) => {
-  const heroSources: string[] = [];
+  const heroSources: Record<string, string> = {};
   for (const route of routes) {
     await page.goto(route);
     const src = await page.locator('.fe-hero-image img').getAttribute('src');
@@ -63,12 +63,59 @@ test('Electrical photography is specific to the service and different from the p
     const source = new URL(src!, 'http://127.0.0.1').searchParams.get('url') || src!;
     expect(source).toMatch(/^\/images\/electrical-/);
     expect(source).not.toMatch(/commercial-film-poster|solar|renovation|kitchen/i);
-    heroSources.push(source);
+    heroSources[route] = source;
   }
-  expect(new Set(heroSources).size).toBe(4);
+  expect(heroSources['/electrical/domestic']).toBe('/images/electrical-domestic-img-3032-v2.jpg');
+  expect(heroSources['/electrical/industrial-maintenance']).toBe('/images/electrical-control-panel.webp');
   await page.goto('/electrical');
   const allImages = await page.locator('main img').evaluateAll(nodes => nodes.map(node => node.getAttribute('src') || ''));
   expect(allImages.join('\n')).not.toMatch(/commercial-film-poster|fennor-renovations/);
+  expect(allImages.join('\n')).toContain('electrical-visible-difference-4k.jpg');
+});
+
+test('industrial maintenance uses one large control-panel hero photograph', async ({ page }) => {
+  await page.goto('/electrical/industrial-maintenance');
+  await expect(page.locator('.fe-hero-visual .fe-hero-image')).toHaveCount(1);
+  await expect(page.locator('.fe-hero-visual .fe-site-detail')).toHaveCount(0);
+  await expect(page.locator('.fe-hero-image img')).toHaveAttribute('alt', /Industrial control cabinet/);
+  await expect(page.locator('.fe-site-photo-caption')).toContainText('To the control behind it.');
+});
+
+test('domestic electrical uses the supplied consumer-unit detail and a finished kitchen photograph', async ({ page }) => {
+  await page.goto('/electrical/domestic');
+  const heroImage = page.locator('.fe-hero-image img');
+  await expect(heroImage).toHaveAttribute('alt', /Macro detail of neatly arranged domestic consumer-unit conductors/);
+  await expect(heroImage).toHaveAttribute('src', /electrical-domestic-img-3032-v2\.jpg/);
+  await expect(heroImage).toHaveCSS('object-fit', 'cover');
+  const photoFrame = await page.locator('.fe-hero-domestic .fe-hero-image').boundingBox();
+  expect(photoFrame).not.toBeNull();
+  expect(photoFrame!.width / photoFrame!.height).toBeCloseTo(0.75, 2);
+  const finishedRoom = page.locator('.fe-domestic-finish');
+  await expect(finishedRoom.getByRole('heading', { name: /Clean at the finish/ })).toBeVisible();
+  const image = finishedRoom.locator('img');
+  await expect(image).toHaveAttribute('alt', /Freshly renovated kitchen/);
+  await image.scrollIntoViewIfNeeded();
+  await expect.poll(() => image.evaluate(node => {
+    const photo = node as HTMLImageElement;
+    return photo.complete && photo.naturalWidth > 0 && photo.naturalHeight > 0;
+  })).toBe(true);
+});
+
+test('homepage service families include a useful description before every destination link', async ({ page }) => {
+  await page.goto('/');
+  for (const tabName of ['Renovations', 'Retrofit', 'Building', 'Electrical']) {
+    await page.getByRole('tab', { name: new RegExp(tabName) }).click();
+    const panel = page.getByRole('tabpanel');
+    const details = panel.locator('.solar-service-list details');
+    expect(await details.count()).toBeGreaterThan(0);
+    for (const item of await details.all()) {
+      await item.locator('summary').click();
+      await expect(item.locator('div > p')).not.toBeEmpty();
+      await expect(item.locator('div > a[href]')).toBeVisible();
+    }
+  }
+  await page.getByRole('tab', { name: /Electrical/ }).click();
+  await expect(page.locator('.service-photo img')).toHaveAttribute('alt', /Commercial air-handling plant/);
 });
 
 test('overview enquiry asks for services and sends the chosen topic in a mocked submission', async ({ page }) => {

@@ -8,5 +8,5 @@ export const companyInformation = {
   verificationSource: 'Confirmed by the company owner on 13 October 2026',
 } as const;
 
-/** Practices are owner-confirmed; final notice review is still required before public launch. */
-export const privacyNoticeApproved = false;
+/** Practices and the public-launch privacy notice were approved by the owner. */
+export const privacyNoticeApproved = true;

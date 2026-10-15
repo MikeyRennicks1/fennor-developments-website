@@ -194,7 +194,7 @@ const serviceMoves: readonly (readonly [string, string])[] = [
   ],
   [
     "/case-studies/one-off-build-meath",
-    "/building/projects-case-studies"
+    "/building/new-builds"
   ]
 ];
 

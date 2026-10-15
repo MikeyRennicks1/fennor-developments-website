@@ -105,13 +105,14 @@ test('each electrical service explains the applicable supports without implying 
 test('main navigation nests heat pumps under Retrofitting and keeps Electrical at top level', async ({ page }) => {
   await page.goto('/heat-pumps');
   const primary=page.getByRole('navigation',{name:'Main navigation'});
-  await expect(primary.getByRole('link',{name:'Electrical',exact:true})).toBeVisible();
-  await expect(primary.getByRole('link',{name:'Heat pumps',exact:true})).toHaveCount(0);
-  await expect(primary.getByRole('link',{name:'Retrofitting',exact:true})).toHaveClass(/fn-current/);
+  await expect(primary.getByRole('button',{name:'Electrical',exact:true})).toBeVisible();
+  await expect(primary.getByRole('button',{name:'Heat pumps',exact:true})).toHaveCount(0);
+  await expect(primary.locator('.fn-primary-group').filter({hasText:'Retrofitting'})).toHaveClass(/fn-current/);
+  await primary.getByRole('button',{name:'Retrofitting',exact:true}).click();
+  await expect(page.getByRole('navigation',{name:'Retrofitting pages'}).getByRole('link',{name:'Heat pumps',exact:true})).toHaveAttribute('href','/heat-pumps');
   await page.locator('.fn-directory > summary').click();
   const directory=page.getByRole('navigation',{name:'Explore all pages'});
-  await expect(directory.getByText('HEAT PUMPS',{exact:true})).toBeVisible();
-  await expect(directory.getByRole('link',{name:'Heat pumps overview',exact:true})).toHaveAttribute('href','/heat-pumps');
+  await expect(directory.locator('.fn-menu-group').filter({hasText:'Retrofitting'}).getByRole('link',{name:'Heat pumps',exact:true})).toHaveAttribute('href','/heat-pumps');
   const footer=page.getByRole('navigation',{name:'Full website directory'});
   await expect(footer.locator('summary').filter({hasText:'Heat pumps'})).toHaveCount(0);
   await footer.locator('summary').filter({hasText:'Retrofitting'}).click();

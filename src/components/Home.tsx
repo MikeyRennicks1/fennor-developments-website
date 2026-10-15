@@ -2,7 +2,7 @@
 import HomeServiceLinks from './HomeServiceLinks';
 import SiteHeader from './SiteHeader';
 
-import Image from 'next/image';
+import Image, { getImageProps } from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import { solarLinks } from '@/config/solar-pages';
 import HeroFilm from '@/components/HeroFilm';
@@ -19,13 +19,13 @@ const services = [
   { id: 'renovations', label: 'Renovations', number: '02', heading: 'The home you love.\nReimagined.', description: 'Rethink the spaces you use every day. Start with what isn’t working, then shape a renovation around how you want your home to feel.', image: 'renovations-02.webp', alt: 'Stone walls and oak beams frame a contemporary kitchen and living space', links: ['Whole-home renovation', 'Layout & living spaces', 'Older homes'], note: 'Keep the character. Create the possibilities.', question: 'I’d like to discuss renovating my home.' },
   { id: 'retrofit', label: 'Retrofit', number: '03', heading: 'More comfort.\nFrom the inside out.', description: 'A warmer home starts with the whole picture. Consider insulation, ventilation and heating together, with a plan suited to the building.', image: 'retrofit-03.webp', alt: 'Glazed doors open onto a warm living room, with a heat pump beside the house', links: ['Whole-home approach', 'Insulation & ventilation', 'Heat-pump planning'], note: 'Understand the house before choosing the upgrade.', question: 'I’d like advice on a home retrofit.' },
   { id: 'building', label: 'Building', number: '04', heading: 'Room for\nwhat comes next.', description: 'From a thoughtful extension to a new beginning. Let’s define the brief, understand the site and talk through the practical next steps.', image: 'building-04.webp', alt: 'Wide glazed doors connect an inviting living space with a garden terrace', links: ['Extensions', 'New-build enquiries', 'Planning your project'], note: 'Good projects begin with a clear conversation.', question: 'I’d like to discuss a building project.' },
-  { id: 'electrical', label: 'Electrical', number: '05', heading: 'The power behind\nyour everyday.', description: 'A better-lit home, a working business or a planned maintenance visit. Tell Fennor what you need from your electrical installation. We explain the assessment, the work and any disruption before you decide.', image: 'kitchen-detail-editorial.webp', alt: 'Carefully positioned pendant and concealed lighting in a contemporary kitchen', links: ['Domestic electrical', 'Commercial electrical', 'Industrial maintenance'], note: 'Homes. Workplaces. A clearer plan for both.', question: 'I’d like to discuss electrical work or maintenance.' },
+  { id: 'electrical', label: 'Electrical', number: '05', heading: 'The power behind\nyour everyday.', description: 'A better-lit home, a working business or a planned maintenance visit. Tell Fennor what you need from your electrical installation. We explain the assessment, the work and any disruption before you decide.', image: 'electrical-commercial-hvac-4k.webp', alt: 'Commercial air-handling plant with local electrical isolators, organised cable tray and galvanised steel channel supports', links: ['Domestic electrical', 'Commercial electrical', 'Industrial maintenance'], note: 'Homes. Workplaces. A clearer plan for both.', question: 'I’d like to discuss electrical work or maintenance.' },
 ];
 
 const systems = [
-  { title: 'Generate', label: 'Solar panels', text: 'Daylight becomes electricity for your home. Fennor assesses your roof, shade and electricity use to recommend a panel layout with a clear purpose: useful generation for the way you live.', x: '46%', y: '35%', line: '01 / START WITH THE ROOF' },
-  { title: 'Store', label: 'Battery storage', text: 'An optional battery can keep some spare solar for your evenings. We compare your evening use, tariffs and available surplus so you can see whether storage adds enough value to justify its cost.', x: '68%', y: '68%', line: '02 / THINK BEYOND DAYLIGHT' },
-  { title: 'Use', label: 'Hot-water diversion', text: 'A compatible EDDI can turn spare solar into hot water in your cylinder. We establish whether it suits your hot-water needs and existing equipment; it is not a promise of free hot water in every season.', x: '79%', y: '52%', line: '03 / MAKE SURPLUS USEFUL' },
+  { title: 'Generate', label: 'Solar panels', text: 'Daylight becomes electricity for your home. Fennor assesses your roof, shade and electricity use to recommend a panel layout with a clear purpose: useful generation for the way you live.', x: '38%', y: '25%', line: '01 / START WITH THE ROOF' },
+  { title: 'Store', label: 'Battery storage', text: 'An optional battery can keep some spare solar for your evenings. We compare your evening use, tariffs and available surplus so you can see whether storage adds enough value to justify its cost.', x: '83%', y: '70%', line: '02 / THINK BEYOND DAYLIGHT' },
+  { title: 'Use', label: 'Hot-water diversion', text: 'A compatible EDDI can turn spare solar into hot water in your cylinder. We establish whether it suits your hot-water needs and existing equipment; it is not a promise of free hot water in every season.', x: '79%', y: '51%', line: '03 / MAKE SURPLUS USEFUL' },
 ];
 
 const faqs = [
@@ -49,6 +49,9 @@ export default function Home() {
   const film = useRef<HTMLVideoElement>(null);
   const root = useRef<HTMLDivElement>(null);
   const active = services[service];
+  const energyPhotoAlt = 'Solar panels, a Huawei inverter and LUNA2000 home battery installed on an Irish home';
+  const { props: desktopEnergyPhoto } = getImageProps({ src: '/images/home-energy-huawei-v2-4k.webp', alt: energyPhotoAlt, fill: true, sizes: '(max-width: 480px) 1px, (max-width: 800px) 100vw, (max-width: 1100px) 1px, 65vw', quality: 90 });
+  const { props: mobileEnergyPhoto } = getImageProps({ src: '/images/home-energy-huawei-v2-mobile.webp', alt: energyPhotoAlt, fill: true, sizes: '(max-width: 480px) 100vw, (max-width: 800px) 1px, (max-width: 1100px) 60vw, 1px', quality: 90 });
 
   useEffect(() => {
     const preference = matchMedia('(prefers-reduced-motion: reduce)');
@@ -108,7 +111,10 @@ export default function Home() {
         <div className="energy-heading section-shell" data-reveal><p className="eyebrow">01 / REIMAGINE YOUR ENERGY</p><div><h2 id="energy-title">One home.<br /><em>Connected possibilities.</em></h2><p>See how the parts fit together.<br />Start with what matters to you.</p></div></div>
         <div className="energy-layout">
           <div className={`energy-scene system-${system}`}>
-            <Image src="/images/energy-home.webp" alt="AI home-energy illustration; equipment positions are conceptual, not an installation design" fill sizes="(max-width: 800px) 100vw, 65vw" quality={85} />
+            <picture className="energy-photo">
+              <source media="(max-width: 480px), (min-width: 801px) and (max-width: 1100px)" srcSet={mobileEnergyPhoto.srcSet} sizes={mobileEnergyPhoto.sizes} />
+              <img {...desktopEnergyPhoto} />
+            </picture>
             <div className="scene-grid" aria-hidden="true" />
             {systems.map((item, index) => <button key={item.label} className={`hotspot hotspot-${index} ${system === index ? 'active' : ''}`} style={{ left: item.x, top: item.y }} aria-pressed={system === index} onClick={() => setSystem(index)}><span>{String(index + 1).padStart(2, '0')}</span>{' '}<b>{item.label}</b></button>)}
             <span className="scene-caption">ILLUSTRATIVE HOME · NOT A TECHNICAL DESIGN</span>

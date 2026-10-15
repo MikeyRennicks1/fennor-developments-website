@@ -62,5 +62,5 @@ export function assertProductionLaunch(environment?: LaunchEnvironment, readines
 // Use only in server components (including the footer), never in a client bundle.
 export const isProductionSite = getLaunchSettings().indexable;
 
-// Legal information is additional to, not a change to, the original 48-page scope.
+// Legal information remains separate from the service/content route inventory.
 export const legalPagePaths = ['/privacy', '/company-information'] as const;
