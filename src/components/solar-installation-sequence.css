@@ -221,6 +221,105 @@
 .fsq-panel { transform: translate(-8px, -12px); }
 .fsq-rail { transform: translateX(-18px); }
 
+.fsq-hook-assembly { filter: drop-shadow(0 2px 2px #102a3548); }
+
+.fsq-lifted-slate {
+  fill: #53666b;
+  stroke: #a8b8b6;
+  stroke-width: .75;
+  opacity: .78;
+}
+
+.fsq-hook-foot {
+  fill: #d6d8d1;
+  stroke: #fffdf6;
+  stroke-width: .8;
+}
+
+.fsq-hook-bolt { fill: #384b51; stroke: #edf1ea; stroke-width: .45; }
+.fsq-hook-arm,
+.fsq-hook-saddle {
+  fill: none;
+  stroke: #f5a267;
+  stroke-width: 3.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.fsq-rail-clamp rect {
+  fill: #e7ece8;
+  stroke: #647a7e;
+  stroke-width: .7;
+}
+
+.fsq-rail-clamp circle { fill: #ed8a45; }
+
+.fsq-panel-cell {
+  stroke: #86a9b8;
+  stroke-width: .46;
+  opacity: .74;
+}
+
+.fsq-panel-edge-clamp {
+  fill: #e6ece8;
+  stroke: #6c8082;
+  stroke-width: .55;
+}
+
+.fsq-interface-card {
+  fill: #fbfdf6;
+  fill-opacity: .96;
+  stroke: #9db2a5;
+  stroke-width: .8;
+  filter: drop-shadow(0 7px 13px #183c2c1c);
+}
+
+.fsq-interface-dot { fill: #ed8a45; }
+.fsq-interface-title,
+.fsq-interface-footer,
+.fsq-detail-label,
+.fsq-route-label text {
+  fill: #38564c;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  letter-spacing: .85px;
+}
+
+.fsq-interface-title { font-size: 6.8px; font-weight: 700; }
+.fsq-interface-footer { fill: #71847b; font-size: 5.4px; letter-spacing: .55px; }
+.fsq-detail-label { fill: #65796f; font-size: 5.3px; }
+.fsq-detail-structure { fill: none; stroke: #746c5e; stroke-width: 5; }
+.fsq-detail-slate { fill: #4d6065; stroke: #8ea0a1; stroke-width: 1; }
+.fsq-detail-hook,
+.fsq-detail-hook-foot {
+  fill: none;
+  stroke: #db7737;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.fsq-detail-hook-foot { stroke: #c8cec8; stroke-width: 7; }
+.fsq-detail-bolt { fill: #344951; stroke: #fff; stroke-width: .6; }
+.fsq-detail-leader { fill: none; stroke: #8da095; stroke-width: .7; stroke-dasharray: 2 2; }
+.fsq-detail-rail { fill: #dce4df; stroke: #5e7478; stroke-width: 1; }
+.fsq-detail-rail-line { fill: none; stroke: #92a4a2; stroke-width: .7; }
+.fsq-detail-clamp { fill: #ef9a5e; stroke: #7b644f; stroke-width: .7; }
+.fsq-detail-cable { fill: #314954; stroke: #ed8a45; stroke-width: 1.1; }
+.fsq-detail-cable-clip { fill: none; stroke: #788b82; stroke-width: 2; }
+.fsq-detail-panel { fill: #173b55; stroke: #789ca9; stroke-width: 2.3; }
+.fsq-detail-cells { fill: none; stroke: #8db0bc; stroke-width: .6; opacity: .8; }
+.fsq-detail-panel-clamp { fill: #edf0eb; stroke: #ec8a47; stroke-width: 2.3; stroke-linejoin: round; }
+.fsq-detail-link { fill: none; stroke: #ed8a45; stroke-width: 1; stroke-dasharray: 4 5; opacity: .8; }
+
+.fsq-route-label path { fill: none; stroke: #70877c; stroke-width: .7; }
+.fsq-route-label text { font-size: 5.8px; }
+
+.fsq-drawing[data-stage="3"] .fsq-hooks[data-visible="true"],
+.fsq-drawing[data-stage="4"] .fsq-hooks[data-visible="true"],
+.fsq-drawing[data-stage="5"] .fsq-hooks[data-visible="true"] { opacity: .34; }
+
+.fsq-drawing[data-stage="4"] .fsq-rails[data-visible="true"],
+.fsq-drawing[data-stage="5"] .fsq-rails[data-visible="true"] { opacity: .52; }
+
 .fsq-layer[data-visible="true"] .fsq-hook,
 .fsq-layer[data-visible="true"] .fsq-panel,
 .fsq-layer[data-visible="true"] .fsq-rail {

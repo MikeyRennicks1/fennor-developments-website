@@ -29,6 +29,15 @@ test('domestic solar installation hands customers into the system builder', asyn
   await expect(sequence).toBeVisible();
   const stages = sequence.getByRole('group', { name: 'Solar installation stages' }).getByRole('button');
   await expect(stages).toHaveCount(6);
+  await stages.nth(1).click();
+  await expect(sequence.locator('[data-roof-hook="true"]')).toHaveCount(24);
+  await expect(sequence.locator('.fsq-hook-arm')).toHaveCount(24);
+  expect(await sequence.locator('.fsq-lifted-slate').count()).toBeGreaterThan(0);
+  await stages.nth(2).click();
+  await expect(sequence.locator('.fsq-rail')).toHaveCount(6);
+  await expect(sequence.locator('.fsq-rail-clamp')).toHaveCount(24);
+  await stages.nth(3).click();
+  await expect(sequence.locator('.fsq-panel-edge-clamp')).toHaveCount(30);
   await stages.nth(5).click();
   const handoff = sequence.getByRole('link', { name: /Build your starting system/ });
   await expect(handoff).toHaveAttribute('href', '#design');

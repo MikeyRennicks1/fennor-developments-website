@@ -11,6 +11,15 @@ const H = 210;
 const T = 36;
 const E = 8;
 const OPEN = { x: 176, w: 150, y: 60, h: 90 };
+const BUCK = 8;
+const CLEAR = {
+  x: OPEN.x + BUCK,
+  w: OPEN.w - BUCK * 2,
+  y: OPEN.y + BUCK,
+  h: OPEN.h - BUCK * 2,
+};
+const FINISH_PLANE = -1.5;
+const FRAME_Z = 2.5;
 const project = ([x, y, z]: Point) => [380 + (x - z) * .88, 548 - y - (x + z) * .37];
 const points = (values: Point[]) => values.map(point => project(point).map(value => value.toFixed(2)).join(",")).join(" ");
 const foam = { top: "#f6f1e4", front: "#e7e1d1", side: "#cec7b5" };
@@ -123,15 +132,23 @@ function Reinforcement({ height = H + 9, starters = false }: { height?: number; 
   </g>;
 }
 function WindowBuck() {
+  const clearRight = CLEAR.x + CLEAR.w;
+  const clearTop = CLEAR.y + CLEAR.h;
   return <g>
-    <Box x={OPEN.x} y={OPEN.y} z={-2} w={6} h={OPEN.h} d={T + 4} fill={timber} />
-    <Box x={OPEN.x + OPEN.w - 6} y={OPEN.y} z={-2} w={6} h={OPEN.h} d={T + 4} fill={timber} />
-    <Box x={OPEN.x + 6} y={OPEN.y} z={-2} w={OPEN.w - 12} h={5} d={T + 4} fill={timber} />
-    <Box x={OPEN.x + 6} y={OPEN.y + OPEN.h - 5} z={-2} w={OPEN.w - 12} h={5} d={T + 4} fill={timber} />
-    {[OPEN.x+3,OPEN.x+OPEN.w-3].map(x => [OPEN.y+15,OPEN.y+OPEN.h-15].map(y => { const [cx,cy]=project([x,y,-2.3]);return <circle key={`${x}-${y}`} cx={cx} cy={cy} r={1.1} fill="#6f604a"/>; }))}
+    <Box x={OPEN.x} y={OPEN.y} z={0} w={BUCK} h={OPEN.h} d={T} fill={timber} />
+    <Box x={OPEN.x + OPEN.w - BUCK} y={OPEN.y} z={0} w={BUCK} h={OPEN.h} d={T} fill={timber} />
+    <Box x={CLEAR.x} y={OPEN.y} z={0} w={CLEAR.w} h={BUCK} d={T} fill={timber} />
+    <Box x={CLEAR.x} y={OPEN.y + OPEN.h - BUCK} z={0} w={CLEAR.w} h={BUCK} d={T} fill={timber} />
+    {/* Box only paints one side and the top. These four faces make every inner
+        edge read as a continuous, full-depth timber reveal. */}
+    <Face fill={timber.side} at={[[CLEAR.x,CLEAR.y,0],[CLEAR.x,CLEAR.y,T],[CLEAR.x,clearTop,T],[CLEAR.x,clearTop,0]]} />
+    <Face fill={timber.side} at={[[clearRight,CLEAR.y,0],[clearRight,clearTop,0],[clearRight,clearTop,T],[clearRight,CLEAR.y,T]]} />
+    <Face fill={timber.top} at={[[CLEAR.x,CLEAR.y,0],[clearRight,CLEAR.y,0],[clearRight,CLEAR.y,T],[CLEAR.x,CLEAR.y,T]]} />
+    <Face fill={timber.front} at={[[CLEAR.x,clearTop,0],[CLEAR.x,clearTop,T],[clearRight,clearTop,T],[clearRight,clearTop,0]]} />
+    {[OPEN.x+BUCK/2,OPEN.x+OPEN.w-BUCK/2].map(x => [OPEN.y+17,OPEN.y+OPEN.h-17].map(y => { const [cx,cy]=project([x,y,-.25]);return <circle key={`${x}-${y}`} cx={cx} cy={cy} r={1.1} fill="#6f604a"/>; }))}
   </g>;
 }
-function Bracing() {
+function Bracing({ showOpeningBrace }: { showOpeningBrace: boolean }) {
   return <g>
     {[62, 144, 370].map(x => {
       const [cx,cy] = project([x, 72, -42]);
@@ -152,26 +169,66 @@ function Bracing() {
     <Box x={35} y={123} z={-66} w={370} h={10} d={2} fill={{top:"#c9af84",front:"#b39970",side:"#8b7352"}} />
     <Line from={[58,185,-64]} to={[374,185,-64]} color="#66775f" width={3.2} />
     <Line from={[58,153,-64]} to={[374,153,-64]} color="#66775f" width={2.5} />
-    <Box x={OPEN.x+OPEN.w/2-3} y={OPEN.y+5} z={2} w={6} h={OPEN.h-10} d={T-4} fill={timber} />
-    <Line from={[OPEN.x+7,OPEN.y+6,1]} to={[OPEN.x+OPEN.w-7,OPEN.y+OPEN.h-6,1]} color="#a88d63" width={4} />
+    {showOpeningBrace && <>
+      <Box x={OPEN.x+OPEN.w/2-3} y={OPEN.y+5} z={-12} w={6} h={OPEN.h-10} d={4} fill={timber} />
+      <Line from={[OPEN.x+7,OPEN.y+6,-12.5]} to={[OPEN.x+OPEN.w-7,OPEN.y+OPEN.h-6,-12.5]} color="#a88d63" width={4} />
+    </>}
+  </g>;
+}
+function FinishedWindow({ glass }: { glass: string }) {
+  const clearRight = CLEAR.x + CLEAR.w;
+  const clearTop = CLEAR.y + CLEAR.h;
+  const frameInset = 2;
+  const rail = 6;
+  const frameDepth = 5.5;
+  const frame = {
+    x: CLEAR.x + frameInset,
+    y: CLEAR.y + frameInset,
+    w: CLEAR.w - frameInset * 2,
+    h: CLEAR.h - frameInset * 2,
+  };
+  const frameRight = frame.x + frame.w;
+  const frameTop = frame.y + frame.h;
+  const glassZ = FRAME_Z + 1.7;
+  const windowFrame = { top:"#59645a", front:"#39473c", side:"#28362e" };
+  const revealLight = "#ded7c9";
+  const revealShade = "#c6bdad";
+
+  return <g className="fn-icf-finished-window">
+    {/* Rendered returns lead from the facade back to the installed frame. */}
+    <Face fill={revealShade} at={[[CLEAR.x,CLEAR.y,FINISH_PLANE],[CLEAR.x,CLEAR.y,FRAME_Z],[CLEAR.x,clearTop,FRAME_Z],[CLEAR.x,clearTop,FINISH_PLANE]]} />
+    <Face fill={revealLight} at={[[clearRight,CLEAR.y,FINISH_PLANE],[clearRight,clearTop,FINISH_PLANE],[clearRight,clearTop,FRAME_Z],[clearRight,CLEAR.y,FRAME_Z]]} />
+    <Face fill={revealLight} at={[[CLEAR.x,CLEAR.y,FINISH_PLANE],[clearRight,CLEAR.y,FINISH_PLANE],[clearRight,CLEAR.y,FRAME_Z],[CLEAR.x,CLEAR.y,FRAME_Z]]} />
+    <Face fill={revealShade} at={[[CLEAR.x,clearTop,FINISH_PLANE],[CLEAR.x,clearTop,FRAME_Z],[clearRight,clearTop,FRAME_Z],[clearRight,clearTop,FINISH_PLANE]]} />
+    <Face fill="#28362e" opacity={.28} at={[[CLEAR.x,CLEAR.y,FRAME_Z+.25],[clearRight,CLEAR.y,FRAME_Z+.25],[clearRight,clearTop,FRAME_Z+.25],[CLEAR.x,clearTop,FRAME_Z+.25]]} />
+
+    {/* Glazing is painted before the rails and sits behind their front plane. */}
+    <Face fill={glass} stroke="#8e9b8b" at={[[frame.x+rail,frame.y+rail,glassZ],[frameRight-rail,frame.y+rail,glassZ],[frameRight-rail,frameTop-rail,glassZ],[frame.x+rail,frameTop-rail,glassZ]]} />
+    <Line from={[frame.x+rail+5,frameTop-16,glassZ-.15]} to={[frame.x+frame.w/2-7,frameTop-16,glassZ-.15]} color="#f1f0d8" width={1.1} />
+    <Line from={[frame.x+frame.w/2+8,frame.y+17,glassZ-.15]} to={[frameRight-rail-5,frame.y+17,glassZ-.15]} color="#dce4d4" width={1.1} />
+    <Box x={frame.x} y={frame.y} z={FRAME_Z} w={rail} h={frame.h} d={frameDepth} fill={windowFrame} />
+    <Box x={frameRight-rail} y={frame.y} z={FRAME_Z} w={rail} h={frame.h} d={frameDepth} fill={windowFrame} />
+    <Box x={frame.x+rail} y={frame.y} z={FRAME_Z} w={frame.w-rail*2} h={rail} d={frameDepth} fill={windowFrame} />
+    <Box x={frame.x+rail} y={frameTop-rail} z={FRAME_Z} w={frame.w-rail*2} h={rail} d={frameDepth} fill={windowFrame} />
+    <Box x={frame.x+frame.w/2-2} y={frame.y+rail} z={FRAME_Z-.15} w={4} h={frame.h-rail*2} d={frameDepth+.15} fill={windowFrame} />
+
+    {/* A shallow exterior sill replaces the former member that ran through the wall. */}
+    <Box x={frame.x-2} y={CLEAR.y-3} z={-2.25} w={frame.w+4} h={3} d={5.5} fill={{top:"#ede7d9",front:"#c5bdab",side:"#b0a58e"}} />
   </g>;
 }
 function Finished({ glass, render, cutaway }: { glass: string; render: string; cutaway: boolean }) {
   const finishW = cutaway ? 140 : 355;
+  const clearRight = CLEAR.x + CLEAR.w;
+  const clearTop = CLEAR.y + CLEAR.h;
   return <g>
-    <Face fill={render} stroke="#c7c1b2" at={[[0,0,-1.5],[Math.min(176,finishW),0,-1.5],[Math.min(176,finishW),H,-1.5],[0,H,-1.5]]} />
+    <Face fill={render} stroke="#c7c1b2" at={[[0,0,FINISH_PLANE],[Math.min(CLEAR.x,finishW),0,FINISH_PLANE],[Math.min(CLEAR.x,finishW),H,FINISH_PLANE],[0,H,FINISH_PLANE]]} />
     {!cutaway && <>
-      <Face fill={render} at={[[176,0,-1.5],[326,0,-1.5],[326,60,-1.5],[176,60,-1.5]]} />
-      <Face fill={render} at={[[176,150,-1.5],[326,150,-1.5],[326,H,-1.5],[176,H,-1.5]]} />
-      <Face fill={render} at={[[326,0,-1.5],[355,0,-1.5],[355,H,-1.5],[326,H,-1.5]]} />
+      <Face fill={render} at={[[CLEAR.x,0,FINISH_PLANE],[clearRight,0,FINISH_PLANE],[clearRight,CLEAR.y,FINISH_PLANE],[CLEAR.x,CLEAR.y,FINISH_PLANE]]} />
+      <Face fill={render} at={[[CLEAR.x,clearTop,FINISH_PLANE],[clearRight,clearTop,FINISH_PLANE],[clearRight,H,FINISH_PLANE],[CLEAR.x,H,FINISH_PLANE]]} />
+      <Face fill={render} at={[[clearRight,0,FINISH_PLANE],[355,0,FINISH_PLANE],[355,H,FINISH_PLANE],[clearRight,H,FINISH_PLANE]]} />
+      <FinishedWindow glass={glass} />
     </>}
     <Face fill="#d4cdbe" at={[[-1.5,0,T],[-1.5,0,D],[-1.5,H,D],[-1.5,H,T]]} />
-    <Box x={176} y={60} z={-3} w={150} h={90} d={4} fill={{top:"#545d52",front:"#3c493e",side:"#2e3a30"}} />
-    <Face fill={glass} stroke="#a2ae9e" at={[[183,67,-4],[319,67,-4],[319,143,-4],[183,143,-4]]} />
-    <Line from={[250,64,-4.5]} to={[250,146,-4.5]} color="#3c493e" width={4} />
-    <Line from={[187,127,-4.8]} to={[234,127,-4.8]} color="#f5f5dc" width={1.1} />
-    <Line from={[270,78,-4.8]} to={[312,78,-4.8]} color="#e2e8d6" width={1.1} />
-    <Box x={172} y={56} z={-9} w={158} h={4} d={T+11} fill={{top:"#ede7d9",front:"#c5bdab",side:"#b0a58e"}} />
     <Box x={-2} y={H} z={-3} w={357} h={5} d={T+6} fill={{top:"#868b7c",front:"#5c6558",side:"#485445"}} />
     <Box x={-3} y={H} z={T} w={T+6} h={5} d={D-T+2} fill={{top:"#868b7c",front:"#5c6558",side:"#485445"}} />
     <Box x={-1} y={0} z={-2} w={356} h={11} d={3} fill={{top:"#ccc3b1",front:"#b3a893",side:"#978c75"}} />
@@ -227,10 +284,10 @@ export function FennorIcfScene({ stage, cutaway, id, progress, playing }: { stag
     <Layer visible={stage>=1}><Webs/></Layer>
     <Layer visible={stage>=2}><g opacity={stage>=4?.38:1}><Reinforcement height={stage===5?H-5:H+9}/></g></Layer>
     <Layer visible={stage>=1} className="fn-icf-forms-front">
+      {(stage<=4 || cutaway) && <WindowBuck/>}
       <g className="fn-icf-insulation-reveal" opacity={reveal?.18:1}><ReturnLeaf texture={fill("foam-side")}/><FrontLeaf texture={fill("foam")}/></g>
-      <WindowBuck/>
     </Layer>
-    <Layer visible={stage>=3&&stage<=4}><Bracing/></Layer>
+    <Layer visible={stage>=3&&stage<=4}><Bracing showOpeningBrace={stage===3}/></Layer>
     <Layer visible={stage===4} className="fn-icf-pour-equipment">
       <path d={`M${hoseX+125} 88 C${hoseX+90} 60 ${hoseX+20} 80 ${hoseX+12} 124 S${hoseX} ${hoseY-40} ${hoseX} ${hoseY}`} fill="none" stroke="#3c463c" strokeWidth="12" strokeLinecap="round"/>
       <path d={`M${hoseX+125} 85 C${hoseX+90} 57 ${hoseX+20} 77 ${hoseX+12} 121 S${hoseX-1} ${hoseY-40} ${hoseX-1} ${hoseY-3}`} fill="none" stroke="#707a67" strokeWidth="2.2" strokeLinecap="round"/>

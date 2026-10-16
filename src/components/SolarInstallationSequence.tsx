@@ -78,6 +78,58 @@ function roofPolygon(u: number, v: number, width: number, height: number) {
     .join(' ');
 }
 
+const railRows = [.195, .31, .44, .555, .685, .8];
+const hookColumns = [.12, .38, .64, .9];
+
+function RoofHook({ detailed = false }: { detailed?: boolean }) {
+  return <g className="fsq-hook-assembly" data-roof-hook="true">
+    {detailed && <path className="fsq-lifted-slate" d="M-17 9 14 9 18 2-13 2Z" />}
+    <path className="fsq-hook-foot" d="M-10 5H10L8-2H-8Z" />
+    <circle className="fsq-hook-bolt" cx="-4" cy="1.5" r="1.6" />
+    <circle className="fsq-hook-bolt" cx="4" cy="1.5" r="1.6" />
+    <path className="fsq-hook-arm" d="M-4 1V-10Q-4-14 0-14H7V-19" />
+    <path className="fsq-hook-saddle" d="M2-19H13V-15H5" />
+  </g>;
+}
+
+function RoofInterfaceDetail({ stage }: { stage: number }) {
+  const title = stage === 1 ? 'ROOF HOOK / CONCEPT VIEW' : stage === 2 ? 'RAIL CONNECTION / CONCEPT VIEW' : 'PANEL CLAMP / CONCEPT VIEW';
+  return <g className="fsq-interface-detail" transform="translate(72 70)" aria-hidden="true">
+    <rect className="fsq-interface-card" width="192" height="126" rx="2" />
+    <circle cx="16" cy="17" r="3" className="fsq-interface-dot" />
+    <text x="27" y="20" className="fsq-interface-title">{title}</text>
+    {stage === 1 && <>
+      <path d="M22 94H164" className="fsq-detail-structure" />
+      <path d="M22 82H114L138 91H44Z" className="fsq-detail-slate" />
+      <path d="M73 94V68Q73 61 80 61H105V48" className="fsq-detail-hook" />
+      <path d="M64 94H82" className="fsq-detail-hook-foot" />
+      <circle cx="69" cy="89" r="2" className="fsq-detail-bolt" /><circle cx="77" cy="89" r="2" className="fsq-detail-bolt" />
+      <path d="M105 48H126V54H111" className="fsq-detail-hook" />
+      <path d="M126 51H160" className="fsq-detail-leader" /><text x="160" y="48" textAnchor="end" className="fsq-detail-label">RAIL SADDLE</text>
+      <path d="M72 74H28" className="fsq-detail-leader" /><text x="28" y="70" className="fsq-detail-label">ROOF INTERFACE</text>
+    </>}
+    {stage === 2 && <>
+      <path d="M22 96H166" className="fsq-detail-structure" />
+      <path d="M63 96V72Q63 66 70 66H91V58" className="fsq-detail-hook" />
+      <rect x="80" y="45" width="66" height="17" rx="2" className="fsq-detail-rail" />
+      <path d="M84 50H142M84 57H142" className="fsq-detail-rail-line" />
+      <rect x="86" y="60" width="17" height="7" rx="2" className="fsq-detail-clamp" />
+      <circle cx="116" cy="77" r="5" className="fsq-detail-cable" /><circle cx="130" cy="77" r="5" className="fsq-detail-cable" />
+      <path d="M111 82Q123 91 135 82" className="fsq-detail-cable-clip" />
+      <path d="M146 53H166" className="fsq-detail-leader" /><text x="166" y="40" textAnchor="end" className="fsq-detail-label">ALIGNED RAIL</text>
+      <text x="166" y="91" textAnchor="end" className="fsq-detail-label">MANAGED ROUTE</text>
+    </>}
+    {stage === 3 && <>
+      <rect x="31" y="35" width="109" height="47" rx="1" className="fsq-detail-panel" />
+      <path d="M36 43H135M36 52H135M36 61H135M36 70H135M57 39V78M84 39V78M111 39V78" className="fsq-detail-cells" />
+      <rect x="25" y="86" width="128" height="10" rx="2" className="fsq-detail-rail" />
+      <path d="M79 81V92H91V81" className="fsq-detail-panel-clamp" />
+      <path d="M91 86H166" className="fsq-detail-leader" /><text x="166" y="80" textAnchor="end" className="fsq-detail-label">EDGE CLAMP</text>
+    </>}
+    <text x="16" y="116" className="fsq-interface-footer">ILLUSTRATIVE DETAIL · CONFIRMED FOR EACH ROOF</text>
+  </g>;
+}
+
 function Layer({ visible, className = '', children }: { visible: boolean; className?: string; children: ReactNode }) {
   return <g className={`fsq-layer ${className}`} data-visible={visible} aria-hidden={!visible}>{children}</g>;
 }
@@ -86,9 +138,9 @@ function SolarDrawing({ stage, id }: { stage: number; id: string }) {
   const current = stages[stage];
   const fill = (name: string) => `url(#${id}-${name})`;
   const panelPositions = Array.from({ length: 12 }, (_, index) => ({ column: index % 4, row: Math.floor(index / 4) }));
-  const hookPositions = Array.from({ length: 24 }, (_, index) => ({ column: index % 6, row: Math.floor(index / 6) }));
+  const hookPositions = railRows.flatMap((v, row) => hookColumns.map((u, column) => ({ u, v, row, column })));
 
-  return <svg className="fsq-drawing" viewBox="0 0 920 600" role="img" aria-labelledby={`${id}-drawing-title ${id}-drawing-description`}>
+  return <svg className="fsq-drawing" viewBox="0 0 920 600" role="img" aria-labelledby={`${id}-drawing-title ${id}-drawing-description`} data-stage={stage}>
     <title id={`${id}-drawing-title`}>{`${current.name}: conceptual domestic solar installation stage`}</title>
     <desc id={`${id}-drawing-description`}>{`${current.detail}. Explore six stages from roof assessment to monitoring and handover. This illustration is conceptual and is not a technical or electrical design.`}</desc>
     <defs>
@@ -123,12 +175,14 @@ function SolarDrawing({ stage, id }: { stage: number; id: string }) {
       <path d="M280 110 680 235 515 425 115 300Z" fill={fill('roof')} stroke="#183746" strokeWidth="2"/>
       <path d="M280 110 680 235" stroke="#8ba09e" strokeWidth="4"/>
       <path d="M113 300 516 426" stroke="#1c3946" strokeWidth="5"/>
-      {Array.from({ length: 17 }, (_, index) => {
-        const from = roofPoint(index / 16, 0);
-        const to = roofPoint(index / 16, 1);
-        return <line key={`tile-column-${index}`} x1={from[0]} y1={from[1]} x2={to[0]} y2={to[1]} stroke="#9aabb0" strokeWidth=".55" opacity=".42"/>;
-      })}
-      {Array.from({ length: 10 }, (_, index) => {
+      {Array.from({ length: 10 }, (_, course) => Array.from({ length: 11 }, (_, column) => {
+        const u = column / 10 + (course % 2 ? .05 : 0);
+        if (u <= 0 || u >= 1) return null;
+        const from = roofPoint(u, course / 10);
+        const to = roofPoint(u, (course + 1) / 10);
+        return <line key={`slate-joint-${course}-${column}`} x1={from[0]} y1={from[1]} x2={to[0]} y2={to[1]} stroke="#9aabb0" strokeWidth=".55" opacity=".42"/>;
+      }))}
+      {Array.from({ length: 11 }, (_, index) => {
         const from = roofPoint(0, index / 10);
         const to = roofPoint(1, index / 10);
         return <line key={`tile-row-${index}`} x1={from[0]} y1={from[1]} x2={to[0]} y2={to[1]} stroke="#9aabb0" strokeWidth=".55" opacity=".35"/>;
@@ -158,31 +212,50 @@ function SolarDrawing({ stage, id }: { stage: number; id: string }) {
       <g className="fsq-survey-label"><path d="M609 104h72l15 30"/><text x="609" y="93">SHADE & ORIENTATION</text></g>
     </Layer>
 
-    <Layer visible={stage === 1 || stage === 2} className="fsq-hooks">
-      {hookPositions.map(({ column, row }, index) => {
-        const [x,y] = roofPoint(.105 + column * .16, .20 + row * .20);
-        return <g key={`hook-${index}`} className="fsq-hook" style={{ '--fsq-delay': `${(row * 6 + column) * 36}ms` } as CSSProperties} transform={`translate(${x} ${y}) rotate(17)`}>
-          <rect x="-5" y="-5" width="10" height="10" rx="2" fill="#f4b27a" stroke="#f7ddc5" strokeWidth="1"/><path d="M0-9V9" stroke="#f7eee5" strokeWidth="1.4"/>
+    <Layer visible={stage >= 1 && stage <= 3} className="fsq-interface-detail-layer">
+      <RoofInterfaceDetail stage={stage}/>
+      {(() => { const [x,y] = roofPoint(.64, stage === 1 ? .44 : stage === 2 ? .555 : .685); return <path className="fsq-detail-link" d={`M264 146C315 145 ${x-72} ${y-32} ${x-10} ${y-5}`} markerEnd={`url(#${id}-arrow)`}/>; })()}
+    </Layer>
+
+    <Layer visible={stage >= 1} className="fsq-hooks">
+      {hookPositions.map(({ u, v, column, row }, index) => {
+        const [x,y] = roofPoint(u, v);
+        return <g key={`hook-${index}`} transform={`translate(${x} ${y}) rotate(17)`}>
+          <g className="fsq-hook" style={{ '--fsq-delay': `${(row * hookColumns.length + column) * 30}ms` } as CSSProperties}>
+            <RoofHook detailed={(row + column) % 3 === 0}/>
+          </g>
         </g>;
       })}
     </Layer>
 
     <Layer visible={stage >= 2} className="fsq-rails">
-      {[.25,.43,.63,.81].map((v,index) => {
+      {railRows.map((v,index) => {
         const from = roofPoint(.06,v), to = roofPoint(.94,v);
         return <g key={`rail-${v}`} className="fsq-rail" style={{ '--fsq-delay': `${index * 120}ms` } as CSSProperties}>
           <line x1={from[0]} y1={from[1]} x2={to[0]} y2={to[1]} stroke="#dbe4df" strokeWidth="6"/><line x1={from[0]} y1={from[1]} x2={to[0]} y2={to[1]} stroke="#879ba0" strokeWidth="2"/>
+          {[.06,.94].map((u, capIndex) => { const [x,y]=roofPoint(u,v); return <path key={capIndex} d={`M${x-3} ${y-4}l6 2v8l-6-2Z`} fill="#526970" stroke="#dbe4df" strokeWidth=".7"/>; })}
         </g>;
       })}
-      <path className="fsq-cable-route" d="M581 370C590 390 590 414 607 431S631 442 638 459" fill="none" stroke="#ee8a45" strokeWidth="3" strokeLinecap="round" strokeDasharray="5 5" markerEnd={`url(#${id}-arrow)`}/>
+      {hookPositions.map(({u,v},index) => { const [x,y]=roofPoint(u,v); return <g key={`rail-clamp-${index}`} className="fsq-rail-clamp" transform={`translate(${x} ${y}) rotate(17)`}><rect x="-5" y="-4" width="10" height="8" rx="1.5"/><circle r="1.4"/></g>; })}
+      {(() => { const start=roofPoint(.90,.8), end=roofPoint(.95,.88); return <path className="fsq-cable-route fsq-cable-route-under" d={`M${start[0]} ${start[1]}C${start[0]+4} ${start[1]+12} ${end[0]-8} ${end[1]-8} ${end[0]} ${end[1]}`} fill="none" stroke="#ee8a45" strokeWidth="3" strokeLinecap="round" strokeDasharray="5 5"/>; })()}
     </Layer>
 
     <Layer visible={stage >= 3} className="fsq-panels">
-      {panelPositions.map(({ column,row },index) => <g key={`panel-${index}`} className="fsq-panel" style={{ '--fsq-delay': `${index * 65}ms` } as CSSProperties}>
-        <polygon points={roofPolygon(.08 + column * .215, .15 + row * .245, .19, .205)} fill={fill('panel')} stroke="#aac3ca" strokeWidth="1.3"/>
-        <polygon points={roofPolygon(.092 + column * .215, .162 + row * .245, .166, .181)} fill="none" stroke="#6f98aa" strokeWidth=".55" opacity=".8"/>
-        {(() => { const a=roofPoint(.175 + column*.215,.155 + row*.245); const b=roofPoint(.175 + column*.215,.345 + row*.245); return <line x1={a[0]} y1={a[1]} x2={b[0]} y2={b[1]} stroke="#86a9b8" strokeWidth=".55" opacity=".8"/>; })()}
-      </g>)}
+      {panelPositions.map(({ column,row },index) => {
+        const u=.08 + column * .215, v=.15 + row * .245, width=.19, height=.205;
+        return <g key={`panel-${index}`} className="fsq-panel" style={{ '--fsq-delay': `${index * 65}ms` } as CSSProperties}>
+          <polygon points={roofPolygon(u, v, width, height)} fill={fill('panel')} stroke="#aac3ca" strokeWidth="1.3"/>
+          <polygon points={roofPolygon(u+.008, v+.008, width-.016, height-.016)} fill="none" stroke="#6f98aa" strokeWidth=".55" opacity=".82"/>
+          {[1,2,3].map(cell => { const a=roofPoint(u+width*cell/4,v+.01), b=roofPoint(u+width*cell/4,v+height-.01); return <line key={`cell-v-${cell}`} x1={a[0]} y1={a[1]} x2={b[0]} y2={b[1]} className="fsq-panel-cell"/>; })}
+          {[1,2,3,4,5].map(cell => { const a=roofPoint(u+.01,v+height*cell/6), b=roofPoint(u+width-.01,v+height*cell/6); return <line key={`cell-h-${cell}`} x1={a[0]} y1={a[1]} x2={b[0]} y2={b[1]} className="fsq-panel-cell"/>; })}
+        </g>;
+      })}
+      {railRows.flatMap(v => [.075,.285,.50,.715,.925].map((u,index) => <polygon key={`panel-clamp-${v}-${index}`} className="fsq-panel-edge-clamp" points={roofPolygon(u-.008,v-.01,.016,.02)}/>))}
+    </Layer>
+
+    <Layer visible={stage >= 2} className="fsq-exposed-route">
+      {(() => { const eave=roofPoint(.95,.88); return <path className="fsq-cable-route" d={`M${eave[0]} ${eave[1]}C${eave[0]+20} ${eave[1]+12} 590 416 607 431S631 442 638 459`} fill="none" stroke="#ee8a45" strokeWidth="3" strokeLinecap="round" strokeDasharray="5 5" markerEnd={`url(#${id}-arrow)`}/>; })()}
+      <g className="fsq-route-label"><path d="M584 404h104"/><text x="688" y="398" textAnchor="end">CABLE ROUTE · AGREED ON SITE</text></g>
     </Layer>
 
     <Layer visible={stage >= 4} className="fsq-connection">
@@ -312,8 +385,8 @@ export default function SolarInstallationSequence() {
         <div className="fsq-toolbar">
           <span className="fsq-overline"><i aria-hidden="true"/> A SOLAR SYSTEM, LAYER BY LAYER</span>
           <div className="fsq-playback">
-            <button type="button" onClick={togglePlayback} disabled={reducedMotion} aria-label={playing ? 'Pause solar installation sequence' : stage === stages.length - 1 ? 'Replay solar installation sequence' : 'Play solar installation sequence'} aria-describedby={reducedMotion ? `${id}-motion-note` : undefined}>
-              <svg viewBox="0 0 20 20" aria-hidden="true">{playing ? <path d="M6 4V16M14 4V16" stroke="currentColor" strokeWidth="2.3"/> : <path d="M6 4 16 10 6 16Z" fill="currentColor"/>}</svg><span>{playing ? 'Pause' : stage === stages.length - 1 ? 'Replay' : 'Play'}</span>
+            <button type="button" onClick={togglePlayback} disabled={reducedMotion} aria-label={activePlayback ? 'Pause solar installation sequence' : stage === stages.length - 1 ? 'Replay solar installation sequence' : 'Play solar installation sequence'} aria-describedby={reducedMotion ? `${id}-motion-note` : undefined}>
+              <svg viewBox="0 0 20 20" aria-hidden="true">{activePlayback ? <path d="M6 4V16M14 4V16" stroke="currentColor" strokeWidth="2.3"/> : <path d="M6 4 16 10 6 16Z" fill="currentColor"/>}</svg><span>{activePlayback ? 'Pause' : stage === stages.length - 1 ? 'Replay' : 'Play'}</span>
             </button>
             <button type="button" onClick={replay} aria-label="Restart solar installation sequence from the roof assessment"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 7a6 6 0 1 1-.5 5M4 3v4h4" fill="none" stroke="currentColor" strokeWidth="1.5"/></svg></button>
           </div>
@@ -326,7 +399,7 @@ export default function SolarInstallationSequence() {
       <div className="fsq-content">
         <p className="fsq-overline">EXPLORE THE INSTALLATION</p>
         <div ref={controlsRef} className="fsq-stages" role="group" aria-label="Solar installation stages">{stages.map((item,index) => <button key={item.name} type="button" onClick={() => chooseStage(index)} onKeyDown={event => onStageKeyDown(event,index)} aria-pressed={stage === index} aria-controls={`${id}-explanation`}><span className="fsq-stage-number">0{index + 1}</span><span>{item.name}</span><span className="fsq-stage-symbol" aria-hidden="true">{stage === index ? '−' : '+'}</span></button>)}</div>
-        <div id={`${id}-explanation`} className="fsq-explanation" aria-live={playing ? 'off' : 'polite'} aria-atomic="true"><p className="fsq-overline">{current.tag}</p><h3>{current.title}</h3><p>{current.text}</p><span className="fsq-detail"><i aria-hidden="true"/>{current.detail}</span></div>
+        <div id={`${id}-explanation`} className="fsq-explanation" aria-live={activePlayback ? 'off' : 'polite'} aria-atomic="true"><p className="fsq-overline">{current.tag}</p><h3>{current.title}</h3><p>{current.text}</p><span className="fsq-detail"><i aria-hidden="true"/>{current.detail}</span></div>
         {stage === stages.length - 1 && <div className="fsq-finish"><span>THE SYSTEM IS READY TO MAKE YOUR OWN</span><p>Now explore a starting panel count and see where a battery, EDDI or EV charger could fit into the conversation.</p><a href="#design">Build your starting system <b aria-hidden="true">↓</b></a></div>}
       </div>
     </div>
