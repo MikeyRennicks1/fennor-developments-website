@@ -9,7 +9,8 @@ export const site = {
   locality: 'Slane',
   county: 'Meath',
   primaryAreas: ['Meath', 'Louth', 'Dublin'],
+  localities: ['Slane', 'Navan'],
   secondaryArea: 'Leinster',
-  homeTitle: 'Solar Panels Meath, Louth & Dublin | Fennor Developments',
-  homeDescription: 'Solar PV, electrical services, renovations and retrofits in Meath and Louth. Based in Slane, Fennor helps you plan your next step. Dublin enquiries welcome.',
+  homeTitle: 'Fennor | Solar, Electrical & Building in Meath',
+  homeDescription: 'Slane-based Fennor provides solar PV, electrical, building, renovation and home energy-upgrade services across Meath and Louth. Dublin enquiries welcome.',
 } as const;

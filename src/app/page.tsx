@@ -12,10 +12,8 @@ export const metadata: Metadata = {
 
 const graph = {
   '@context': 'https://schema.org',
-  '@graph': [
-    { '@type': 'Organization', '@id': `${site.url}/#organization`, name: site.name, alternateName: site.shortName, url: site.url, logo: `${site.url}/images/logo-orange.webp`, telephone: site.telephone, email: site.email, address: { '@type': 'PostalAddress', addressLocality: site.locality, addressRegion: site.county, addressCountry: 'IE' }, areaServed: [...site.primaryAreas, site.secondaryArea].map(name => ({ '@type': 'AdministrativeArea', name })), contactPoint: { '@type': 'ContactPoint', telephone: site.telephone, email: site.email, contactType: 'customer enquiries', availableLanguage: 'English' } },
-    { '@type': 'WebSite', '@id': `${site.url}/#website`, url: site.url, name: site.shortName, publisher: { '@id': `${site.url}/#organization` }, inLanguage: 'en-IE' },
-    { '@type': 'WebPage', '@id': `${site.url}/#webpage`, url: site.url, name: site.homeTitle, description: site.homeDescription, isPartOf: { '@id': `${site.url}/#website` }, about: { '@id': `${site.url}/#organization` }, inLanguage: 'en-IE' },
-  ],
+  '@type': 'WebPage', '@id': `${site.url}/#webpage`, url: site.url, name: site.homeTitle,
+  description: site.homeDescription, isPartOf: { '@id': `${site.url}/#website` },
+  about: { '@id': `${site.url}/#organization` }, inLanguage: 'en-IE',
 };
 export default function Page() { return <><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(graph).replace(/</g, '\\u003c') }} /><Home /></>; }

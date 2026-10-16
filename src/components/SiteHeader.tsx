@@ -11,7 +11,7 @@ const primaryPaths = ['/solar','/electrical','/building','/renovations','/retrof
 // Keep the header useful rather than turning it into a 50-link mega menu. Deeper
 // guidance remains available from each overview page and the footer directory.
 const featuredSlugs:Record<string,readonly string[]>={
-  '/solar':['domestic','commercial','farm','ground-mounted','battery-storage','accessories','calculator','grants-funding'],
+  '/solar':['domestic','commercial','farm','ground-mounted','battery-storage','accessories','calculator','cost','grants-funding'],
   '/renovations':['full-home','kitchens','bathrooms','older-homes','projects-case-studies'],
   '/retrofitting':['whole-home','insulation','windows-doors','ventilation','grants-funding','projects-case-studies'],
   '/electrical':['domestic','commercial','industrial-maintenance'],

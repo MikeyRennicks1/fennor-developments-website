@@ -13,8 +13,8 @@ export const electricalPath = (key: ElectricalPageKey) => key === 'overview' ? '
 
 export const electricalPages: Record<ElectricalPageKey, ElectricalPage> = {
   overview: {
-    label: 'Electrical', title: 'Electrical Services Meath & Louth | Homes & Business | Fennor',
-    description: 'Electrical work for homes, commercial premises and industrial sites with Fennor. Rewiring, lighting, installations and maintenance enquiries. Based in Slane, Meath.',
+    label: 'Electrical', title: 'Electrical Services Meath, Navan & Slane | Fennor',
+    description: 'Electrical services for homes, businesses and industrial sites in Slane, Navan, Meath and Louth, from rewiring and lighting to planned maintenance.',
     headline: 'Powering the places', accent: 'life happens.',
     intro: 'From the first light in your kitchen to the last machine on the floor. Electrical work for homes and businesses, planned around the people who use them.',
     image: 'electrical-control-panel.webp', imageAlt: 'Electrical control panel with organised cable containment, terminals and protective devices', imageCaption: 'The detail behind dependable electrical systems', marker: 'HOME / BUSINESS / INDUSTRY',
@@ -30,8 +30,8 @@ export const electricalPages: Record<ElectricalPageKey, ElectricalPage> = {
     ],
   },
   domestic: {
-    label:'Domestic electrical', title:'Domestic Electrical Services Meath & Louth | Fennor',
-    description:'Domestic electrical services in Meath and Louth: rewiring, lighting, sockets, EV charging and clear guidance on relevant household grants from Fennor.',
+    label:'Domestic electrical', title:'Domestic Electrical Services Meath & Navan | Fennor',
+    description:'Domestic electrical services in Slane, Navan and across Meath and Louth: rewiring, lighting, sockets, EV charging and electrical work for renovations.',
     headline:'A home that works.', accent:'Down to the last switch.',
     intro:'The light over the worktop. The socket where you need it. The wiring behind your next renovation. Thoughtful electrical work begins with the way you live.',
     image:'electrical-domestic-img-3032-v2.jpg', imageAlt:'Macro detail of neatly arranged domestic consumer-unit conductors and protective devices during installation', imageCaption:'The detail behind a safe, finished installation', marker:'ELECTRICAL / AT HOME',
@@ -56,8 +56,8 @@ export const electricalPages: Record<ElectricalPageKey, ElectricalPage> = {
     ],
   },
   commercial: {
-    label:'Commercial electrical', title:'Commercial Electrical Services Meath & Louth | Fennor',
-    description:'Commercial electrical services in Meath and Louth: fit-outs, lighting, controls, power upgrades and guidance on qualifying business energy supports.',
+    label:'Commercial electrical', title:'Commercial Electrical Services Meath & Navan | Fennor',
+    description:'Commercial electrical services in Slane, Navan and across Meath and Louth: fit-outs, lighting, controls, power upgrades and planned site work.',
     headline:'Built around', accent:'your working day.',
     intro:'For the places people work, shop and meet. Lighting, power and electrical upgrades planned with your premises, staff and business activity in mind.',
     image:'electrical-commercial-hvac-4k.webp', imageAlt:'Commercial air-handling plant with local electrical isolators, organised cable tray and galvanised steel channel supports', imageCaption:'The electrical detail behind a working premises', marker:'ELECTRICAL / FOR BUSINESS',

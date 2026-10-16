@@ -4,6 +4,7 @@ import SiteHeader from '@/components/SiteHeader';
 import GrantDirectory from '@/components/GrantDirectory';
 import { electricalPages, electricalPath, electricalServices, type ElectricalPageKey } from '@/config/electrical';
 import { CommercialPremisesStudy, DomesticLightingStudy, ElectricalBriefProvider, ElectricalEnquiry, ElectricalRouteFinder, MaintenanceStudy } from './ElectricalTools';
+import DomesticElectricalSequence from './DomesticElectricalSequence';
 import './electrical.css';
 
 const safeElectric = 'https://safeelectric.ie/help-advice/controlled-restricted-electrical-works';
@@ -101,7 +102,7 @@ export default function ElectricalPage({ pageKey }: { pageKey: ElectricalPageKey
   const page = electricalPages[pageKey];
   return <ElectricalBriefProvider><div className={`electrical-page fe-page-${pageKey}`} data-electrical-page={pageKey}><StructuredData pageKey={pageKey}/><a className="skip-link" href="#main">Skip to content</a><SiteHeader/><main id="main"><ElectricalHero pageKey={pageKey}/><nav className="fe-jump fe-shell" aria-label="On this page"><a href="#explore">01 {pageKey === 'overview' ? 'Find your service' : pageKey === 'domestic' ? 'Lighting ideas' : pageKey === 'commercial' ? 'Your premises' : 'Your site brief'}</a><a href="#services">02 The work</a>{pageKey !== 'overview' && <a href="#grant-options">03 Grants &amp; support</a>}<a href="#journey">{pageKey === 'overview' ? '03' : '04'} The process</a><a href="#questions">{pageKey === 'overview' ? '04' : '05'} Questions</a><a href="#enquiry">Start an enquiry <span aria-hidden="true">↗</span></a></nav>
     <section className="fe-introduction fe-shell"><p className="fe-kicker">GOOD WORK BEGINS WITH UNDERSTANDING</p><div><h2>{page.storyTitle}<br /><em>{page.storyAccent}</em></h2><p>{page.story}</p></div></section>
-    {pageKey === 'overview' ? <><ElectricalRouteFinder/><OverviewConnections/></> : <>{pageKey === 'domestic' ? <><DomesticLightingStudy/><DomesticFinishedSpace/></> : pageKey === 'commercial' ? <CommercialPremisesStudy/> : <MaintenanceStudy/>}<ServiceLedger pageKey={pageKey}/><CoordinatedWork pageKey={pageKey}/><GrantDirectory path={electricalPath(pageKey)}/></>}
+    {pageKey === 'overview' ? <><ElectricalRouteFinder/><OverviewConnections/></> : <>{pageKey === 'domestic' ? <><DomesticLightingStudy/><DomesticElectricalSequence/><DomesticFinishedSpace/></> : pageKey === 'commercial' ? <CommercialPremisesStudy/> : <MaintenanceStudy/>}<ServiceLedger pageKey={pageKey}/><CoordinatedWork pageKey={pageKey}/><GrantDirectory path={electricalPath(pageKey)}/></>}
     <ElectricalJourney pageKey={pageKey}/><ElectricalGuidance pageKey={pageKey}/><ElectricalQuestions pageKey={pageKey}/><ElectricalEnquiry pageKey={pageKey}/><ElectricalRelated pageKey={pageKey}/>
   </main></div></ElectricalBriefProvider>;
 }

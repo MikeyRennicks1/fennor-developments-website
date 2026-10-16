@@ -36,11 +36,11 @@ export async function generateMetadata({ params }: { params: Promise<{ service: 
     twitter: { card: 'summary_large_image', title: 'Commercial solar | Fennor', description: 'Commercial solar planned around your premises and working day.', images: ['https://fennor.ie/images/commercial-concept-hero.webp'] },
   };
   if (service === 'domestic') return {
-    title: 'Solar Panels Meath & Louth | Domestic Solar PV | Fennor',
-    description: 'Plan home solar panels in Meath or Louth with Fennor, based in Slane. Explore roof suitability, batteries, costs and grants. Dublin enquiries welcome.',
+    title: 'Home Solar Panels & Batteries | Meath & Louth | Fennor',
+    description: 'Design a home-specific solar system with Fennor: roof suitability, panel layout, batteries, accessories, costs and 2026 grants for Meath and Louth.',
     alternates: { canonical: 'https://fennor.ie/solar/domestic' },
     openGraph: { title: 'Solar for your home | Fennor', description: 'A better fit for your roof, your energy use and your everyday life.', url: 'https://fennor.ie/solar/domestic', type: 'website', locale: 'en_IE', siteName: 'Fennor Developments', images: [{ url: 'https://fennor.ie/images/domestic-white-outbuilding.webp', alt: 'Supplied photograph of solar panels on a white, slate-roofed outbuilding' }] },
-    twitter: { card: 'summary_large_image', title: 'Solar for your home | Fennor', description: 'Home solar planned around your roof and electricity use in Meath, Louth and Dublin.', images: ['https://fennor.ie/images/domestic-white-outbuilding.webp'] },
+    twitter: { card: 'summary_large_image', title: 'Solar for your home | Fennor', description: 'Home solar planned around your roof and electricity use in Slane, Navan, Meath, Louth and Dublin.', images: ['https://fennor.ie/images/domestic-white-outbuilding.webp'] },
   };
   return { title: `${page.title} | Fennor`, description: page.description, alternates: { canonical: `https://fennor.ie/solar/${service}` } };
 }
@@ -59,7 +59,7 @@ export default async function SolarLanding({ params }: { params: Promise<{ servi
     { '@type': 'BreadcrumbList', '@id': 'https://fennor.ie/solar/commercial#breadcrumb', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: 'https://fennor.ie/' }, { '@type': 'ListItem', position: 2, name: 'Solar', item: 'https://fennor.ie/solar' }, { '@type': 'ListItem', position: 3, name: 'Commercial Solar', item: 'https://fennor.ie/solar/commercial' }] },
   ] }).replace(/</g, '\\u003c') }} /><CommercialSolar /></>;
   if (service === 'domestic') return <><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ '@context': 'https://schema.org', '@graph': [
-    { '@type': 'WebPage', '@id': 'https://fennor.ie/solar/domestic#webpage', url: 'https://fennor.ie/solar/domestic', name: 'Solar Panels Meath & Louth | Domestic Solar PV | Fennor', inLanguage: 'en-IE', isPartOf: { '@id': 'https://fennor.ie/#website' }, about: { '@id': 'https://fennor.ie/#organization' } },
+    { '@type': 'WebPage', '@id': 'https://fennor.ie/solar/domestic#webpage', url: 'https://fennor.ie/solar/domestic', name: 'Home Solar Panels & Batteries | Meath & Louth | Fennor', inLanguage: 'en-IE', isPartOf: { '@id': 'https://fennor.ie/#website' }, about: { '@id': 'https://fennor.ie/#organization' } },
     { '@type': 'BreadcrumbList', '@id': 'https://fennor.ie/solar/domestic#breadcrumb', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: 'https://fennor.ie/' }, { '@type': 'ListItem', position: 2, name: 'Solar', item: 'https://fennor.ie/solar' }, { '@type': 'ListItem', position: 3, name: 'Domestic Solar', item: 'https://fennor.ie/solar/domestic' }] },
   ] }).replace(/</g, '\\u003c') }} /><DomesticSolar /></>;
   const label = solarLinks.find(item => item.slug === service)?.label ?? page.title;

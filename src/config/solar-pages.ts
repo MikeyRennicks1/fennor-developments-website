@@ -6,6 +6,7 @@ export const solarLinks = [
   { slug: 'accessories', label: 'Accessories', summary: 'Explore EDDI hot-water diversion and useful additions to a solar system.' },
   { slug: 'ground-mounted', label: 'Ground Mounted', summary: 'An alternative when suitable land offers more potential than your roof.' },
   { slug: 'calculator', label: 'Solar Calculator', summary: 'Explore panel count and system capacity before a site-specific assessment.' },
+  { slug: 'cost', label: 'Solar Panel Costs', summary: 'Understand what shapes an installed price and how to compare quotations.' },
   { slug: 'grants-funding', label: 'Grants & Funding', summary: 'Understand the support that may fit your home, business or farm, with Fennor guiding the next steps.' },
   { slug: 'projects-case-studies', label: 'Projects & Case Studies', summary: 'Understand the details that make a solar project relevant to your property.' },
   { slug: 'faq-advice', label: 'FAQ & Advice', summary: 'Clear answers on roof suitability, batteries, installation and your next steps.' },

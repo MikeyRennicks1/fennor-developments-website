@@ -2,6 +2,7 @@ import Image from 'next/image';
 import SiteHeader from './SiteHeader';
 import SolarRelated from '@/components/SolarRelated';
 import { DomesticEnquiry, DomesticExplorer, SolarSelectionProvider } from '@/components/DomesticConfigurator';
+import SolarInstallationSequence from '@/components/SolarInstallationSequence';
 import '@/app/solar/domestic.css';
 
 const sources = {
@@ -48,9 +49,11 @@ export default function DomesticSolar() {
         <div className="ds-hero-image"><Image src="/images/domestic-estate-hero.webp" alt="Architectural visualisation of rooftop solar on a modern Irish family home" fill loading="eager" fetchPriority="high" sizes="100vw" quality={88} /><div className="ds-photo-shade" /><p className="ds-photo-line">A familiar home.<br /><em>A new possibility.</em></p><a className="ds-grant-teaser" href="#funding"><span>OCTOBER 2026 GRANT UPDATE</span><strong>Know what<br />you can apply for.</strong><span>Standard & enhanced routes <b>↗</b></span></a><span className="ds-photo-index" aria-hidden="true">01 — SOLAR, CONSIDERED</span></div>
         <div className="ds-hero-foot"><span>BASED IN SLANE, CO. MEATH</span><span>YOUR HOME COMES FIRST</span><a href="tel:+353894032737">089 403 2737 ↗</a></div>
       </section>
-      <nav className="ds-jump" aria-label="On this page"><a href="#design">01 Your system</a><a href="#suitability">02 Your roof</a><a href="#funding">03 Grants</a><a href="#journey">04 The process</a><a href="#questions">05 Questions</a></nav>
+      <nav className="ds-jump" aria-label="On this page"><a href="#installation">How it is installed</a><a href="#design">01 Your system</a><a href="#suitability">02 Your roof</a><a href="#funding">03 Grants</a><a href="#journey">04 The process</a><a href="#questions">05 Questions</a></nav>
 
       <section className="ds-introduction ds-shell"><p className="eyebrow">LESS GUESSWORK. MORE UNDERSTANDING.</p><div><h2>Not just more panels.<br /><em>A better fit for your life.</em></h2><p>A busy family home, a home office and an empty house during the day use energy differently. Fennor matches the roof design to your routine, then explains which equipment earns its place in the quote—and which extras you may not need.</p><p>Based in Slane, Co. Meath, our first focus is home solar in Meath and Louth, with Dublin enquiries also welcome. Tell us your town and a little about your roof so we can confirm the assessment and next step for your home.</p><a className="ds-inline-link" href="/about/areas">Check our service areas <span>↗</span></a></div></section>
+      <nav className="ds-area-links" aria-label="Explore solar services by area"><span>SOLAR IN YOUR AREA</span><a href="/solar-panels-slane">Slane</a><a href="/solar-panels-navan">Navan</a><a href="/solar-panels-meath">Meath</a><a href="/solar-panels-louth">Louth</a></nav>
+      <SolarInstallationSequence />
       <DomesticExplorer />
 
       <section className="ds-suitability ds-shell" id="suitability"><div className="ds-section-top"><p className="eyebrow">02 / THE RIGHT FOUNDATIONS</p><span>Before a panel is chosen</span></div><div className="ds-suitability-grid"><div className="ds-sticky-heading"><h2>First, get to<br /><em>know your roof.</em></h2><p>You do not need to survey the roof yourself. Fennor arranges the assessment that shapes your panel layout, equipment choices and installation plan.</p></div><div className="ds-considerations">{[

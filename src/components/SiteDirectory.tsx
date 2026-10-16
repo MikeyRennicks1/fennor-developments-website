@@ -17,7 +17,12 @@ export default function SiteDirectory() {
     <nav aria-label="Full website directory" className="sd-groups">
       {groups.map(group => <details key={group.path}>
         <summary>{group.label}<span aria-hidden="true">+</span></summary>
-        <div>{group.pages.map(([slug, label]) => <a key={slug} href={group.path + (slug ? `/${slug}` : '')}>{label}<span aria-hidden="true">↗</span></a>)}{group.path==='/retrofitting'&&heatPumps&&<><span className="sd-subheading">Heat pumps</span>{heatPumps.pages.map(([slug,label])=><a key={slug} href={heatPumps.path+(slug?`/${slug}`:'')}>{label}<span aria-hidden="true">↗</span></a>)}</>}</div>
+        <div>{group.pages.map(([slug, label]) => <a key={slug} href={group.path + (slug ? `/${slug}` : '')}>{label}<span aria-hidden="true">↗</span></a>)}
+          {group.path==='/solar'&&<><span className="sd-subheading">Solar in your area</span><a href="/solar-panels-slane">Solar panels Slane<span aria-hidden="true">↗</span></a><a href="/solar-panels-navan">Solar panels Navan<span aria-hidden="true">↗</span></a><a href="/solar-panels-meath">Solar panels Meath<span aria-hidden="true">↗</span></a><a href="/solar-panels-louth">Solar panels Louth<span aria-hidden="true">↗</span></a></>}
+          {group.path==='/electrical'&&<><span className="sd-subheading">Local electrical</span><a href="/electrician-slane">Electrical services Slane<span aria-hidden="true">↗</span></a></>}
+          {group.path==='/building'&&<><span className="sd-subheading">Local building</span><a href="/builders-slane">Builders Slane<span aria-hidden="true">↗</span></a></>}
+          {group.path==='/retrofitting'&&heatPumps&&<><span className="sd-subheading">Heat pumps</span>{heatPumps.pages.map(([slug,label])=><a key={slug} href={heatPumps.path+(slug?`/${slug}`:'')}>{label}<span aria-hidden="true">↗</span></a>)}</>}
+        </div>
       </details>)}
     </nav>
     <div className="sd-bottom"><span>Fennor Developments Ltd · Slane, Co. Meath, Ireland</span><a href="tel:+353894032737">089 403 2737</a>{ENQUIRY_RECIPIENTS.map(email=><a key={email} href={enquiryEmailHref({primary:email})}>{email}</a>)}</div>

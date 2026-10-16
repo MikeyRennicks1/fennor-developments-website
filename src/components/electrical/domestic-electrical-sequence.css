@@ -1,0 +1,97 @@
+.fed-section{padding-bottom:110px}
+.fed-heading{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr);align-items:end;gap:8%;margin-bottom:48px}
+.fed-heading>p{max-width:390px;margin-left:auto;color:var(--fe-muted);font-size:14px}
+.fed-sequence{--fed-paper:#edf2ef;--fed-ink:#203a44;--fed-muted:#607078;--fed-accent:#b7652d;display:grid;grid-template-columns:minmax(0,1.62fr) minmax(270px,.76fr);align-items:start;gap:clamp(28px,4vw,72px);width:100%;color:var(--fed-ink)}
+.fed-scene{overflow:hidden;border:1px solid #cad5d0;background:var(--fed-paper);box-shadow:0 22px 60px #1c30400b}
+.fed-toolbar{display:flex;min-height:60px;align-items:center;justify-content:space-between;gap:16px;padding:12px 22px;border-bottom:1px solid #cdd8d2}
+.fed-overline{display:flex;align-items:center;gap:9px;margin:0;color:var(--fed-muted);font-size:9px!important;font-weight:600;line-height:1.6!important;letter-spacing:1.5px}
+.fed-overline>i{width:5px;height:5px;border-radius:50%;background:#d9884b;box-shadow:0 0 0 4px #d9884b17}
+.fed-playback{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.fed-playback button{display:inline-flex;min-width:34px;min-height:36px;align-items:center;justify-content:center;gap:5px;border:0;padding:0;background:transparent;color:#38515a;font-size:11px;cursor:pointer}
+.fed-playback button:hover{color:var(--fed-accent)}
+.fed-playback button:disabled{opacity:.43;cursor:default}
+.fed-playback svg{width:18px;height:18px}
+.fed-sequence button:focus-visible{outline:2px solid #9b511f;outline-offset:4px}
+.fed-drawing{display:block;width:100%;height:auto;overflow:hidden}
+.fed-drawing-meta,.fed-stage-callout,.fed-dimensions{font-family:var(--font-dm-sans),sans-serif;font-size:8px;letter-spacing:1.35px;fill:#607670}
+.fed-drawing-meta path,.fed-stage-callout path,.fed-dimensions path{fill:none;stroke:#81978f;stroke-width:.7}
+.fed-stage-callout{font-size:8px;fill:#8f4e25}
+.fed-floor-line{fill:none;stroke:#a89c8a;stroke-width:.65;opacity:.35}
+.fed-window-line{fill:none;stroke:#eef4ee;stroke-width:3}
+.fed-room-wall{transition:opacity .7s ease}
+.fed-sequence[data-stage="0"] .fed-room-wall{opacity:.52}
+.fed-layer{opacity:0;transform:translateY(-13px);transform-box:fill-box;transform-origin:center;transition:opacity .65s ease,transform .85s cubic-bezier(.2,.72,.2,1);pointer-events:none}
+.fed-layer[data-visible="true"]{opacity:1;transform:translateY(0)}
+.fed-plan-layer{fill:none;stroke:#627b77;stroke-width:1.35}
+.fed-plan-layer circle{fill:#f8f8f1;stroke:#aa6d42}
+.fed-plan-layer text{stroke:none;fill:#657b76;font-family:var(--font-dm-sans),sans-serif;font-size:8px;letter-spacing:1.15px}
+.fed-plan-layer .fed-callout-line{stroke:#8c9c96;stroke-width:.7}
+.fed-route-layer{fill:none;stroke:#b46836;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.fed-route-layer>path{stroke-dasharray:8 8}
+.fed-sequence[data-playing="true"] .fed-route-layer[data-visible="true"]>path{animation:fed-route-flow 6s linear infinite}
+.fed-wall-point rect{fill:#f9f8f1;stroke:#9f5e32;stroke-width:1.5}
+.fed-wall-point circle{fill:#9f5e32;stroke:none}
+.fed-distribution-layer{filter:drop-shadow(0 6px 7px #1f383f12)}
+.fed-board-row{stroke:#6b7f7a;stroke-width:2.4;stroke-dasharray:3 3}
+.fed-board-entry{stroke:#9d6842;stroke-width:1.5;fill:none}
+.fed-protection-symbol circle{fill:#f4eee1;stroke:#b86b37;stroke-width:1}
+.fed-protection-symbol path{fill:none;stroke:#8b532e;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.fed-second-fix-layer .fed-wall-point rect{fill:#f9f8f1;stroke:#526c6b}
+.fed-second-fix-layer .fed-wall-point circle{fill:#526c6b}
+.fed-light>path{fill:#3b5358;stroke:#50666a;stroke-width:1}
+.fed-light>ellipse:last-child{fill:#fff1bd;stroke:#ae754c;stroke-width:.7}
+.fed-light>ellipse:first-child{opacity:.78;animation:fed-light-breathe 5s ease-in-out infinite;animation-play-state:paused}
+.fed-sequence[data-playing="true"] .fed-light>ellipse:first-child{animation-play-state:running}
+.fed-furniture-layer{filter:drop-shadow(0 7px 5px #23373c12)}
+.fed-test-layer>g>rect:first-child{fill:#28444f;stroke:#17313c;stroke-width:1.2}
+.fed-test-layer>g>rect:nth-child(2){fill:#dfe9df;stroke:#a9bab0}
+.fed-test-layer>g>path:not(.fed-test-tick){fill:none;stroke:#829891;stroke-width:2}
+.fed-test-layer>g>circle{fill:#d98a4c}
+.fed-test-layer .fed-test-tick{fill:none;stroke:#c16d34;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.fed-test-lead{fill:none;stroke:#9b623d;stroke-width:2;stroke-dasharray:6 6}
+.fed-test-layer>circle{fill:#fff7e8;stroke:#9b623d;stroke-width:2}
+.fed-handover-layer>g>rect{fill:#f7f5ed;stroke:#6c817b;stroke-width:1.2}
+.fed-handover-layer>g>path{fill:none;stroke:#82938d;stroke-width:1.4}
+.fed-handover-layer>g>circle{fill:#f1dbc4;stroke:#b36632;stroke-width:1.2}
+.fed-handover-layer>g>circle+path{stroke:#98552a;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.fed-finish-spark{fill:none;stroke:#d5a16d;stroke-width:1;stroke-dasharray:3 7}
+.fed-handover-layer>circle{fill:#d98649}
+.fed-stage-marker{transition:transform .85s cubic-bezier(.2,.72,.2,1)}
+.fed-stage-marker>circle:nth-child(2){fill:#b66631}
+.fed-stage-marker>circle:nth-child(3){fill:#fff6e8}
+.fed-marker-ring{fill:#d9894919;stroke:#bd713d;stroke-width:.8}
+.fed-sequence[data-playing="true"] .fed-marker-ring{animation:fed-marker-pulse 2.6s ease-in-out infinite}
+.fed-caption{display:flex;align-items:center;gap:16px;margin:0 22px;padding:17px 0;border-top:1px solid #cad5cf}
+.fed-count{display:flex;align-items:center;gap:8px;color:#914a20;font-family:var(--font-dm-sans),sans-serif;font-size:25px;line-height:1}
+.fed-count small{padding-top:4px;color:#52635c;font-size:10px}
+.fed-caption>div{display:grid;gap:3px}
+.fed-caption strong{font-size:13px;font-weight:550;line-height:1.4}
+.fed-caption>div>span{color:#52635c;font-size:10px;line-height:1.5}
+.fed-progress{display:flex;align-items:center;gap:5px;margin-left:auto}
+.fed-progress i{width:5px;height:5px;border-radius:50%;background:#c5d0ca;transition:width .3s,background .3s}
+.fed-progress i.is-current{width:17px;border-radius:3px;background:#c6763f}
+.fed-progress i.is-complete{background:#80958b}
+.electrical-page .fed-footnote,.electrical-page .fed-motion-note{margin:0;padding:1px 22px 16px;color:#52635c;font-size:9px;line-height:1.6}
+.electrical-page .fed-motion-note{padding-top:0;color:#5c6e68;font-size:10px}
+.fed-content{padding-top:2px;min-width:0}
+.fed-stages{display:grid;margin-top:16px;border-top:1px solid #cbd5d0}
+.fed-stages button{display:flex;align-items:center;gap:16px;width:100%;min-height:57px;border:0;border-bottom:1px solid #d1dad5;padding:13px 2px;background:transparent;color:#65767a;text-align:left;cursor:pointer;transition:color .25s,padding .25s,background .25s}
+.fed-stages button>span:nth-child(2){font-size:15px;line-height:1.35}
+.fed-stages button:hover{padding-left:8px;color:#233f49}
+.fed-stages button[aria-pressed="true"]{color:#1e3943}
+.fed-stage-number{color:#576c68;font-size:10px;letter-spacing:.6px}
+.fed-stages button[aria-pressed="true"] .fed-stage-number{color:#ad5f2c}
+.fed-stage-symbol{margin-left:auto;padding-inline:6px;color:#a7663b;font-size:20px;font-weight:300;line-height:1}
+.fed-explanation{min-height:255px;margin-top:29px}
+.fed-explanation>.fed-overline{color:#a75d2c;font-size:9px!important}
+.electrical-page .fed-explanation h3{max-width:16ch;margin:12px 0 14px;color:#203a44;font-size:clamp(25px,2.25vw,35px);font-weight:450;line-height:1.16;letter-spacing:-1.1px}
+.electrical-page .fed-explanation>p:not(.fed-overline){margin:0;color:#64757b;font-size:13px;line-height:1.85}
+.fed-detail{display:flex;align-items:flex-start;gap:9px;margin-top:18px;padding-top:16px;border-top:1px solid #d2dad6;color:#875a3c;font-size:10px;line-height:1.55}
+.fed-detail i{flex:0 0 5px;height:5px;margin-top:5px;background:#cf7b40}
+@keyframes fed-route-flow{to{stroke-dashoffset:-128}}
+@keyframes fed-light-breathe{0%,100%{opacity:.68}50%{opacity:.92}}
+@keyframes fed-marker-pulse{0%,100%{opacity:.45}50%{opacity:1}}
+@media(max-width:1080px){.fed-sequence{grid-template-columns:minmax(0,1.45fr) minmax(240px,.8fr);gap:30px}.fed-toolbar{padding-inline:16px}.fed-caption{margin-inline:16px;gap:10px}.fed-caption strong{font-size:11px}.fed-caption>div>span{font-size:9px}.fed-progress{display:none}.electrical-page .fed-footnote,.electrical-page .fed-motion-note{padding-inline:16px}.fed-stages button{min-height:52px}.fed-stages button>span:nth-child(2){font-size:14px}}
+@media(max-width:800px){.fed-section{padding-bottom:75px}.fed-heading{grid-template-columns:1fr;gap:23px;margin-bottom:35px}.fed-heading>p{max-width:650px;margin:0}.fed-sequence{grid-template-columns:1fr;gap:27px}.fed-scene{width:100%}.fed-drawing{width:112%;max-width:none;margin-left:-6%}.fed-stages{grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin-top:13px}.fed-stages button{flex-direction:column;align-items:flex-start;justify-content:center;gap:5px;min-height:74px;padding:10px 5px;border-bottom:2px solid #d1dad5}.fed-stages button:hover{padding-left:5px}.fed-stages button[aria-pressed="true"]{border-bottom-color:#be6d35}.fed-stages button>span:nth-child(2){font-size:12px}.fed-stage-symbol{display:none}.fed-explanation{min-height:210px;margin-top:25px}.electrical-page .fed-explanation h3{max-width:20ch;font-size:31px}.electrical-page .fed-explanation>p:not(.fed-overline){max-width:65ch;font-size:13px}.fed-stage-callout{display:none}}
+@media(max-width:520px){.fed-section{padding-bottom:62px}.fed-toolbar{min-height:52px;padding:10px 11px;gap:7px}.fed-toolbar>.fed-overline{font-size:8px!important;letter-spacing:1px}.fed-playback{gap:3px}.fed-playback button{font-size:10px}.fed-caption{margin-inline:11px;gap:9px;padding-block:14px}.fed-count{font-size:20px}.fed-count small{display:none}.fed-caption>div>span{display:none}.electrical-page .fed-footnote,.electrical-page .fed-motion-note{padding-inline:11px;font-size:8px}.fed-stages button{min-height:67px;padding-inline:3px}.fed-stages button:hover{padding-left:3px}.fed-stages button>span:nth-child(2){font-size:11px}.fed-explanation{min-height:240px}.electrical-page .fed-explanation h3{font-size:28px}}
+@media(prefers-reduced-motion:reduce){.fed-sequence *,.fed-sequence *:before,.fed-sequence *:after{animation:none!important;transition:none!important}}
